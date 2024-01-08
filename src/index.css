@@ -1,5 +1,62 @@
-/* font  */
-@import url('https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&display=swap');
+/* fonts */
+/* inter font */
+@font-face {
+  font-family: 'inter';
+  src: url(./assets/fonts/inter/Inter-Black.ttf);
+  font-weight: 900;
+}
+
+@font-face {
+  font-family: 'inter';
+  src: url(./assets/fonts/inter/Inter-ExtraBold.ttf);
+  font-weight: 800;
+}
+
+@font-face {
+  font-family: 'inter';
+  src: url(./assets/fonts/inter/Inter-Bold.ttf);
+  font-weight: 700;
+}
+
+
+@font-face {
+  font-family: 'inter';
+  src: url(./assets/fonts/inter/Inter-SemiBold.ttf);
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: 'inter';
+  src: url(./assets/fonts/inter/Inter-Medium.ttf);
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: 'inter';
+  src: url(./assets/fonts/inter/Inter-Regular.ttf);
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'inter';
+  src: url(./assets/fonts/inter/Inter-Light.ttf);
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: 'inter';
+  src: url(./assets/fonts/inter/Inter-ExtraLight.ttf);
+  font-weight: 200;
+}
+
+
+
+
+
+
+
+
+
 
 @tailwind base;
 @tailwind components;
@@ -7,13 +64,108 @@
 
 /* components  */
 @layer components {
+  .body {
+    background: #fff;
+    font-family: 'inter', sans-serif;
+  }
+
   .container {
     @apply max-w-7xl w-full mx-auto px-5;
   }
+
+
+
+
+
+
+  /* flex & grid */
+  .flex-start {
+    @apply flex items-start;
+  }
+
+  .flex-center {
+    @apply flex items-center;
+  }
+
+  .flex-end {
+    @apply flex items-end;
+  }
+
+  .flex-center-between {
+    @apply flex items-center justify-between;
+  }
+
+  .grid-4 {
+    @apply grid columns-4 gap-6;
+  }
+
+
+
+
+
+
+
+  /* font sizes */
+  /* bold */
+  .text-bold-32 {
+    @apply text-32 leading-5 font-bold;
+  }
+
+  /* medium */
+  .text-medium-18 {
+    @apply text-lg leading-5 font-medium;
+  }
+
+  .text-medium-14 {
+    @apply text-sm leading-4 font-medium;
+  }
+
+  /* regular */
+  .text-regular-16 {
+    @apply text-base font-normal leading-6.5;
+  }
+
+  .text-regular-13 {
+    @apply text-13 font-normal leading-3.5;
+  }
+
+
+
+
+
+
+
+  /* buttons */
+  .main-btn {
+    @apply flex-center rounded-full py-3 px-6 gap-2 bg-white text-medium-18 border;
+  }
+
+  .main-btn .btn-icon {
+    @apply w-6 h-6;
+  }
+
+  .btn-primary_skyblue {
+    @apply main-btn bg-primary-skyblue-500 text-white border-0;
+  }
+
+  .btn-primary_blue {
+    @apply main-btn text-primary-blue-700 border-primary-blue-700;
+  }
+
+  .btn-primary_red {
+    @apply main-btn text-primary-red-500 border-primary-red-500;
+  }
+
+  .btn-primary_gold {
+    @apply main-btn text-primary-gold-400 border-primary-goldtext-primary-gold-400;
+  }
+  
+  .btn-primary_linear-blue {
+    @apply main-btn rounded-18 py-2 px-2.5 text-white bg-linear-gradient_blue-500 border-0;
+  }
 }
 
-/* other class name  */
-.body {
-  background: #fff;
-  font-family: 'Onest', sans-serif;
-}
+/* 
+@layer base {}
+
+@layer utilities {} */
