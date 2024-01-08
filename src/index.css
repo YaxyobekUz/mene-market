@@ -1,0 +1,19 @@
+/* font  */
+@import url('https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* components  */
+@layer components {
+  .container {
+    @apply max-w-7xl w-full mx-auto px-5;
+  }
+}
+
+/* other class name  */
+.body {
+  background: #fff;
+  font-family: 'Onest', sans-serif;
+}
