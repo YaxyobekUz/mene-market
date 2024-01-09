@@ -96,6 +96,10 @@
     @apply flex items-center justify-between;
   }
 
+  .flex-start-between {
+    @apply flex items-start justify-between;
+  }
+
   .grid-4 {
     @apply grid columns-4 gap-6;
   }
