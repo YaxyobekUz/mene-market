@@ -226,6 +226,36 @@
   .hero-swiper .hero-swiper_item-button {
     @apply border-0 bg-primary-black-800;
   }
+
+  /* categories section */
+  .categories-section {
+    @apply py-11;
+  }
+
+  .categories-section_list {
+    @apply flex-start w-full overflow-x-auto;
+    gap: 30px;
+  }
+
+  .categories-section_list .item_content {
+    @apply flex-center flex-col gap-2;
+  }
+
+  .categories-section_list .item_circle {
+    @apply w-32 h-32 rounded-full p-4;
+  }
+
+  .categories-section_list .item_circle-child {
+    @apply flex-center justify-center relative w-24 h-24 rounded-full text-center;
+  }
+
+  .categories-section_list .item_img {
+    @apply absolute;
+  }
+
+  .categories-section_list .item_text {
+    @apply text-regular-16;
+  }
 }
 
 
