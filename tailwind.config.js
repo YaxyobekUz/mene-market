@@ -80,6 +80,15 @@ export default {
         20: '20px',
         18: '18px',
       },
+
+
+
+
+
+      // flex & grid
+      gap: {
+        30: '30px',
+      }
     },
   },
   plugins: [],
