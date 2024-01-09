@@ -65,6 +65,7 @@
 /* components  */
 @layer components {
   .body {
+    @apply text-medium-18;
     background: #fff;
     font-family: 'inter', sans-serif;
   }
@@ -108,7 +109,12 @@
   /* font sizes */
   /* bold */
   .text-bold-32 {
-    @apply text-32 leading-5 font-bold;
+    @apply text-32 leading-9 font-bold;
+  }
+
+  /* semibold */
+  .text-semibold-20 {
+    @apply text-xl leading-22.5 font-semibold;
   }
 
   /* medium */
@@ -159,13 +165,64 @@
   .btn-primary_gold {
     @apply main-btn text-primary-gold-400 border-primary-goldtext-primary-gold-400;
   }
-  
+
   .btn-primary_linear-blue {
     @apply main-btn rounded-18 py-2 px-2.5 text-white bg-linear-gradient_blue-500 border-0;
   }
+
+
+
+
+
+
+
+  /* shadow */
+  .header-shadow {
+    box-shadow: 0px 2px 16px 0px rgba(0, 0, 0, 0.15);
+  }
 }
 
-/* 
-@layer base {}
 
-@layer utilities {} */
+@layer base {
+  *:focus {
+    @apply outline-offset-2;
+    outline-color: rgba(26, 62, 221, 0.5)
+      /* primary blue 700 */
+    ;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply text-primary-black-800;
+  }
+
+  h2 {
+    @apply text-bold-32;
+  }
+
+  h3 {
+    @apply text-semibold-20 first-letter:h-1;
+  }
+
+  input {
+    @apply w-full rounded-full py-2 text-regular-16 border-primary-gray-500;
+  }
+
+  :is(input, textarea)::placeholder {
+    @apply text-primary-gray-500 text-regular-16;
+  }
+
+  /* clears the ‘X’ from Chrome */
+  :is(input[type="search"])::-webkit-search-decoration,
+  ::-webkit-search-cancel-button,
+  ::-webkit-search-results-button,
+  ::-webkit-search-results-decoration {
+    display: none;
+  }
+}
+
+/* @layer utilities {} */
