@@ -33,6 +33,12 @@ export default {
             500: '#949494',
           },
         },
+
+        'secondary': {
+          'green': {
+            500: '#0CD691',
+          }
+        }
       },
 
       backgroundImage: {

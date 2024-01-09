@@ -1,0 +1,13 @@
+.black-pagination-bullets .swiper-pagination-bullet {
+    width: 12px;
+    height: 12px;
+    background: transparent;
+    border: 1px solid #13181F;
+    opacity: 1;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.black-pagination-bullets .swiper-pagination-bullet-active {
+    background: #13181F;
+}

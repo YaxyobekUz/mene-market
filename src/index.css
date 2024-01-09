@@ -143,7 +143,7 @@
 
   /* buttons */
   .main-btn {
-    @apply flex-center rounded-full py-3 px-6 gap-2 bg-white text-medium-18 border;
+    @apply flex-center rounded-full py-3 px-6 gap-2 bg-white text-medium-18 border max-w-max;
   }
 
   .main-btn .btn-icon {
@@ -179,6 +179,48 @@
   /* shadow */
   .header-shadow {
     box-shadow: 0px 2px 16px 0px rgba(0, 0, 0, 0.15);
+  }
+
+
+
+
+
+
+
+
+  /* home page  */
+  /* hero */
+  .hero-swiper {
+    @apply rounded-lg;
+  }
+
+  .hero-swiper .hero-swiper_item {
+    @apply w-full bg-secondary-green-500 p-6 px-12;
+  }
+
+  .hero-swiper .hero-swiper_item-child {
+    @apply flex-center-between gap-6;
+  }
+
+  .hero-swiper .hero-swiper_item-content {
+    @apply flex-center flex-col text-center;
+    max-width: 412px;
+  }
+
+  .hero-swiper * {
+    @apply text-white;
+  }
+
+  .hero-swiper .hero-swiper_item-title {
+    @apply text-bold-32 mb-2;
+  }
+
+  .hero-swiper .hero-swiper_item-description {
+    @apply mb-6;
+  }
+
+  .hero-swiper .hero-swiper_item-button {
+    @apply border-0 bg-primary-black-800;
   }
 }
 
