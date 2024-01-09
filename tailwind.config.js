@@ -46,6 +46,20 @@ export default {
       },
 
 
+
+
+      // sizes
+      width: {
+        296: '296px',
+      },
+
+      height: {
+        296: '296px',
+      },
+
+
+
+
       // font
       fontSize: {
         32: '32px',
@@ -60,8 +74,10 @@ export default {
 
 
 
+
       // border
       borderRadius: {
+        20: '20px',
         18: '18px',
       },
     },
