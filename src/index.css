@@ -1,3 +1,7 @@
+html {
+  scroll-behavior: smooth;
+}
+
 /* fonts */
 /* inter font */
 @font-face {
@@ -72,6 +76,27 @@
 
   .container {
     @apply max-w-7xl w-full mx-auto px-5;
+  }
+
+
+
+
+
+
+  /* scrolls */
+  /* scroll gray */
+  .scroll_gray::-webkit-scrollbar {
+    @apply rounded-full h-3;
+  }
+
+  .scroll_gray::-webkit-scrollbar-thumb {
+    @apply bg-primary-gray-500 rounded-full border-2 border-solid;
+    border-color: #FAFAFA;
+  }
+
+  .scroll_gray::-webkit-scrollbar-track {
+    @apply rounded-full;
+    background: #FAFAFA;
   }
 
 
@@ -340,7 +365,38 @@
   .faq_list_item-title {
     @apply text-medium-18;
   }
+
+
+
+
+
+
+
+
+
+
+  /* tab */
+  .tab-menu {
+    @apply flex gap-2.5 overflow-x-auto pb-4 p-0.5 mb-6;
+    scroll-behavior: smooth;
+  }
+
+  .tab-menu_btn {
+    @apply main-btn min-w-max;
+  }
+
+  .tab-menu_btn-active {
+    @apply border-primary-skyblue-500 bg-linear-gradient_blue-500 text-white;
+  }
 }
+
+
+
+
+
+
+
+
 
 
 @layer base {
