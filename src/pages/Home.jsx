@@ -4,6 +4,7 @@ import Categories from '../components/Categories';
 import NewProducts from '../components/NewProducts';
 import PopularProducts from '../components/PopularProducts';
 import Faq from '../components/Faq';
+import Products from './Products';
 
 const Home = () => {
     return (
@@ -13,6 +14,7 @@ const Home = () => {
             <NewProducts />
             <PopularProducts />
             <Faq />
+            <Products />
         </>
     )
 };
