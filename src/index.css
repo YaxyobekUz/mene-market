@@ -281,8 +281,12 @@ html {
   }
 
   .categories-section_list {
-    @apply flex-start w-full overflow-x-auto;
+    @apply flex-start w-full overflow-auto snap-mandatory snap-x;
     gap: 30px;
+  }
+
+  .categories-section_list-item {
+    @apply snap-start;
   }
 
   .categories-section_list .item_content {
@@ -397,12 +401,12 @@ html {
 
   /* tab */
   .tab-menu {
-    @apply flex gap-2.5 overflow-x-auto pb-4 p-0.5 mb-6;
+    @apply flex gap-2.5 overflow-x-auto pb-4 p-0.5 mb-6 snap-mandatory snap-x;
     scroll-behavior: smooth;
   }
 
   .tab-menu_btn {
-    @apply main-btn min-w-max;
+    @apply main-btn min-w-max snap-start;
   }
 
   .tab-menu_btn-active {
