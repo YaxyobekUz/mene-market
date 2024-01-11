@@ -99,6 +99,13 @@ html {
     background: #FAFAFA;
   }
 
+  .scroll_hidden::-webkit-scrollbar,
+  .scroll_hidden::-webkit-scrollbar-thumb,
+  .scroll_hidden::-webkit-scrollbar-track {
+    display: none;
+    opacity: 0;
+  }
+
 
 
 
@@ -126,7 +133,7 @@ html {
   }
 
   .grid-4 {
-    @apply grid grid-cols-4 gap-6;
+    @apply grid grid-cols-4 gap-6 max-1124:grid-cols-3 max-768:grid-cols-2 max-768:gap-4 max-450:grid-cols-1;
   }
 
 
@@ -138,7 +145,11 @@ html {
   /* font sizes */
   /* bold */
   .text-bold-32 {
-    @apply text-32 leading-9 font-bold;
+    @apply text-32 leading-9 font-bold max-768:text-bold-28;
+  }
+
+  .text-bold-28 {
+    @apply text-28 leading-8 font-bold;
   }
 
   /* semibold */
@@ -224,18 +235,18 @@ html {
   /* home page  */
   /* hero */
   .hero-swiper {
-    @apply rounded-lg;
+    @apply rounded-lg max-h-max h-full max-768:pb-5;
   }
 
-  .hero-swiper .hero-swiper_item {
-    @apply w-full bg-secondary-green-500 p-6 px-12;
+  .hero-swiper_item {
+    @apply w-full rounded-lg bg-secondary-green-500 p-6 px-12 max-1024:h-[256px] max-1024:px-6 max-768:h-[354px];
   }
 
-  .hero-swiper .hero-swiper_item-child {
-    @apply flex-center-between gap-6;
+  .hero-swiper_item-child {
+    @apply flex-center-between gap-6 h-full max-768:flex-col-reverse;
   }
 
-  .hero-swiper .hero-swiper_item-content {
+  .hero-swiper_item-content {
     @apply flex-center flex-col text-center;
     max-width: 412px;
   }
@@ -244,16 +255,24 @@ html {
     @apply text-white;
   }
 
-  .hero-swiper .hero-swiper_item-title {
-    @apply text-bold-32 mb-2;
+  .hero-swiper_item-title {
+    @apply text-bold-32 mb-2 max-1024:text-bold-28;
   }
 
-  .hero-swiper .hero-swiper_item-description {
+  .hero-swiper_item-description {
     @apply mb-6;
   }
 
-  .hero-swiper .hero-swiper_item-button {
+  .hero-swiper_item-button {
     @apply border-0 bg-primary-black-800;
+  }
+
+  .hero-swiper_item-img {
+    @apply max-1024:w-[50%] max-768:w-[310px];
+  }
+
+  .hero-swiper .swiper-pagination {
+    @apply max-768:-bottom-1;
   }
 
   /* categories section */
@@ -291,17 +310,18 @@ html {
 
 
   /* products */
+
   .product {
     @apply w-full rounded-3xl;
     box-shadow: 0px 4px 6px 0px rgba(0, 0, 0, 0.10);
   }
 
   .product_img {
-    @apply h-296 object-cover rounded-20 mb-4;
+    @apply w-full h-auto object-cover rounded-20 mb-4 bg-primary-gray-500 aspect-square;
   }
 
   .product_content {
-    @apply px-6 pb-6 space-y-2;
+    @apply p-6 !pt-0 space-y-2 max-768:p-5 max-540:p-4 max-490:p-3 max-450:p-6;
   }
 
   .product_rating-wrapper {

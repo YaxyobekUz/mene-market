@@ -24,7 +24,7 @@ const Hero = () => {
                         clickable: true,
                     }}
                     loop={true}
-                    
+
                     autoplay={{
                         delay: 3000,
                     }}

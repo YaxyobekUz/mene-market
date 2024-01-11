@@ -16,7 +16,7 @@ const Categories = () => {
         <section className='categories-section'>
             <div className="container">
                 <h2 className="mb-6">Kategoriyalar</h2>
-                <ul className="categories-section_list">
+                <ul className="categories-section_list scroll_hidden">
                     <li className="categories-section_list-item">
                         <Link to='/' className='item_content'>
                             <span className="item_circle bg-[#BED6EF]">
