@@ -1,27 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 // images
 import headphoneImg from '../assets/images/other/headphone.jpg';
 import stars from '../assets/images/svg/stars.svg';
 import shoppingCart from '../assets/images/svg/shopping-cart.svg';
+import { tabButtons } from '../assets/data';
 const Products = () => {
+    const [activeBtnValue, setActiveBtnValue] = useState(0);
     return (
         <div className='pb-32'>
             <div className="container">
                 {/* tab */}
                 <div className="tab-menu scroll_gray">
-                    <button className="tab-menu_btn tab-menu_btn-active">Barchasi</button>
-                    <button className="tab-menu_btn">Aksessuarlar</button>
-                    <button className="tab-menu_btn">Elektronika</button>
-                    <button className="tab-menu_btn">Quloqchinlar</button>
-                    <button className="tab-menu_btn">Elektronika</button>
-                    <button className="tab-menu_btn">Kompyuterlar</button>
-                    <button className="tab-menu_btn">Parfyumeriya</button>
-                    <button className="tab-menu_btn">Telefonlar</button>
-                    <button className="tab-menu_btn">Kamera</button>
-                    <button className="tab-menu_btn">Mebel</button>
-                    <button className="tab-menu_btn">Oshxona jihozlari</button>
+                    {
+                        tabButtons.map(button => {
+                            return (
+                                <button key={button.id} className={`${activeBtnValue === button.id ? 'tab-menu_btn-active' : ''} tab-menu_btn`}>{button.name}</button>
+                            )
+                        })
+                    }
                 </div>
 
                 {/* products */}
