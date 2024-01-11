@@ -12,13 +12,16 @@ const Footer = () => {
     return (
         <footer className='text-regular-16 bg-primary-black-800 py-8 text-white'>
             <div className="container">
-                <div className="flex-start-between">
+                <div className="flex-start-between max-540:flex-col max-540:gap-7">
                     {/* logo wrapper */}
                     <div className="flex flex-col">
                         <Link to="/" className='inline-block mb-4'>
-                            <img src={logoImg} width={152} height={83} alt="logo image" className="w-[152px] h-[83px]" />
+                            <img src={logoImg} width={152} height={83} alt="logo image" className="w-[152px] h-[83px] max-540:w-28 max-540:h-[57px]" />
                         </Link>
-                        <span>Copyright 2023 © All rights reserved</span>
+                        <span className='flex max-768:flex-col'>
+                            <span>Copyright 2023 ©</span>
+                            <span>All rights reserved</span>
+                        </span>
                     </div>
 
                     {/* company */}
