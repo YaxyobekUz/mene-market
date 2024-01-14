@@ -154,6 +154,10 @@ html {
   }
 
   /* semibold */
+  .text-semibold-36 {
+    @apply text-4xl font-semibold;
+  }
+
   .text-semibold-23 {
     @apply text-[23px] leading-[26px] font-semibold;
   }
@@ -529,6 +533,34 @@ html {
   .reviews-list_item_date {
     @apply text-regular-16 text-primary-gray-500 mt-6;
   }
+
+
+
+
+
+
+
+
+  /* contact page */
+  .contact-page_form {
+    @apply space-y-6;
+  }
+
+  .contact-page_form_input-wrapper {
+    @apply block w-full space-y-3;
+  }
+
+  .contact-page_form_label-text {
+    @apply text-regular-13 text-primary-gray-500;
+  }
+
+  .contact-page_form_input {
+    @apply w-full rounded-md border border-primary-gray-500 px-4 py-1.5 text-regular-16 placeholder:text-primary-gray-500;
+  }
+
+  .contact-page_form_button {
+    @apply btn-primary_linear-blue py-1.5 px-10 rounded-lg -tracking-[0.4px];
+  }
 }
 
 
@@ -571,6 +603,10 @@ html {
 
   :is(input, textarea)::placeholder {
     @apply text-primary-gray-500 text-regular-16;
+  }
+
+  address {
+    @apply not-italic;
   }
 
   /* clears the ‘X’ from Chrome */

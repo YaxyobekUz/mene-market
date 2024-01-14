@@ -31,6 +31,7 @@ export default {
           },
 
           'gray': {
+            50: '#FAFAFA',
             500: '#949494',
           },
         },
