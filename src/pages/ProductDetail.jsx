@@ -17,7 +17,7 @@ import minusIcon from '../assets/images/svg/minus-square-icon.svg';
 import plusIcon from '../assets/images/svg/plus-square-icon.svg';
 import cartIcon from '../assets/images/svg/cart-icon.svg';
 
-const ProductDetails = () => {
+const ProductDetail = () => {
     const numberOfProductsAvailable = 2;
     const [productCount, setProductCount] = useState((numberOfProductsAvailable > 0) ? 1 : 0);
     const [showReviews, setShowreviews] = useState(false);
@@ -343,4 +343,4 @@ const ProductDetails = () => {
     )
 };
 
-export default ProductDetails;
+export default ProductDetail;

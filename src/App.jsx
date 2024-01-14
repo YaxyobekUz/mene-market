@@ -8,7 +8,7 @@ import MainRoot from './layouts/MainRoot';
 // pages 
 import Home from './pages/Home';
 import Products from './pages/Products';
-import ProductDetails from './pages/productDetails';
+import ProductDetail from './pages/ProductDetail';
 
 const App = () => {
   const router = createBrowserRouter(
@@ -16,7 +16,7 @@ const App = () => {
       <Route path='/' element={<MainRoot />}>
         <Route index element={<Home />} />
         <Route path='/products' element={<Products />} />
-        <Route path='/product/product-name' element={<ProductDetails />} />
+        <Route path='/product/product-name' element={<ProductDetail />} />
       </Route>
     )
   )
