@@ -1,0 +1,21 @@
+<svg width="33" height="32" viewBox="0 0 33 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <g id="vuesax/linear/shop">
+        <g id="shop">
+            <path id="Vector"
+                d="M4.67969 14.96V20.9466C4.67969 26.9333 7.07969 29.3333 13.0664 29.3333H20.253C26.2397 29.3333 28.6397 26.9333 28.6397 20.9466V14.96"
+                stroke="#13181F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            <path id="Vector_2"
+                d="M16.6665 16C19.1065 16 20.9065 14.0133 20.6665 11.5733L19.7865 2.66663H13.5598L12.6665 11.5733C12.4265 14.0133 14.2265 16 16.6665 16Z"
+                stroke="#13181F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            <path id="Vector_3"
+                d="M25.0801 16C27.7734 16 29.7467 13.8133 29.4801 11.1333L29.1067 7.46663C28.6267 3.99996 27.2934 2.66663 23.8001 2.66663H19.7334L20.6667 12.0133C20.8934 14.2133 22.8801 16 25.0801 16Z"
+                stroke="#13181F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            <path id="Vector_4"
+                d="M8.18635 16C10.3863 16 12.373 14.2133 12.5863 12.0133L12.8797 9.06663L13.5197 2.66663H9.45301C5.95968 2.66663 4.62635 3.99996 4.14635 7.46663L3.78635 11.1333C3.51968 13.8133 5.49301 16 8.18635 16Z"
+                stroke="#13181F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            <path id="Vector_5"
+                d="M16.6663 22.6666C14.4397 22.6666 13.333 23.7733 13.333 26V29.3333H19.9997V26C19.9997 23.7733 18.893 22.6666 16.6663 22.6666Z"
+                stroke="#13181F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+        </g>
+    </g>
+</svg>
