@@ -156,6 +156,7 @@ html {
   .text-semibold-23 {
     @apply text-[23px] leading-[26px] font-semibold;
   }
+
   .text-semibold-20 {
     @apply text-xl leading-22.5 font-semibold;
   }
@@ -223,11 +224,14 @@ html {
 
 
 
-  /* shadow */
+  /* shadow, filter */
   .header-shadow {
     box-shadow: 0px 2px 16px 0px rgba(0, 0, 0, 0.15);
   }
 
+  .backdrop-filter_blur-md {
+    backdrop-filter: blur(10px);
+  }
 
 
 
@@ -475,7 +479,7 @@ html {
 
   .input-wrapper {
     @apply flex-center relative w-full text-regular-16;
-    --padding-x: 16px;
+    --padding-x: 20px;
   }
 
   .input-wrapper .input {
@@ -494,7 +498,7 @@ html {
 
   .input-wrapper .input:is(:not(:placeholder-shown), :focus)~.placeholder {
     @apply text-regular-13;
-    top: calc(3px - var(--placeholder-half-height));
+    top: calc(4px - var(--placeholder-half-height));
   }
 
   .input-wrapper .input:change {

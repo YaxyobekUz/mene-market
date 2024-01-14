@@ -12,7 +12,7 @@ import supportIcon from '../assets/images/svg/support-icon.svg';
 
 const Header = () => {
     return (
-        <header className='py-6 header-shadow mb-12 max-540:mb-10'>
+        <header className='sticky top-0 py-6 header-shadow mb-12 max-540:mb-10 bg-white z-10 bg-opacity-70 backdrop-filter_blur-md'>
             <div className="container">
                 {/* parent (content) */}
                 <div className="flex-center-between gap-5">
@@ -30,11 +30,11 @@ const Header = () => {
                     >
                         <input
                             type="search"
-                            className="rounded-3xl py-3 border border-primary-black-800 px-6 text-medium-18"
+                            className="rounded-3xl py-3 pr-14 border border-primary-black-800 px-6 text-medium-18 bg-transparent"
                             placeholder='Qidirish'
                         />
                         <button className="absolute right-6">
-                            <img width={24} height={24} src={searchIcon} alt="search icon" className="w-6 h-6 bg-white" />
+                            <img width={24} height={24} src={searchIcon} alt="search icon" className="w-6 h-6" />
                         </button>
                     </form>
 
