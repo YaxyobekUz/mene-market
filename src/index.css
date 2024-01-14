@@ -153,6 +153,9 @@ html {
   }
 
   /* semibold */
+  .text-semibold-23 {
+    @apply text-[23px] leading-[26px] font-semibold;
+  }
   .text-semibold-20 {
     @apply text-xl leading-22.5 font-semibold;
   }
@@ -499,11 +502,11 @@ html {
   }
 
   .reviews-list {
-    @apply grid grid-cols-2 gap-2.5;
+    @apply grid grid-cols-2 gap-2.5 max-768:grid-cols-1;
   }
 
   .reviews-list_item {
-    @apply flex-start flex-col p-8 rounded-20 border border-[#EDEDED];
+    @apply flex-start flex-col p-8 rounded-20 border border-[#EDEDED] max-860:p-6 max-375:p-4;
   }
 
   .reviews-list_item_img {
@@ -511,7 +514,7 @@ html {
   }
 
   .reviews-list_item_title {
-    @apply text-semibold-20 mb-3;
+    @apply text-semibold-20 mb-3 max-450:text-medium-18;
   }
 
   .reviews-list_item_description {

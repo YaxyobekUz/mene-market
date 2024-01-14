@@ -53,9 +53,9 @@ const ProductDetails = () => {
     return (
         <div className='pb-32'>
             <div className="container">
-                <div className="grid grid-cols-2 gap-6 mb-12">
+                <div className="grid grid-cols-2 gap-6 mb-12 max-768:grid-cols-1">
                     {/* product image (swiper container) */}
-                    <div className="flex sticky gap-2.5 w-full h-[644px] top-5">
+                    <div className="flex sticky gap-2.5 w-full h-644 top-5 max-1024:h-520 max-860:h-440 max-768:static max-768:h-644 max-640:h-520 max-490:h-440 max-375:h-[380px]">
                         <Swiper
                             onSwiper={setThumbsSwiper}
                             direction={'vertical'}
@@ -115,10 +115,10 @@ const ProductDetails = () => {
                         <div>
                             <div className="flex-start-between mb-2">
                                 <span className="text-regular-14">204 ta buyurtma</span>
-                                <img src={stars} alt="" className="" />
+                                <img src={stars} alt="stars" className="" />
                                 <img width={24} height={24} src={likeIcon} alt="like icon" className="w-6 h-6" />
                             </div>
-                            <h1 className='text-[29px] font-semibold leading-8'>Erkaklar uchun sport kostyumi </h1>
+                            <h1 className='text-[29px] font-semibold leading-8 max-490:text-semibold-23'>Erkaklar uchun sport kostyumi </h1>
                         </div>
 
                         <div className="space-y-2">
@@ -189,7 +189,7 @@ const ProductDetails = () => {
                         {/* price */}
                         <div className="space-y-2">
                             <p className="text-regular-16">Narxi:</p>
-                            <div className="flex-center gap-2.5 text-semibold-20">
+                            <div className="flex-center flex-wrap gap-2.5 text-semibold-20">
                                 <p>336 000 so’m</p>
                                 <del className='text-secondary-gray-500'>420 000 so’m</del>
                             </div>
@@ -298,9 +298,9 @@ const ProductDetails = () => {
                     {/* reviews wrapper */}
                     <div className={`${showReviews ? 'block' : 'hidden'} space-y-6`}>
                         {/* header */}
-                        <div className="flex-center-between">
+                        <div className="flex-center-between gap-3 flex-wrap">
                             <div className='flex-center space-x-2'>
-                                <p className='text-semibold-23'>Barcha sharhlar</p>
+                                <p className='text-semibold-23 max-450:text-semibold-20'>Barcha sharhlar</p>
                                 <span className="text-regular-16 text-primary-gray-500">(451)</span>
                             </div>
                             <button className="btn-primary_skyblue bg-primary-black-800 px-5">Fikr qoldirish</button>
