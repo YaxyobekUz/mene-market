@@ -457,6 +457,70 @@ html {
     @apply w-8 h-8 bg-cover bg-center;
     background: url(../src/assets/images/svg/arrow-circle-right.svg);
   }
+
+  .product-type_button {
+    @apply w-10 h-10 justify-center !p-0 rounded-lg !max-w-full border border-primary-black-800 disabled:border-primary-gray-500 disabled:text-primary-gray-500 transition-colors duration-200;
+  }
+
+  .product-type_button-active {
+    @apply product-type_button btn-primary_linear-blue border-primary-skyblue-500;
+  }
+
+  .product-type_button_text {
+    @apply text-regular-13;
+  }
+
+  .input-wrapper {
+    @apply flex-center relative w-full text-regular-16;
+    --padding-x: 16px;
+  }
+
+  .input-wrapper .input {
+    @apply rounded-full py-2 w-full border border-primary-gray-500;
+    padding-left: var(--padding-x);
+    padding-right: var(--padding-x);
+  }
+
+  .input-wrapper .placeholder {
+    @apply absolute cursor-text bg-white text-primary-gray-500 px-0.5;
+    --placeholder-half-height: 13px;
+    left: var(--padding-x);
+    transition: transform 0.2s linear, font-size 0.2s linear, top 0.2s linear;
+    top: calc(50% - var(--placeholder-half-height));
+  }
+
+  .input-wrapper .input:is(:not(:placeholder-shown), :focus)~.placeholder {
+    @apply text-regular-13;
+    top: calc(3px - var(--placeholder-half-height));
+  }
+
+  .input-wrapper .input:change {
+    background: #000;
+  }
+
+  .reviews-list {
+    @apply grid grid-cols-2 gap-2.5;
+  }
+
+  .reviews-list_item {
+    @apply flex-start flex-col p-8 rounded-20 border border-[#EDEDED];
+  }
+
+  .reviews-list_item_img {
+    @apply mb-4 w-[93px] h-[22px];
+  }
+
+  .reviews-list_item_title {
+    @apply text-semibold-20 mb-3;
+  }
+
+  .reviews-list_item_description {
+    @apply text-regular-14 text-primary-gray-500 mb-auto;
+  }
+
+  .reviews-list_item_date {
+    @apply text-regular-16 text-primary-gray-500 mt-6;
+  }
 }
 
 

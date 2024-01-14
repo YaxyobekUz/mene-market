@@ -14,6 +14,7 @@ export default {
           },
 
           'blue': {
+            50: '#EFF5FB',
             700: '#1A3EDD',
           },
 
