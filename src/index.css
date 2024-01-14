@@ -72,6 +72,7 @@ html {
     @apply text-medium-18;
     background: #fff;
     font-family: 'inter', sans-serif;
+    scroll-padding-top: 96px;
   }
 
   .container {

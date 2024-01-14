@@ -12,7 +12,7 @@ import supportIcon from '../assets/images/svg/support-icon.svg';
 
 const Header = () => {
     return (
-        <header className='sticky top-0 py-6 header-shadow mb-12 max-540:mb-10 bg-white z-10 bg-opacity-70 backdrop-filter_blur-md'>
+        <header className='sticky top-0 py-6 header-shadow mb-12 max-540:mb-10 bg-white z-10 bg-opacity-70 backdrop-filter_blur-md max-768:py-5 max-640:py-4 max-490:py-3'>
             <div className="container">
                 {/* parent (content) */}
                 <div className="flex-center-between gap-5">
@@ -48,7 +48,7 @@ const Header = () => {
 
                         {/*  responsive search form modal button */}
                         <button className="hidden max-768:flex-center space-x-1">
-                            <img width={24} height={24} src={searchIcon} alt="search icon" className="w-6 h-6 bg-white" />
+                            <img width={24} height={24} src={searchIcon} alt="search icon" className="w-6 h-6" />
                             <span className='max-640:hidden'>Qidirish</span>
                         </button>
 

@@ -55,7 +55,7 @@ const ProductDetail = () => {
             <div className="container">
                 <div className="grid grid-cols-2 gap-6 mb-12 max-768:grid-cols-1">
                     {/* product image (swiper container) */}
-                    <div className="flex sticky gap-2.5 w-full h-644 top-5 max-1024:h-520 max-860:h-440 max-768:static max-768:h-644 max-640:h-520 max-490:h-440 max-375:h-[380px]">
+                    <div className="flex sticky gap-2.5 w-full h-644 top-28 max-1024:h-520 max-860:h-440 max-768:static max-768:h-644 max-640:h-520 max-490:h-440 max-375:h-[380px]">
                         <Swiper
                             onSwiper={setThumbsSwiper}
                             direction={'vertical'}
