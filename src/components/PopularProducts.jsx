@@ -33,7 +33,7 @@ const PopularProducts = () => {
                                         <p className="product_price">$240</p>
                                         {/* buttons wrapper */}
                                         <div className="product_btns-wrapper">
-                                            <Link to='/' className='product_buy-btn'>
+                                            <Link to='/product/product-name' className='product_buy-btn'>
                                                 <img width={20} height={20} src={shoppingCart} alt="shopping cart" className="product_buy-btn_icon" />
                                                 <span className='product_buy-btn_text'>Xarid qilish</span>
                                             </Link>

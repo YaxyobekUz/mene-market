@@ -18,6 +18,11 @@ import plusIcon from '../assets/images/svg/plus-square-icon.svg';
 import cartIcon from '../assets/images/svg/cart-icon.svg';
 
 const ProductDetail = () => {
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
+
+
     const numberOfProductsAvailable = 2;
     const [productCount, setProductCount] = useState((numberOfProductsAvailable > 0) ? 1 : 0);
     const [showReviews, setShowreviews] = useState(false);
@@ -191,7 +196,7 @@ const ProductDetail = () => {
                             <p className="text-regular-16">Narxi:</p>
                             <div className="flex-center flex-wrap gap-2.5 text-semibold-20">
                                 <p>336 000 so’m</p>
-                                <del className='text-secondary-gray-500'>420 000 so’m</del>
+                                <del className='text-primary-gray-500'>420 000 so’m</del>
                             </div>
                         </div>
 

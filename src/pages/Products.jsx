@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 // images
@@ -7,6 +7,9 @@ import stars from '../assets/images/svg/stars.svg';
 import shoppingCart from '../assets/images/svg/shopping-cart.svg';
 import { tabButtons } from '../assets/data';
 const Products = () => {
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
     const [activeBtnValue, setActiveBtnValue] = useState(0);
     return (
         <div className='pb-32'>
