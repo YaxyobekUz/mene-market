@@ -15,9 +15,9 @@ const Contact = () => {
     }, []);
     return (
         <div>
-            {/* */}
+            {/* main content */}
             <div className="container">
-                <h1 className="text-semibold-36 text-center mb-6">Contact Us</h1>
+                <h1 className="text-semibold-36 text-center mb-6 max-768:text-[32px] max-450:text-3xl">Contact Us</h1>
 
                 <div className="grid grid-cols-3 gap-6 max-768:grid-cols-2 max-540:grid-cols-1 mb-12 max-768:mb-10 max-450:mb-8">
                     {/* item */}
@@ -48,7 +48,8 @@ const Contact = () => {
                     </div>
                 </div>
 
-                <div className="grid grid-cols-2 gap-6 mb-16 max-1024:mb-14 max-768:mb-10 max-450:mb-8">
+                {/* send a message */}
+                <div className="grid grid-cols-2 gap-6 mb-16 max-1024:mb-14 max-768:mb-10 max-640:grid-cols-1 max-640:flex max-640:flex-col-reverse max-450:mb-8">
                     <form className="contact-page_form">
                         <label className='contact-page_form_input-wrapper'>
                             <span className="contact-page_form_label-text">Full Name</span>
@@ -89,7 +90,7 @@ const Contact = () => {
 
                     {/* map */}
                     <iframe
-                        className='w-full h-full'
+                        className='w-full h-full max-640:h-80'
                         src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d859.8233566377858!2d71.97749393807459!3d40.87637480506904!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e1!3m2!1sru!2s!4v1705252709584!5m2!1sru!2s"
                         loading="lazy"
                         referrerPolicy="no-referrer-when-downgrade"
@@ -97,7 +98,7 @@ const Contact = () => {
                 </div>
             </div>
 
-            {/*  */}
+            {/* sub content */}
             <div className="py-14 bg-primary-gray-50">
                 <div className="container">
                     <FaqMainContent />
