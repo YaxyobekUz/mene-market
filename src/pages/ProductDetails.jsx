@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 // Swiper
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -18,9 +18,38 @@ import plusIcon from '../assets/images/svg/plus-square-icon.svg';
 import cartIcon from '../assets/images/svg/cart-icon.svg';
 
 const ProductDetails = () => {
-    const [thumbsSwiper, setThumbsSwiper] = useState(null);
     const numberOfProductsAvailable = 2;
     const [productCount, setProductCount] = useState((numberOfProductsAvailable > 0) ? 1 : 0);
+    const [showReviews, setShowreviews] = useState(false);
+
+    // tab
+    const tabsButtonsRef = useRef(null);
+    useEffect(() => {
+        const elInfoTabBtn = tabsButtonsRef.current.querySelector('.js-button__product-info-tab');
+        const elReviewTabBtn = tabsButtonsRef.current.querySelector('.js-button__product-reviews-tab');
+        const elLine = tabsButtonsRef.current.querySelector('.js-line');
+        const updateLinePosition = () => {
+            if (showReviews) {
+                const rect = elReviewTabBtn.getBoundingClientRect();
+                elLine.style.width = `${elReviewTabBtn.clientWidth}px`;
+                elLine.style.transform = `translateX(${rect.left - tabsButtonsRef.current.getBoundingClientRect().left}px)`;
+            } else {
+                const rect = elInfoTabBtn.getBoundingClientRect();
+                elLine.style.width = `${elInfoTabBtn.clientWidth}px`;
+                elLine.style.transform = `translateX(${rect.left - tabsButtonsRef.current.getBoundingClientRect().left}px)`;
+            };
+        };
+        updateLinePosition();
+        window.addEventListener('resize', updateLinePosition);
+        return () => {
+            window.removeEventListener('resize', updateLinePosition);
+        };
+    }, [showReviews]);
+
+
+
+    // swiper
+    const [thumbsSwiper, setThumbsSwiper] = useState(null);
     return (
         <div className='pb-32'>
             <div className="container">
@@ -231,8 +260,9 @@ const ProductDetails = () => {
                                     <span className='placeholder'>Manzilingiz</span>
                                 </label>
 
+                                {/* buy btn */}
                                 <button
-                                    className="btn-primary_linear-blue rounded-full px-4 disabled:opacity-50"
+                                    className="btn-primary_linear-blue rounded-full px-4 disabled:opacity-50 disabled:cursor-not-allowed"
                                     disabled={productCount === 0}
                                 >
                                     <span className="text-regular-16">Xarid qilish</span>
@@ -245,9 +275,67 @@ const ProductDetails = () => {
 
                 {/* product description and reviews */}
                 <div>
-                    <div className="flex relative gap-6 pb-1">
-                        <button>Mahsulot tavsifi</button>
-                        <button>Sharhlar</button>
+                    {/* tabs buttons */}
+                    <div ref={tabsButtonsRef} className="flex relative gap-6 pb-1 mb-6">
+                        <button
+                            onClick={() => setShowreviews(false)}
+                            className='js-button__product-info-tab'
+                        >Mahsulot tavsifi</button>
+                        <button
+                            onClick={() => setShowreviews(true)}
+                            className='js-button__product-reviews-tab'
+                        >Sharhlar</button>
+
+                        {/* active line */}
+                        <div style={{ width: + '136px' }} className={`js-line absolute h-0.5 bg-linear-gradient_blue-500 bottom-0 transition-all duration-300`}></div>
+                    </div>
+
+                    {/* dat container */}
+                    <div className={`${showReviews ? 'hidden' : 'block'}`}>
+                        <p className="text-regular-16">Mukammal sport lahzasi mukammal kiyimni talab qiladi. Bizning ko'p qirrali erkaklar sport kostyumimiz har qanday vaziyatda qulaylik va harakat erkinligini ta'minlovchi garderobning muhim qismiga aylanadi. Faol dam olish, sport zalida mashq qilish, sayr qilish yoki sayohatga chiqishingizdan qat'i nazar, bizning kostyumimiz har qanday sarguzashtda ishonchli hamroh bo'ladi. Bu maktab, sayohat va kundalik kiyim uchun ideal. Sport kostyumi zamonaviy dizayn va qulaylikning kombinatsiyasi bo'lib, uni faol hayot tarzi uchun ajralmas qiladi. Ushbu erkaklar sport to'plami sport zalida ham, jismoniy tarbiya darslarida ham, do'stona sayrlarda yoki hatto ovda ham sizning sodiq hamrohingizga aylanadi. Sovuq havoda ham, bizning kostyumimiz sizni issiq va qulay saqlashini bilib, konkida uchish, futbol yoki basketbol o'ynashda o'zingizni ishonchli his qilishingiz mumkin. Tabiiy paxta matosi tufayli bu sport kostyumi har qanday mavsumda tengsiz darajadagi qulaylikni taqdim etadi. U har qanday ob-havoga osongina moslashadi: issiq yoz, salqin bahor, iliq kuz yoki sovuq qish. Mato ko'p marta yuvishdan keyin ham o'z shaklini saqlab qoladi va kostyum nozik va ortiqcha vaznli erkaklarga juda mos keladi. Shimlarning to'g'ri kesilgan va optimal uzunligi bu sport kostyumini universal qiladi - u tor va keng yelkali erkaklarga mos keladi. Shimning keng elastik belbog'i harakatni cheklamaydi yoki noqulaylik tug'dirmaydi, maksimal harakat erkinligini ta'minlaydi. Ushbu kostyum har qanday vaziyat uchun juda mos keladi, u nafaqat harakatni cheklamaydi, balki zamonaviy va zamonaviy ko'rinadi. Boshqalarning e'tiborini tortadigan zamonaviy va moda to'plamni tanlab, kundalik hayotingizda qarsaklarni to'plang. Sevimli odamingiz uchun bu sport kostyumi ideal tug'ilgan kun yoki yangi yil sovg'asi bo'ladi - u albatta uning qulayligi va uslubini qadrlaydi</p>
+                    </div>
+
+                    {/* reviews wrapper */}
+                    <div className={`${showReviews ? 'block' : 'hidden'} space-y-6`}>
+                        {/* header */}
+                        <div className="flex-center-between">
+                            <div className='flex-center space-x-2'>
+                                <p className='text-semibold-23'>Barcha sharhlar</p>
+                                <span className="text-regular-16 text-primary-gray-500">(451)</span>
+                            </div>
+                            <button className="btn-primary_skyblue bg-primary-black-800 px-5">Fikr qoldirish</button>
+                        </div>
+                        {/* reviews */}
+                        <ul className="reviews-list">
+                            {
+                                ['I absolutely love this t-shirt! The design is unique and the fabric feels so comfortable. As a fellow designer, I appreciate the attention to detail. It\'s become my favorite go-to shirt.',
+
+                                    'I absolutely love this t-shirt! The design is unique and the fabric feels so comfortable..',
+
+                                    'I absolutely love this t-shirt! The design is unique and the fabric feels so comfortable. As a fellow designer, I appreciate the attention to detail. It\'s become my favorite go-to shirt.',
+
+                                    'I absolutely love this t-shirt! The design is unique and the fabric feels so comfortable. As a fellow designer, I appreciate the attention to detail. It\'s become my favorite go-to shirt.I absolutely love this t-shirt! The design is unique and the fabric feels so comfortable. As a fellow designer, I appreciate the attention to detail. It\'s become my favorite go-to shirt.I absolutely love this t-shirt! The design is unique and the fabric feels so comfortable. As a fellow designer, I appreciate the attention to detail. It\'s become my favorite go-to shirt.',
+
+                                    'I absolutely love this t-shirt! The design is unique and the fabric feels so comfortable. As a fellow designer, I appreciate the attention to detail. It\'s become my favorite go-to shirt.',
+
+                                    'I absolutely love this t-shirt! The design is unique and the fabric feels so comfortable. As a fellow designer, I appreciate the attention to detail. It\'s become my favorite go-to shirt.'].map((reviewText, index) => {
+                                        return (
+                                            <li key={index} className="reviews-list_item">
+                                                {/* rating stars */}
+                                                <img width={127} height={22} src={stars} alt="stars image" className="reviews-list_item_img" />
+                                                {/* title */}
+                                                <h3 className="reviews-list_item_title">Samantha D.</h3>
+                                                {/* description */}
+                                                <p className="reviews-list_item_description">{reviewText}</p>
+                                                {/* date */}
+                                                <span className="reviews-list_item_date">August 14, 2023</span>
+                                            </li>
+                                        )
+                                    })
+                            }
+                        </ul>
+
+                        <button className="main-btn text-regular-16">Ko'proq ko'rsatish</button>
                     </div>
                 </div>
             </div>
