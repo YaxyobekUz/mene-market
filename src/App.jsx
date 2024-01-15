@@ -10,6 +10,7 @@ import Home from './pages/Home';
 import Products from './pages/Products';
 import ProductDetail from './pages/ProductDetail';
 import Contact from './pages/Contact';
+import PublicOffer from './pages/PublicOffer';
 
 const App = () => {
   const router = createBrowserRouter(
@@ -19,6 +20,7 @@ const App = () => {
         <Route path='/products' element={<Products />} />
         <Route path='/product/product-name' element={<ProductDetail />} />
         <Route path='/contact' element={<Contact />} />
+        <Route path='/public-offer' element={<PublicOffer />} />
       </Route>
     )
   )

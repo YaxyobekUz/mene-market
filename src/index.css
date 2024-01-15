@@ -69,10 +69,9 @@ html {
 /* components  */
 @layer components {
   .body {
-    @apply text-medium-18;
+    @apply text-medium-18 text-primary-black-800;
     background: #fff;
     font-family: 'inter', sans-serif;
-    scroll-padding-top: 96px;
   }
 
   .container {
@@ -561,6 +560,22 @@ html {
   .contact-page_form_button {
     @apply justify-center btn-primary_linear-blue py-1.5 px-10 rounded-lg -tracking-[0.4px] max-375:w-full max-640:max-w-full;
   }
+
+
+
+
+
+
+  /* public offer */
+  .public-offer-page :is(.title, strong) {
+    @apply inline font-semibold text-primary-black-800 uppercase;
+  }
+  
+  .public-offer-page strong {
+    @apply mr-1 ;
+    text-transform: initial !important;
+  }
+
 }
 
 
