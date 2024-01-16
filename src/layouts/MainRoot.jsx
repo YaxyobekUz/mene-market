@@ -9,14 +9,14 @@ const MainRoot = () => {
     return (
         <div className='flex flex-col min-h-screen'>
             {
-                currentLocation !== '/login' &&
+                (currentLocation !== '/login' && currentLocation !== '/register') &&
                 <Header />
             }
             <main className='flex flex-col grow'>
                 <Outlet />
             </main>
             {
-                currentLocation !== '/login' &&
+                (currentLocation !== '/login' && currentLocation !== '/register') &&
                 <Footer />
             }
         </div>

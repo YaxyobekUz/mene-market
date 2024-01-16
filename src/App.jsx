@@ -12,6 +12,7 @@ import ProductDetail from './pages/ProductDetail';
 import Contact from './pages/Contact';
 import PublicOffer from './pages/PublicOffer';
 import Login from './pages/Login';
+import Register from './pages/Register';
 
 const App = () => {
   const router = createBrowserRouter(
@@ -23,6 +24,7 @@ const App = () => {
         <Route path='/contact' element={<Contact />} />
         <Route path='/public-offer' element={<PublicOffer />} />
         <Route path='/login' element={<Login />} />
+        <Route path='/register' element={<Register />} />
       </Route>
     )
   )
