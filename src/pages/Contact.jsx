@@ -17,7 +17,7 @@ const Contact = () => {
         <div>
             {/* main content */}
             <div className="container">
-                <h1 className="text-semibold-36 text-center mb-6 max-768:text-[32px] max-450:text-3xl">Contact Us</h1>
+                <h1 className="mb-6 text-center">Contact Us</h1>
 
                 <div className="grid grid-cols-3 gap-6 max-768:grid-cols-2 max-540:grid-cols-1 mb-12 max-768:mb-10 max-450:mb-8">
                     {/* item */}

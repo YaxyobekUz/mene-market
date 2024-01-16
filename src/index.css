@@ -570,12 +570,51 @@ html {
   .public-offer-page :is(.title, strong) {
     @apply inline font-semibold text-primary-black-800 uppercase;
   }
-  
+
   .public-offer-page strong {
-    @apply mr-1 ;
+    @apply mr-1;
     text-transform: initial !important;
   }
 
+
+
+
+
+
+
+
+  /* login & register */
+  .login-form {
+    @apply space-y-8 max-640:space-y-6 max-450:space-y-5;
+  }
+
+  .login-form_input {
+    @apply rounded-none p-0 pb-3.5 border-b-2 border-primary-gray-500 focus:outline-0 focus:border-primary-blue-700 focus:border-opacity-70;
+  }
+
+  .login-form_password-input-wrapper {
+    @apply flex-center relative;
+  }
+
+  .login-form_password-input-wrapper-button {
+    @apply absolute right-0;
+  }
+
+  .login-form_privacy-policy-wrapper {
+    @apply flex-center gap-3 text-regular-16 text-primary-gray-500;
+  }
+
+  .login-form_input-checkbox {
+    @apply w-6 h-6 rounded border-primary-gray-500;
+    border-width: 1.5px;
+  }
+
+  .login-form_privacy-policy-wrapper_text a {
+    @apply text-medium-18 text-primary-black-800 max-540:text-regular-16;
+  }
+  .login-form_submit-btn {
+    @apply flex-center justify-center py-2.5 px-10 text-white text-regular-16 w-full rounded-lg bg-primary-black-800;
+  }
 }
 
 
@@ -604,8 +643,12 @@ html {
     @apply text-primary-black-800;
   }
 
+  h1 {
+    @apply text-semibold-36 max-768:text-bold-32;
+  }
+
   h2 {
-    @apply text-bold-32;
+    @apply text-bold-32 max-768:text-bold-28;
   }
 
   h3 {
