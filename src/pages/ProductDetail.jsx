@@ -175,7 +175,7 @@ const ProductDetail = () => {
                                             >
                                                 <img width={20} height={20} src={minusIcon} alt="minus icon" className="w-5 h-5" />
                                             </button>
-                                            <span className='flex-center w-2 left-[calc(50%-4px)] absolute'>{productCount}</span>
+                                            <span className='flex-center justify-center w-2 left-[calc(50%-4px)] absolute'>{productCount}</span>
                                             <button
                                                 className="ml-auto disabled:opacity-50"
                                                 disabled={productCount === numberOfProductsAvailable}
@@ -201,8 +201,8 @@ const ProductDetail = () => {
                                 <div className="space-y-2">
                                     <p className="text-regular-16">Narxi:</p>
                                     <div className="flex-center flex-wrap gap-2.5 text-semibold-20">
-                                        <p>336 000 so’m</p>
-                                        <del className='text-primary-gray-500'>420 000 so’m</del>
+                                        <p>336 000 so'm</p>
+                                        <del className='text-primary-gray-500'>420 000 so'm</del>
                                     </div>
                                 </div>
 
