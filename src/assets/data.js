@@ -145,7 +145,7 @@ export const productsData = [
     {
         id: 3,
         name: "Tecno spark 8c. Karobkada",
-        type: "telephone",
+        type: "phone",
         description: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Facilis, vero, aspernatur praesentium ipsum ducimus maiores impedit corporis sint quam excepturi ipsa et. Unde aliquam, quod laboriosam eum quaerat nemo aperiam commodi, laborum, itaque officia molestiae eius quae assumenda sapiente neque.",
         amount: 2,
         images: [

@@ -13,6 +13,7 @@ import Contact from './pages/Contact';
 import PublicOffer from './pages/PublicOffer';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import Category from './pages/Category';
 
 const App = () => {
   const router = createBrowserRouter(
@@ -25,6 +26,7 @@ const App = () => {
         <Route path='/public-offer' element={<PublicOffer />} />
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />
+        <Route path='/category/:categoryName' element={<Category />} />
       </Route>
     )
   )

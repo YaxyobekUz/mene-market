@@ -18,7 +18,7 @@ const Categories = () => {
                 <h2 className="mb-6">Kategoriyalar</h2>
                 <ul className="categories-section_list scroll_hidden">
                     <li className="categories-section_list-item">
-                        <Link to='/' className='item_content'>
+                        <Link to='/category/electronics' className='item_content'>
                             <span className="item_circle bg-[#BED6EF]">
                                 <span className="item_circle-child bg-[#8DB8E2]">
                                     <img width={92} height={65} src={electronicsImg} alt="" className="item_img" />
@@ -29,7 +29,7 @@ const Categories = () => {
                     </li>
 
                     <li className="categories-section_list-item">
-                        <Link to='/' className='item_content'>
+                        <Link to='/category/health' className='item_content'>
                             <span className="item_circle bg-[#FAAEAD]">
                                 <span className="item_circle-child bg-[#F56666]">
                                     <img width={97} height={69} src={firstAidImg} alt="" className="item_img" />
@@ -40,7 +40,7 @@ const Categories = () => {
                     </li>
 
                     <li className="categories-section_list-item">
-                        <Link to='/' className='item_content'>
+                        <Link to='/category/perfumery' className='item_content'>
                             <span className="item_circle bg-[#F4E094]">
                                 <span className="item_circle-child bg-[#EFCC4E]">
                                     <img width={85} height={71} src={parfumeryImg} alt="" className="item_img" />
@@ -51,7 +51,7 @@ const Categories = () => {
                     </li>
 
                     <li className="categories-section_list-item">
-                        <Link to='/' className='item_content'>
+                        <Link to='/category/houshold-applicances' className='item_content'>
                             <span className="item_circle bg-[#C1F4AF]">
                                 <span className="item_circle-child bg-[#90EB70]">
                                     <img width={69} height={59} src={housholdAppliancesImg} alt="" className="item_img" />
@@ -62,7 +62,7 @@ const Categories = () => {
                     </li>
 
                     <li className="categories-section_list-item">
-                        <Link to='/' className='item_content'>
+                        <Link to='/category/phone' className='item_content'>
                             <span className="item_circle bg-[#C5BEEE]">
                                 <span className="item_circle-child bg-[#A095E4]">
                                     <img width={37} height={65} src={smartphoneImg} alt="" className="item_img" />
@@ -73,7 +73,7 @@ const Categories = () => {
                     </li>
 
                     <li className="categories-section_list-item">
-                        <Link to='/' className='item_content'>
+                        <Link to='/category/computer' className='item_content'>
                             <span className="item_circle bg-[#8DB8E2]">
                                 <span className="item_circle-child bg-[#BED6EF]">
                                     <img width={69} height={49} src={laptopImg} alt="" className="item_img" />
@@ -84,7 +84,7 @@ const Categories = () => {
                     </li>
 
                     <li className="categories-section_list-item">
-                        <Link to='/' className='item_content'>
+                        <Link to='/category/car' className='item_content'>
                             <span className="item_circle bg-[#FAAEAD]">
                                 <span className="item_circle-child bg-[#F56666]">
                                     <img width={63} height={57} src={carImg} alt="" className="item_img" />
@@ -95,7 +95,7 @@ const Categories = () => {
                     </li>
 
                     <li className="categories-section_list-item">
-                        <Link to='/' className='item_content'>
+                        <Link to='/category/toy' className='item_content'>
                             <span className="item_circle bg-[#F4E094]">
                                 <span className="item_circle-child bg-[#EFCC4E]">
                                     <img width={85} height={64} src={toysImg} alt="" className="item_img" />
