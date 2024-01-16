@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { productsData, tabButtons } from '../assets/data';
 
 // images
-import headphoneImg from '../assets/images/other/headphone.jpg';
 import stars from '../assets/images/svg/stars.svg';
 import shoppingCart from '../assets/images/svg/shopping-cart.svg';
-import { tabButtons } from '../assets/data';
 const Products = () => {
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -28,13 +27,13 @@ const Products = () => {
                 {/* products */}
                 <ul className="grid-4 products">
                     {
-                        [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16].map((num) => {
+                        productsData.map((product) => {
                             return (
-                                <li key={num} className="product">
-                                    <img width={296} height={296} src={headphoneImg} alt="headphone" className="product_img" />
+                                <li key={product.id} className="product">
+                                    <img width={296} height={296} src={product.images[0].src} alt="" className="product_img" />
                                     {/* content */}
                                     <div className="product_content">
-                                        <h3 className="product_title">Headphones</h3>
+                                        <h3 className="product_title">{product.name}</h3>
                                         {/* rating */}
                                         <div className="product_rating-wrapper">
                                             <img width={80} height={18} src={stars} alt="" />
@@ -47,7 +46,7 @@ const Products = () => {
                                         <p className="product_price">$240</p>
                                         {/* buttons wrapper */}
                                         <div className="product_btns-wrapper">
-                                            <Link to='/' className='product_buy-btn'>
+                                            <Link to={`/product/${product.name.toLowerCase().replace(/\s+/g, '-')}`} className='product_buy-btn'>
                                                 <img width={20} height={20} src={shoppingCart} alt="shopping cart" className="product_buy-btn_icon" />
                                                 <span className='product_buy-btn_text'>Xarid qilish</span>
                                             </Link>
