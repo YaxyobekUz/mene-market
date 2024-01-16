@@ -7,52 +7,52 @@ export const tabButtons = [
     {
         id: 1,
         name: 'Aksessuarlar',
-        type: ""
+        type: "Accessory"
     },
     {
         id: 2,
         name: 'Elektronika',
-        type: ""
+        type: "Electronics"
     },
     {
         id: 3,
-        name: 'Quloqchinlar',
-        type: ""
+        name: 'Mashinalar',
+        type: "car"
     },
     {
         id: 4,
-        name: 'Elektronika',
-        type: ""
+        name: 'Gullar',
+        type: "Flower"
     },
     {
         id: 5,
         name: 'Kompyuterlar',
-        type: ""
+        type: "computer"
     },
     {
         id: 6,
         name: 'Parfyumeriya',
-        type: ""
+        type: "perfumery"
     },
     {
         id: 7,
         name: 'Telefonlar',
-        type: ""
+        type: "phone"
     },
     {
         id: 8,
         name: 'Kamera',
-        type: ""
+        type: "camera"
     },
     {
         id: 9,
         name: 'Mebel',
-        type: ""
+        type: "furniture"
     },
     {
         id: 10,
         name: 'Oshxona jihozlari',
-        type: ""
+        type: "kitchen-equipment"
     }
 ];
 

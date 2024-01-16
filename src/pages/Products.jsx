@@ -6,10 +6,25 @@ import { productsData, tabButtons } from '../assets/data';
 import stars from '../assets/images/svg/stars.svg';
 import shoppingCart from '../assets/images/svg/shopping-cart.svg';
 const Products = () => {
+    // scroll to top
     useEffect(() => {
         window.scrollTo(0, 0);
     }, []);
-    const [activeBtnValue, setActiveBtnValue] = useState(0);
+
+    const [products, setProducts] = useState([]);
+    const [activeBtnValue, setActiveBtnValue] = useState('all');
+    useEffect(() => {
+        if (activeBtnValue === 'all') {
+            setProducts(productsData);
+        } else {
+            const filteredProducts = productsData.filter((product) => {
+                return (
+                    product.type.toLocaleLowerCase() === activeBtnValue.toLocaleLowerCase()
+                )
+            });
+            setProducts(filteredProducts);
+        }
+    }, [activeBtnValue]);
     return (
         <div className='pb-32'>
             <div className="container">
@@ -18,7 +33,13 @@ const Products = () => {
                     {
                         tabButtons.map(button => {
                             return (
-                                <button key={button.id} className={`${activeBtnValue === button.id ? 'tab-menu_btn-active' : ''} tab-menu_btn`}>{button.name}</button>
+                                <button
+                                    key={button.id}
+                                    className={`${activeBtnValue.toLowerCase() === button.type.toLowerCase() ? 'tab-menu_btn-active' : ''} tab-menu_btn`}
+                                    onClick={() => {
+                                        setActiveBtnValue(button.type.toLowerCase());
+                                    }}
+                                >{button.name}</button>
                             )
                         })
                     }
@@ -27,7 +48,7 @@ const Products = () => {
                 {/* products */}
                 <ul className="grid-4 products">
                     {
-                        productsData.map((product) => {
+                        products.map((product) => {
                             return (
                                 <li key={product.id} className="product">
                                     <img width={296} height={296} src={product.images[0].src} alt="" className="product_img" />
@@ -63,6 +84,12 @@ const Products = () => {
                         })
                     }
                 </ul>
+
+                {/* product not found message */}
+                {
+                    products.length === 0 &&
+                    <p className="text-semibold-20">Afsus ushbu turdagi mahsulotlar hozircha bizda yo'q :(</p>
+                }
             </div>
         </div>
     )
