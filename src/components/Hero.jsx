@@ -31,7 +31,7 @@ const Hero = () => {
                     modules={[Pagination, Autoplay]}
                     className="hero-swiper black-pagination-bullets">
                     <SwiperSlide className='hero-swiper_item'>
-                        <Link to="/" className='hero-swiper_item-child'>
+                        <div to="/" className='hero-swiper_item-child'>
                             <div className='hero-swiper_item-content'>
                                 <h3 className="hero-swiper_item-title">Bayram oldi aksiyamizda ishtirok eting</h3>
                                 <p className="hero-swiper_item-description">90% gacha chegirma </p>
@@ -41,11 +41,11 @@ const Hero = () => {
                                 </Link>
                             </div>
                             <img width={459} height={172} src={householdAppliances} alt="household appliances" className="hero-swiper_item-img" />
-                        </Link>
+                        </div>
                     </SwiperSlide>
 
                     <SwiperSlide className='hero-swiper_item'>
-                        <Link to="/" className='hero-swiper_item-child'>
+                        <div to="/" className='hero-swiper_item-child'>
                             <div className='hero-swiper_item-content'>
                                 <h3 className="hero-swiper_item-title">Barcha rangdagi iPhonelar aksiyada</h3>
                                 <p className="hero-swiper_item-description">25% gacha chegirma</p>
@@ -55,7 +55,7 @@ const Hero = () => {
                                 </Link>
                             </div>
                             <img width={426} height={142} src={iphones} alt="iphones picture" className="hero-swiper_item-img" />
-                        </Link>
+                        </div>
                     </SwiperSlide>
                 </Swiper>
             </div>

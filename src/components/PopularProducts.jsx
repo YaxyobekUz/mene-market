@@ -55,8 +55,8 @@ const PopularProducts = () => {
                 <Link to='/' className='main-btn border-primary-black-800'>
                     <span>Barchasini ko'rish</span>
                     <svg className='btn-icon' xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 25" fill="none">
-                        <path d="M14.43 6.90979L20.5 12.9798L14.43 19.0498" stroke="#13181F" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-                        <path d="M3.5 12.9797H20.33" stroke="#13181F" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M14.43 6.90979L20.5 12.9798L14.43 19.0498" stroke="#13181F" strokeWidth="1.5" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round" />
+                        <path d="M3.5 12.9797H20.33" stroke="#13181F" strokeWidth="1.5" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
                 </Link>
             </div>
