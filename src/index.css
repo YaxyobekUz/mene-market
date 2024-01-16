@@ -327,7 +327,7 @@ html {
   /* products */
 
   .product {
-    @apply w-full rounded-3xl;
+    @apply flex flex-col w-full rounded-3xl;
     box-shadow: 0px 4px 6px 0px rgba(0, 0, 0, 0.10);
   }
 
@@ -336,7 +336,7 @@ html {
   }
 
   .product_content {
-    @apply p-6 !pt-0 space-y-2 max-768:p-5 max-540:p-4 max-490:p-3 max-450:p-6;
+    @apply flex flex-col grow p-6 !pt-0 space-y-2 max-768:p-5 max-540:p-4 max-490:p-3 max-450:p-6;
   }
 
   .product_rating-wrapper {
@@ -348,7 +348,7 @@ html {
   }
 
   .product_price {
-    @apply text-semibold-20 text-primary-black-800;
+    @apply text-semibold-20 text-primary-black-800 !mb-auto;
   }
 
   .product_btns-wrapper {
