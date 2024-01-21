@@ -243,7 +243,59 @@ html {
 
 
 
+
   /* home page  */
+  /* header */
+  .search-form-wrapper {
+    @apply relative w-full max-768:hidden;
+    max-width: 400px;
+  }
+
+  .search-form {
+    @apply flex-center justify-center flex-col relative border-black;
+  }
+
+  .search-form input {
+    @apply flex duration-300 border outline-offset-2;
+    transition-property: background-color border-radius;
+  }
+
+  .search-form input:focus {
+    @apply outline-1;
+  }
+
+  .search-form input:not(:placeholder-shown) {
+    @apply bg-gray-50 !outline-0 border-b-transparent rounded-b-none;
+  }
+
+  .search-form input:not(:placeholder-shown)~.search-results_list {
+    @apply !block;
+  }
+
+  /* search results */
+  .search-results_list {
+    @apply hidden absolute w-full top-[46px] py-5 px-3 border border-t-0 border-black rounded-3xl rounded-t-none bg-gray-50 space-y-2 overflow-y-auto scroll_hidden;
+    max-height: calc(100vh - 120px);
+  }
+
+  .search-results_list_item {
+    @apply flex-center gap-2;
+  }
+
+  .search-results_list_item_img {
+    @apply w-10 h-10 rounded object-cover;
+  }
+
+  .search-results_list_item_title {
+    @apply text-lg line-clamp-1;
+  }
+
+
+
+
+
+
+
   /* hero */
   .hero-swiper {
     @apply rounded-lg max-h-max h-full max-768:pb-5;
