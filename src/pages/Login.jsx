@@ -25,8 +25,8 @@ const Login = () => {
                 <div className="flex justify-center px-20 py-8 h-screen overflow-y-auto w-full max-1024:px-14 max-860:p-10 max-768:h-auto max-768:overflow-y-visible max-450:px-5 scroll_hidden">
                     <div className='max-w-[456px] w-full my-auto'>
                         {/* title */}
-                        <h1 className="mb-6">Sign in</h1>
-                        <p className="text-regular-16 text-primary-gray-500 mb-8">Don't have an accout yet? <Link to='/register' className='text-primary-blue-700 mb-8'>Sign up</Link></p>
+                        <h1 className="mb-6">Kirish</h1>
+                        <p className="text-regular-16 text-primary-gray-500 mb-8">Akkauntingiz yo'qmi? <Link to='/register' className='text-primary-blue-700 mb-8'>Ro'yxatdan o'tish</Link></p>
 
                         {/* form */}
                         <form className="login-form">
@@ -34,7 +34,7 @@ const Login = () => {
                                 type="text"
                                 className="login-form_input"
                                 name='user nickname'
-                                placeholder='Your username or email address'
+                                placeholder='E-pochta yoki foydalanuvchi nomi'
                                 required
                             />
                             <div className="login-form_password-input-wrapper">
@@ -42,7 +42,7 @@ const Login = () => {
                                     type={`${passwordInput ? 'password' : 'text'}`}
                                     className="login-form_input"
                                     name='user password'
-                                    placeholder='Password'
+                                    placeholder='Parol'
                                     required
                                 />
                                 <button
@@ -74,11 +74,11 @@ const Login = () => {
                                         name='user consent'
                                         required
                                     />
-                                    <span className='login-form_sub-content_input-label'>Remember me</span>
+                                    <span className='login-form_sub-content_input-label'>Meni eslab qolish</span>
                                 </label>
-                                <Link to='/'>Forgot password?</Link>
+                                <Link to='/'>Parolni unutdingizmi?</Link>
                             </div>
-                            <button className="login-form_submit-btn">Sign in</button>
+                            <button className="login-form_submit-btn">Kirish</button>
                         </form>
                     </div>
                 </div>

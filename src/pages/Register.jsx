@@ -25,8 +25,8 @@ const Register = () => {
                 <div className="flex justify-center px-20 py-8 h-screen overflow-y-auto max-1024:px-14 max-860:p-10 max-768:h-auto max-768:overflow-y-visible max-450:px-5 scroll_hidden">
                     <div className='max-w-[456px] w-full my-auto'>
                         {/* title */}
-                        <h1 className="mb-6">Sign up</h1>
-                        <p className="text-regular-16 text-primary-gray-500 mb-8">Already have an account? <Link to='/login' className='text-primary-blue-700 mb-8'>Sign in</Link></p>
+                        <h1 className="mb-6">Ro'yxatdan o'tish</h1>
+                        <p className="text-regular-16 text-primary-gray-500 mb-8">Allaqachon akkuntingiz bormi? <Link to='/login' className='text-primary-blue-700 mb-8'>Kirish</Link></p>
 
                         {/* form */}
                         <form className="register-form">
@@ -34,21 +34,21 @@ const Register = () => {
                                 type="text"
                                 className="register-form_input"
                                 name='user nickname'
-                                placeholder='Your name'
+                                placeholder='Ismingiz'
                                 required
                             />
                             <input
                                 type="text"
                                 className="register-form_input"
                                 name='user name'
-                                placeholder='Username'
+                                placeholder='Foydalanuvchi nomi'
                                 required
                             />
                             <input
                                 type="email"
                                 className="register-form_input"
                                 name='user email'
-                                placeholder='Email address'
+                                placeholder='E-pochta manzilingiz'
                                 required
                             />
                             <div className="register-form_password-input-wrapper">
@@ -56,7 +56,7 @@ const Register = () => {
                                     type={`${passwordInput ? 'password' : 'text'}`}
                                     className="register-form_input"
                                     name='user password'
-                                    placeholder='Password'
+                                    placeholder='Parolingiz'
                                     required
                                 />
                                 <button
@@ -88,13 +88,14 @@ const Register = () => {
                                     required
                                 />
                                 <span className='register-form_privacy-policy-wrapper_text'>
-                                    <span>I agree with </span>
-                                    <Link to='/public-offer#maxfiylik-siyosati'>Privacy Policy </Link>
-                                    <span>and </span>
-                                    <Link to='/public-offer#foydalanish-shartlari'>Terms of Use</Link>
+                                    <span>Men </span>
+                                    <Link to='/public-offer#maxfiylik-siyosati'>Maxfiylik siyosati </Link>
+                                    <span>va </span>
+                                    <Link to='/public-offer#foydalanish-shartlari'>Foydalanish shartlari</Link>
+                                    <span> ga roziman</span>
                                 </span>
                             </label>
-                            <button className="register-form_submit-btn">Sign Up</button>
+                            <button className="register-form_submit-btn">Ro'yxatdan o'tish</button>
                         </form>
                     </div>
                 </div>
