@@ -4,9 +4,9 @@ import Sidebar from '../components/Sidebar';
 
 const AdminRoot = () => {
     return (
-        <div className='flex items-start bg-primary-black-800'>
+        <div className='flex items-start bg-radial-gradient_blue-500 text-white'>
             <Sidebar />
-            <div className="container !max-w-[1180px]">
+            <div className="container !max-w-[1180px] pt-6 pb-12">
                 <Outlet />
             </div>
         </div>
