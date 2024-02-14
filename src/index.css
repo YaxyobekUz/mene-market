@@ -99,6 +99,24 @@ html {
     background: #FAFAFA;
   }
 
+  /* scroll blue */
+  .scroll_blue::-webkit-scrollbar {
+    @apply rounded-full h-1 w-1;
+  }
+
+  .scroll_blue::-webkit-scrollbar-thumb {
+    @apply bg-primary-blue-700 rounded-full bg-opacity-50;
+  }
+
+  .scroll_blue:hover::-webkit-scrollbar-thumb {
+    @apply bg-opacity-100;
+  }
+
+  .scroll_blue::-webkit-scrollbar-track {
+    @apply rounded-full bg-transparent;
+  }
+
+  /* scroll hidden */
   .scroll_hidden::-webkit-scrollbar,
   .scroll_hidden::-webkit-scrollbar-thumb,
   .scroll_hidden::-webkit-scrollbar-track {
@@ -681,6 +699,56 @@ html {
   .register-form_submit-btn,
   .login-form_submit-btn {
     @apply flex-center justify-center py-2.5 px-10 text-white text-regular-16 w-full rounded-lg bg-primary-black-800;
+  }
+
+
+
+
+
+
+
+
+  /* admin */
+  .sidebar-hr {
+    background: linear-gradient(90deg, #ffffff00, #ffffff, #ffffff00);
+    border: none !important;
+  }
+
+  .navigation {
+    @apply space-y-1;
+  }
+
+  .navigation_item {
+    @apply w-full;
+  }
+
+  .navigation_item_link {
+    @apply flex-center py-3 px-4 rounded-xl gap-3 transition-colors;
+  }
+
+  .navigation_item_link.active {
+    background: #1A1F37;
+  }
+
+  .navigation_item_link:hover {
+    @apply bg-primary-blue-700;
+  }
+
+  .navigation_item_link_icon-wrapper {
+    @apply inline-block p-1.5 rounded-xl;
+    background: #1A1F37;
+  }
+
+  .active .navigation_item_link_icon-wrapper {
+    @apply bg-white;
+  }
+
+  .navigation_item_link_icon {
+    @apply w-5 h-5;
+  }
+
+  .navigation_item_link_body {
+    @apply text-white text-medium-14;
   }
 }
 

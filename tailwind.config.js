@@ -45,6 +45,7 @@ export default {
 
       backgroundImage: {
         'linear-gradient_blue-500': 'linear-gradient(105deg, #08C8F9 0%, #1A3EDD 100%)',
+        'sidebar': 'linear-gradient(157.20deg, rgba(6, 11, 38, 0.94) 31.974%,rgba(26, 31, 55, 0) 100%)',
       },
 
 
