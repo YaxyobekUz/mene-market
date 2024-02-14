@@ -750,6 +750,36 @@ html {
   .navigation_item_link_body {
     @apply text-white text-medium-14;
   }
+
+  @keyframes infinite-rotate-animation {
+    0% {
+      transform: rotate(0deg);
+    }
+
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  .infinite-rotate-animation {
+    animation: infinite-rotate-animation 20s linear infinite;
+  }
+
+  .dashboard_news {
+    @apply space-y-4;
+  }
+
+  .dashboard_news_item {
+    @apply w-full py-4 px-6 rounded-2xl bg-linear-gradient_black-800 space-y-2.5;
+  }
+
+  .dashboard_news_item_title {
+    @apply text-regular-16 text-white;
+  }
+
+  .dashboard_news_item_description {
+    @apply text-regular-13 text-primary-gray-500;
+  }
 }
 
 

@@ -44,8 +44,11 @@ export default {
       },
 
       backgroundImage: {
+        'radial-gradient_blue-500': 'radial-gradient(84.43% 74.8% at 50% 50%, #1A3EDD 0%, #000 99.99%, rgba(217, 217, 217, 0.00) 100%)',
         'linear-gradient_blue-500': 'linear-gradient(105deg, #08C8F9 0%, #1A3EDD 100%)',
+        'linear-gradient_black-800': ' linear-gradient(175.70deg, rgba(6, 11, 40, 0.74) 7.924%,rgba(14, 21, 58, 0.71) 119.932%)',
         'sidebar': 'linear-gradient(157.20deg, rgba(6, 11, 38, 0.94) 31.974%,rgba(26, 31, 55, 0) 100%)',
+        'jellyfish': "url(../src/assets/images/other/jellyfish.jpg)",
       },
 
 
