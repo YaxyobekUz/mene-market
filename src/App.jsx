@@ -16,6 +16,7 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import Category from './pages/Category';
 import Dashboard from './pages/Dashboard';
+import Requests from './pages/Requests';
 
 const App = () => {
   const router = createBrowserRouter(
@@ -40,6 +41,8 @@ const App = () => {
         <Route path='/admin' element={<AdminRoot />} >
 
           <Route index element={<Dashboard />} />
+
+          <Route path='requests' element={<Requests />} />
           
         </Route>
       </Route>

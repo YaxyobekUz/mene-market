@@ -63,56 +63,58 @@ const Dashboard = () => {
         </section>
       </div>
 
-      <ul className="grid grid-cols-4 gap-6">
-        <li>
-          <Link to='/' className="flex-center justify-center flex-col bg-linear-gradient_black-800 rounded-20 p-6">
-            <img width={40} height={40} src={contact} alt="contact icon image" className="w-10 h-10 mb-3" />
-            <h3 className="text-white text-medium-18">Doimiy mijozlar</h3>
-          </Link>
-        </li>
-        <li>
-          <Link to='/' className="flex-center justify-center flex-col bg-linear-gradient_black-800 rounded-20 p-6">
-            <img width={40} height={40} src={message} alt="message icon image" className="w-10 h-10 mb-3" />
-            <h3 className="text-white text-medium-18">Murojaatlar</h3>
-          </Link>
-        </li>
-        <li>
-          <Link to='/' className="flex-center justify-center flex-col bg-linear-gradient_black-800 rounded-20 p-6">
-            <img width={40} height={40} src={question} alt="question icon image" className="w-10 h-10 mb-3" />
-            <h3 className="text-white text-medium-18">So'rovlar (0)</h3>
-          </Link>
-        </li>
-        <li>
-          <Link to='/' className="flex-center justify-center flex-col bg-linear-gradient_black-800 rounded-20 p-6">
-            <img width={40} height={40} src={star} alt="star icon image" className="w-10 h-10 mb-3" />
-            <h3 className="text-white text-medium-18">Konkurslar</h3>
-          </Link>
-        </li>
-        <li>
-          <Link to='/' className="flex-center justify-center flex-col bg-linear-gradient_black-800 rounded-20 p-6">
-            <img width={40} height={40} src={walletFill} alt="wallet icon image" className="w-10 h-10 mb-3" />
-            <h3 className="text-white text-medium-18">Balans tarixi</h3>
-          </Link>
-        </li>
-        <li>
-          <Link to='/' className="flex-center justify-center flex-col bg-linear-gradient_black-800 rounded-20 p-6">
-            <img width={40} height={40} src={donate} alt="donate icon image" className="w-10 h-10 mb-3" />
-            <h3 className="text-white text-medium-18">Hayriya qutisi</h3>
-          </Link>
-        </li>
-        <li>
-          <Link to='/' className="flex-center justify-center flex-col bg-linear-gradient_black-800 rounded-20 p-6">
-            <img width={40} height={40} src={info} alt="info icon image" className="w-10 h-10 mb-3" />
-            <h3 className="text-white text-medium-18">Dastur haqida</h3>
-          </Link>
-        </li>
-        <li>
-          <Link to='/' className="flex-center justify-center flex-col bg-linear-gradient_black-800 rounded-20 p-6">
-            <img width={40} height={40} src={crown} alt="crown icon image" className="w-10 h-10 mb-3" />
-            <h3 className="text-white text-medium-18">Reklama postlari</h3>
-          </Link>
-        </li>
-      </ul>
+      <nav>
+        <ul className="grid grid-cols-4 gap-6">
+          <li>
+            <Link to='/admin/' className="flex-center justify-center flex-col bg-linear-gradient_black-800 rounded-20 p-6">
+              <img width={40} height={40} src={contact} alt="contact icon image" className="w-10 h-10 mb-3" />
+              <h3 className="text-white text-medium-18">Doimiy mijozlar</h3>
+            </Link>
+          </li>
+          <li>
+            <Link to='/admin/' className="flex-center justify-center flex-col bg-linear-gradient_black-800 rounded-20 p-6">
+              <img width={40} height={40} src={message} alt="message icon image" className="w-10 h-10 mb-3" />
+              <h3 className="text-white text-medium-18">Murojaatlar</h3>
+            </Link>
+          </li>
+          <li>
+            <Link to='/admin/requests' className="flex-center justify-center flex-col bg-linear-gradient_black-800 rounded-20 p-6">
+              <img width={40} height={40} src={question} alt="question icon image" className="w-10 h-10 mb-3" />
+              <h3 className="text-white text-medium-18">So'rovlar (0)</h3>
+            </Link>
+          </li>
+          <li>
+            <Link to='/admin/' className="flex-center justify-center flex-col bg-linear-gradient_black-800 rounded-20 p-6">
+              <img width={40} height={40} src={star} alt="star icon image" className="w-10 h-10 mb-3" />
+              <h3 className="text-white text-medium-18">Konkurslar</h3>
+            </Link>
+          </li>
+          <li>
+            <Link to='/admin/' className="flex-center justify-center flex-col bg-linear-gradient_black-800 rounded-20 p-6">
+              <img width={40} height={40} src={walletFill} alt="wallet icon image" className="w-10 h-10 mb-3" />
+              <h3 className="text-white text-medium-18">Balans tarixi</h3>
+            </Link>
+          </li>
+          <li>
+            <Link to='/admin/donate' className="flex-center justify-center flex-col bg-linear-gradient_black-800 rounded-20 p-6">
+              <img width={40} height={40} src={donate} alt="donate icon image" className="w-10 h-10 mb-3" />
+              <h3 className="text-white text-medium-18">Hayriya qutisi</h3>
+            </Link>
+          </li>
+          <li>
+            <Link to='/admin/ads' className="flex-center justify-center flex-col bg-linear-gradient_black-800 rounded-20 p-6">
+              <img width={40} height={40} src={info} alt="info icon image" className="w-10 h-10 mb-3" />
+              <h3 className="text-white text-medium-18">Dastur haqida</h3>
+            </Link>
+          </li>
+          <li>
+            <Link to='/admin/' className="flex-center justify-center flex-col bg-linear-gradient_black-800 rounded-20 p-6">
+              <img width={40} height={40} src={crown} alt="crown icon image" className="w-10 h-10 mb-3" />
+              <h3 className="text-white text-medium-18">Reklama postlari</h3>
+            </Link>
+          </li>
+        </ul>
+      </nav>
 
       <section className="p-6 rounded-20 bg-linear-gradient_black-800">
         {/* headrer */}

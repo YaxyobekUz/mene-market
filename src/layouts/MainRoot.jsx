@@ -5,11 +5,11 @@ import Footer from '../components/Footer';
 
 const MainRoot = () => {
     const location = useLocation();
-    const currentLocation = location.pathname;
+    const firstLocation = location.pathname.split('/').filter(item => item !== '')[0];
 
-    const loginPage = currentLocation !== '/login';
-    const registerPage = currentLocation !== '/register';
-    const adminPage = currentLocation !== '/admin';
+    const loginPage = firstLocation !== 'login';
+    const registerPage = firstLocation !== 'register';
+    const adminPage = firstLocation !== 'admin';
     return (
         <div className='flex flex-col min-h-screen'>
             {

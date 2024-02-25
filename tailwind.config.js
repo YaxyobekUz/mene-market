@@ -54,6 +54,7 @@ export default {
 
 
 
+
       // sizes
       width: {
         296: '296px',
@@ -99,6 +100,12 @@ export default {
       gap: {
         30: '30px',
       }
+    },
+
+
+    // backdrop
+    backdropBlur: {
+      120: '120px',
     },
 
 

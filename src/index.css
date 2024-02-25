@@ -709,6 +709,10 @@ html {
 
 
   /* admin */
+  .admin * {
+    @apply text-white;
+  }
+
   .sidebar-hr {
     background: linear-gradient(90deg, #ffffff00, #ffffff, #ffffff00);
     border: none !important;
@@ -779,6 +783,11 @@ html {
 
   .dashboard_news_item_description {
     @apply text-regular-13 text-primary-gray-500;
+  }
+
+  
+  .admin_page-header {
+    @apply flex-center relative text-center bg-linear-gradient_black-800 backdrop-filter backdrop-blur-120 rounded-20 py-8;
   }
 }
 

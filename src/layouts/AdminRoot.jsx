@@ -4,7 +4,7 @@ import Sidebar from '../components/Sidebar';
 
 const AdminRoot = () => {
     return (
-        <div className='flex items-start bg-radial-gradient_blue-500 text-white'>
+        <div className='admin flex items-start bg-radial-gradient_blue-500 text-white'>
             <Sidebar />
             <div className="container !max-w-[1180px] pt-6 pb-12">
                 <Outlet />
