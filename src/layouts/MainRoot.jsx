@@ -16,7 +16,7 @@ const MainRoot = () => {
                 (loginPage && registerPage && adminPage) &&
                 <Header />
             }
-            <main className='flex flex-col grow'>
+            <main className='flex w-full flex-col grow'>
                 <Outlet />
             </main>
             {
