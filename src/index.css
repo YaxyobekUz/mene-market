@@ -5,62 +5,52 @@ html {
 /* fonts */
 /* inter font */
 @font-face {
-  font-family: 'inter';
+  font-family: "inter";
   src: url(./assets/fonts/inter/Inter-Black.ttf);
   font-weight: 900;
 }
 
 @font-face {
-  font-family: 'inter';
+  font-family: "inter";
   src: url(./assets/fonts/inter/Inter-ExtraBold.ttf);
   font-weight: 800;
 }
 
 @font-face {
-  font-family: 'inter';
+  font-family: "inter";
   src: url(./assets/fonts/inter/Inter-Bold.ttf);
   font-weight: 700;
 }
 
-
 @font-face {
-  font-family: 'inter';
+  font-family: "inter";
   src: url(./assets/fonts/inter/Inter-SemiBold.ttf);
   font-weight: 600;
 }
 
 @font-face {
-  font-family: 'inter';
+  font-family: "inter";
   src: url(./assets/fonts/inter/Inter-Medium.ttf);
   font-weight: 500;
 }
 
 @font-face {
-  font-family: 'inter';
+  font-family: "inter";
   src: url(./assets/fonts/inter/Inter-Regular.ttf);
   font-weight: 400;
 }
 
 @font-face {
-  font-family: 'inter';
+  font-family: "inter";
   src: url(./assets/fonts/inter/Inter-Light.ttf);
   font-weight: 300;
 }
 
 @font-face {
-  font-family: 'inter';
+  font-family: "inter";
   src: url(./assets/fonts/inter/Inter-ExtraLight.ttf);
   font-weight: 200;
 }
-
-
-
-
-
-
-
-
-
 
 @tailwind base;
 @tailwind components;
@@ -68,21 +58,6 @@ html {
 
 /* components  */
 @layer components {
-  .body {
-    @apply text-medium-18 text-primary-black-800;
-    background: #fff;
-    font-family: 'inter', sans-serif;
-  }
-
-  .container {
-    @apply max-w-7xl w-full mx-auto px-5;
-  }
-
-
-
-
-
-
   /* scrolls */
   /* scroll gray */
   .scroll_gray::-webkit-scrollbar {
@@ -91,12 +66,12 @@ html {
 
   .scroll_gray::-webkit-scrollbar-thumb {
     @apply bg-primary-gray-500 rounded-full border-2 border-solid;
-    border-color: #FAFAFA;
+    border-color: #fafafa;
   }
 
   .scroll_gray::-webkit-scrollbar-track {
     @apply rounded-full;
-    background: #FAFAFA;
+    background: #fafafa;
   }
 
   /* scroll blue */
@@ -124,11 +99,6 @@ html {
     opacity: 0;
   }
 
-
-
-
-
-
   /* flex & grid */
   .flex-start {
     @apply flex items-start;
@@ -153,12 +123,6 @@ html {
   .grid-4 {
     @apply grid grid-cols-4 gap-6 max-1124:grid-cols-3 max-768:grid-cols-2 max-768:gap-4 max-450:grid-cols-1;
   }
-
-
-
-
-
-
 
   /* font sizes */
   /* bold */
@@ -205,12 +169,6 @@ html {
     @apply text-13 font-normal leading-3.5;
   }
 
-
-
-
-
-
-
   /* buttons */
   .main-btn {
     @apply flex-center rounded-full py-3 px-6 gap-2 bg-white text-medium-18 border max-w-max;
@@ -240,12 +198,6 @@ html {
     @apply main-btn rounded-18 py-2 px-2.5 text-white bg-linear-gradient_blue-500 border-0;
   }
 
-
-
-
-
-
-
   /* shadow, filter */
   .header-shadow {
     box-shadow: 0px 2px 16px 0px rgba(0, 0, 0, 0.15);
@@ -254,13 +206,6 @@ html {
   .backdrop-filter_blur-md {
     backdrop-filter: blur(10px);
   }
-
-
-
-
-
-
-
 
   /* home page  */
   /* header */
@@ -286,7 +231,7 @@ html {
     @apply bg-gray-50 !outline-0 border-b-transparent rounded-b-none;
   }
 
-  .search-form input:not(:placeholder-shown)~.search-results_list {
+  .search-form input:not(:placeholder-shown) ~ .search-results_list {
     @apply !block;
   }
 
@@ -307,12 +252,6 @@ html {
   .search-results_list_item_title {
     @apply text-lg line-clamp-1;
   }
-
-
-
-
-
-
 
   /* hero */
   .hero-swiper {
@@ -390,15 +329,11 @@ html {
     @apply text-regular-16;
   }
 
-
-
-
-
   /* products */
 
   .product {
     @apply flex flex-col w-full rounded-3xl;
-    box-shadow: 0px 4px 6px 0px rgba(0, 0, 0, 0.10);
+    box-shadow: 0px 4px 6px 0px rgba(0, 0, 0, 0.1);
   }
 
   .product_img {
@@ -441,14 +376,6 @@ html {
     @apply w-6 h-6;
   }
 
-
-
-
-
-
-
-
-
   /* faq */
   .faq_list {
     @apply grid-4 gap-30;
@@ -456,7 +383,8 @@ html {
 
   .faq_list_item {
     @apply flex-start flex-col p-6 rounded-20 space-y-2 text-primary-gray-500 text-regular-13;
-    box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15), 0px 1px 2px 0px rgba(0, 0, 0, 0.30);
+    box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15),
+      0px 1px 2px 0px rgba(0, 0, 0, 0.3);
   }
 
   .faq_list_item-img_wrapper {
@@ -471,15 +399,6 @@ html {
     @apply text-medium-18;
   }
 
-
-
-
-
-
-
-
-
-
   /* tab */
   .tab-menu {
     @apply flex gap-2.5 overflow-x-auto pb-4 p-0.5 mb-6 snap-mandatory snap-x;
@@ -493,13 +412,6 @@ html {
   .tab-menu_btn-active {
     @apply border-primary-skyblue-500 bg-linear-gradient_blue-500 text-white;
   }
-
-
-
-
-
-
-
 
   /* product details page */
   .vertical-product-swiper {
@@ -517,7 +429,6 @@ html {
     @apply w-full h-full object-cover bg-primary-gray-500 rounded-lg;
   }
 
-
   .product-swiper {
     @apply rounded-lg;
   }
@@ -527,7 +438,7 @@ html {
   }
 
   .product-swiper :is(.swiper-button-prev, .swiper-button-next)::after {
-    content: '';
+    content: "";
   }
 
   .product-swiper .swiper-button-prev {
@@ -570,7 +481,7 @@ html {
     top: calc(50% - var(--placeholder-half-height));
   }
 
-  .input-wrapper .input:is(:not(:placeholder-shown), :focus)~.placeholder {
+  .input-wrapper .input:is(:not(:placeholder-shown), :focus) ~ .placeholder {
     @apply text-regular-13;
     top: calc(4px - var(--placeholder-half-height));
   }
@@ -603,13 +514,6 @@ html {
     @apply text-regular-16 text-primary-gray-500 mt-6;
   }
 
-
-
-
-
-
-
-
   /* contact page */
   .contact-page_form {
     @apply space-y-6;
@@ -631,11 +535,6 @@ html {
     @apply justify-center btn-primary_linear-blue py-1.5 px-10 rounded-lg -tracking-[0.4px] max-375:w-full max-640:max-w-full;
   }
 
-
-
-
-
-
   /* public offer */
   .public-offer-page :is(.title, strong) {
     @apply inline font-semibold text-primary-black-800 uppercase;
@@ -645,13 +544,6 @@ html {
     @apply mr-1;
     text-transform: initial !important;
   }
-
-
-
-
-
-
-
 
   /* login & register */
   .register-form,
@@ -695,22 +587,65 @@ html {
     border-width: 1.5px;
   }
 
-
   .register-form_submit-btn,
   .login-form_submit-btn {
     @apply flex-center justify-center py-2.5 px-10 text-white text-regular-16 w-full rounded-lg bg-primary-black-800;
   }
 
-
-
-
-
-
-
-
   /* admin */
   .admin * {
     @apply text-white;
+  }
+
+  .admin h1 {
+    @apply text-medium-18;
+  }
+
+  .admin input {
+    @apply text-regular-16 text-white bg-transparent border border-primary-gray-50 pl-4 pr-12 py-2 rounded-lg placeholder:text-primary-gray-500 focus:outline-1 focus:outline-white focus:outline-offset-0;
+  }
+
+  .admin table * {
+    @apply text-start p-0;
+  }
+
+  /* btns */
+  .btn-skyblue {
+    @apply inline-block min-w-max min-h-max text-regular-16 text-primary-skyblue-500 rounded-lg border border-primary-skyblue-500 !py-2 !px-4;
+  }
+
+  .btn-success {
+    @apply inline-block min-w-max min-h-max text-regular-16 text-secondary-green-500 rounded-lg border border-secondary-green-500 !py-2 !px-4;
+  }
+
+  .btn-danger {
+    @apply inline-block min-w-max min-h-max text-regular-16 text-primary-red-500 rounded-lg border border-primary-red-500 !py-2 !px-4;
+  }
+
+  /* thead, tbody */
+  .admin table :is(thead, tbody) {
+    @apply block w-full;
+  }
+
+  /* tr, th, td */
+  .admin table thead tr {
+    @apply flex w-full py-4 border-b border-[#56577A];
+  }
+
+  .admin table tbody tr {
+    @apply flex w-full py-2;
+  }
+
+  .admin table :is(th, td) {
+    @apply flex-center grow;
+  }
+
+  .admin table th {
+    @apply text-regular-14 text-primary-gray-50;
+  }
+
+  .admin table td {
+    @apply text-regular-16;
   }
 
   .sidebar-hr {
@@ -731,7 +666,7 @@ html {
   }
 
   .navigation_item_link.active {
-    background: #1A1F37;
+    background: #1a1f37;
   }
 
   .navigation_item_link:hover {
@@ -740,7 +675,7 @@ html {
 
   .navigation_item_link_icon-wrapper {
     @apply inline-block p-1.5 rounded-xl;
-    background: #1A1F37;
+    background: #1a1f37;
   }
 
   .active .navigation_item_link_icon-wrapper {
@@ -785,27 +720,37 @@ html {
     @apply text-regular-13 text-primary-gray-500;
   }
 
-  
   .admin_page-header {
-    @apply flex-center relative text-center bg-linear-gradient_black-800 backdrop-filter backdrop-blur-120 rounded-20 py-8;
+    @apply flex-center justify-center relative text-center bg-linear-gradient_black-800 backdrop-filter backdrop-blur-120 rounded-20 py-8 mb-6;
+  }
+
+  .admin_page-header a {
+    @apply absolute p-2 left-6 rounded-lg;
+  }
+
+  .admin_page-body {
+    @apply bg-linear-gradient_black-800 backdrop-filter backdrop-blur-120 rounded-20 p-6 max-1240:p-5;
+  }
+
+  .admin_page-body_input-wrapper {
+    @apply flex-center relative max-w-[409px] justify-center;
+  }
+
+  .admin_page-body_input-wrapper img {
+    @apply absolute right-3;
   }
 }
 
-
-
-
-
-
-
-
-
-
 @layer base {
+  body {
+    @apply text-medium-18 text-primary-black-800;
+    background: #fff;
+    font-family: "inter", sans-serif;
+  }
+
   *:focus {
-    @apply outline-offset-2;
-    outline-color: rgba(26, 62, 221, 0.5)
-      /* primary blue 700 */
-    ;
+    @apply outline outline-offset-2;
+    outline-color: rgba(26, 62, 221, 0.5) /* primary blue 700 */;
   }
 
   h1,
@@ -850,4 +795,8 @@ html {
   }
 }
 
-/* @layer utilities {} */
+@layer utilities {
+  .container {
+    @apply max-w-7xl w-full mx-auto px-5;
+  }
+}
