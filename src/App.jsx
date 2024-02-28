@@ -21,6 +21,7 @@ import Register from "./pages/Register";
 import Category from "./pages/Category";
 import Dashboard from "./pages/Dashboard";
 import RegularCustomers from "./pages/RegularCustomers";
+import Appeals from "./pages/Appeals";
 import Requests from "./pages/Requests";
 
 const App = () => {
@@ -45,7 +46,11 @@ const App = () => {
 
         <Route path="/admin" element={<AdminRoot />}>
           <Route index element={<Dashboard />} />
+
           <Route path="regular-customers" element={<RegularCustomers />} />
+
+          <Route path="appeals" element={<Appeals />} />
+
           <Route path="requests" element={<Requests />} />
         </Route>
       </Route>

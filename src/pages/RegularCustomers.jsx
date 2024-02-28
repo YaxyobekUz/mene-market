@@ -20,9 +20,9 @@ const RegularCustomers = () => {
       </div>
 
       <div className="w-full admin_page-body">
-        <div className="flex-center-between gap-5">
+        <div className="flex-center-between gap-5 mb-6">
           <p className="text-medium-18">Promokodlar</p>
-          <div className="flex gap-2.5 mb-6">
+          <div className="flex gap-2.5">
             <button className="text-secondary-green-500 text-regular-13 p-0.5 rounded-sm focus:outline-secondary-green-500/50">
               Promo-kod yaratish
             </button>

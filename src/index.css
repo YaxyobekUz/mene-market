@@ -733,7 +733,7 @@ html {
   }
 
   .admin_page-body_input-wrapper {
-    @apply flex-center relative max-w-[409px] justify-center;
+    @apply flex-center relative max-w-[409px] w-full justify-center;
   }
 
   .admin_page-body_input-wrapper img {
