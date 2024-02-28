@@ -23,6 +23,7 @@ import Dashboard from "./pages/Dashboard";
 import RegularCustomers from "./pages/RegularCustomers";
 import Appeals from "./pages/Appeals";
 import Requests from "./pages/Requests";
+import Competitions from "./pages/Competitions";
 
 const App = () => {
   const router = createBrowserRouter(
@@ -52,6 +53,8 @@ const App = () => {
           <Route path="appeals" element={<Appeals />} />
 
           <Route path="requests" element={<Requests />} />
+
+          <Route path="competitions" element={<Competitions />} />
         </Route>
       </Route>
     )
