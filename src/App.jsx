@@ -25,6 +25,7 @@ import Appeals from "./pages/Appeals";
 import Requests from "./pages/Requests";
 import Competitions from "./pages/Competitions";
 import BalanceHistory from "./pages/BalanceHistory";
+import DonationBox from "./pages/DonationBox";
 
 const App = () => {
   const router = createBrowserRouter(
@@ -58,6 +59,8 @@ const App = () => {
           <Route path="competitions" element={<Competitions />} />
 
           <Route path="balance-history" element={<BalanceHistory />} />
+
+          <Route path="donation-box" element={<DonationBox />} />
         </Route>
       </Route>
     )
