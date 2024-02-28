@@ -1,0 +1,7 @@
+<svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect x="35.5" y="35.5" width="35" height="35" rx="17.5" transform="rotate(-180 35.5 35.5)" stroke="#FE3A30" />
+    <path d="M22.0465 19.62L17.9998 23.6667L13.9531 19.62" stroke="#FE3A30" stroke-width="0.75" stroke-miterlimit="10"
+        stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M18 12.3333V23.5533" stroke="#FE3A30" stroke-width="0.75" stroke-miterlimit="10" stroke-linecap="round"
+        stroke-linejoin="round" />
+</svg>
