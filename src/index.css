@@ -406,11 +406,11 @@ html {
   }
 
   .tab-menu_btn {
-    @apply main-btn min-w-max snap-start;
+    @apply main-btn min-w-max snap-start focus:outline-none focus:border-primary-blue-700;
   }
 
   .tab-menu_btn-active {
-    @apply border-primary-skyblue-500 bg-linear-gradient_blue-500 text-white;
+    @apply !border-primary-skyblue-500 bg-linear-gradient_blue-500 text-white ;
   }
 
   /* product details page */
