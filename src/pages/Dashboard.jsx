@@ -103,7 +103,7 @@ const Dashboard = () => {
       <ul className="grid grid-cols-4 gap-6">
         <li>
           <Link
-            to="/admin/regular-customers"
+            to="/admin/dashboard/regular-customers"
             className="flex-center justify-center flex-col bg-linear-gradient_black-800 rounded-20 p-6"
           >
             <img
@@ -118,7 +118,7 @@ const Dashboard = () => {
         </li>
         <li>
           <Link
-            to="/admin/appeals"
+            to="/admin/dashboard/appeals"
             className="flex-center justify-center flex-col bg-linear-gradient_black-800 rounded-20 p-6"
           >
             <img
@@ -133,7 +133,7 @@ const Dashboard = () => {
         </li>
         <li>
           <Link
-            to="/admin/requests"
+            to="/admin/dashboard/requests"
             className="flex-center justify-center flex-col bg-linear-gradient_black-800 rounded-20 p-6"
           >
             <img
@@ -148,7 +148,7 @@ const Dashboard = () => {
         </li>
         <li>
           <Link
-            to="/admin/competitions"
+            to="/admin/dashboard/competitions"
             className="flex-center justify-center flex-col bg-linear-gradient_black-800 rounded-20 p-6"
           >
             <img
@@ -163,7 +163,7 @@ const Dashboard = () => {
         </li>
         <li>
           <Link
-            to="/admin/balance-history"
+            to="/admin/dashboard/balance-history"
             className="flex-center justify-center flex-col bg-linear-gradient_black-800 rounded-20 p-6"
           >
             <img
@@ -178,7 +178,7 @@ const Dashboard = () => {
         </li>
         <li>
           <Link
-            to="/admin/donation-box"
+            to="/admin/dashboard/donation-box"
             className="flex-center justify-center flex-col bg-linear-gradient_black-800 rounded-20 p-6"
           >
             <img
@@ -193,7 +193,7 @@ const Dashboard = () => {
         </li>
         <li>
           <Link
-            to="/admin/about"
+            to="/admin/dashboard/about"
             className="flex-center justify-center flex-col bg-linear-gradient_black-800 rounded-20 p-6"
           >
             <img
@@ -208,7 +208,7 @@ const Dashboard = () => {
         </li>
         <li>
           <Link
-            to="/admin/advertising-posts"
+            to="/admin/dashboard/advertising-posts"
             className="flex-center justify-center flex-col bg-linear-gradient_black-800 rounded-20 p-6"
           >
             <img
@@ -227,7 +227,7 @@ const Dashboard = () => {
         {/* headrer */}
         <div className="flex-center-between mb-6">
           <h2 className="text-medium-18 text-white">So'nggi yangiliklar</h2>
-          <Link to="/admin/news" className="text-regular-13">
+          <Link to="/admin/dashboard/news" className="text-regular-13">
             Barchasini ko'rsatish
           </Link>
         </div>

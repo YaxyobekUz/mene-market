@@ -1,14 +1,10 @@
 import React from "react";
-import {
-  RouterProvider,
-  createBrowserRouter,
-  createRoutesFromElements,
-} from "react-router-dom";
-import { Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 // layouts
 import MainRoot from "./layouts/MainRoot";
 import AdminRoot from "./layouts/AdminRoot";
+import DashboardRoot from "./layouts/DashboardRoot";
 
 // pages
 import Home from "./pages/Home";
@@ -26,46 +22,38 @@ import Requests from "./pages/Requests";
 import Competitions from "./pages/Competitions";
 import BalanceHistory from "./pages/BalanceHistory";
 import DonationBox from "./pages/DonationBox";
+import Market from "./pages/Market";
 
 const App = () => {
-  const router = createBrowserRouter(
-    createRoutesFromElements(
-      <Route path="/" element={<MainRoot />}>
-        <Route index element={<Home />} />
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<MainRoot />}>
+          <Route index element={<Home />} />
+          <Route path="/products" element={<Products />} />
+          <Route path="/product/:productName" element={<ProductDetail />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/public-offer" element={<PublicOffer />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/category/:categoryName" element={<Category />} />
+          <Route path="/admin" element={<AdminRoot />}>
+            <Route path="dashboard" element={<DashboardRoot />}>
+              <Route index element={<Dashboard />} />
+              <Route path="regular-customers" element={<RegularCustomers />} />
+              <Route path="appeals" element={<Appeals />} />
+              <Route path="requests" element={<Requests />} />
+              <Route path="competitions" element={<Competitions />} />
+              <Route path="balance-history" element={<BalanceHistory />} />
+              <Route path="donation-box" element={<DonationBox />} />
+            </Route>
 
-        <Route path="/products" element={<Products />} />
-
-        <Route path="/product/:productName" element={<ProductDetail />} />
-
-        <Route path="/contact" element={<Contact />} />
-
-        <Route path="/public-offer" element={<PublicOffer />} />
-
-        <Route path="/login" element={<Login />} />
-
-        <Route path="/register" element={<Register />} />
-
-        <Route path="/category/:categoryName" element={<Category />} />
-
-        <Route path="/admin" element={<AdminRoot />}>
-          <Route index element={<Dashboard />} />
-
-          <Route path="regular-customers" element={<RegularCustomers />} />
-
-          <Route path="appeals" element={<Appeals />} />
-
-          <Route path="requests" element={<Requests />} />
-
-          <Route path="competitions" element={<Competitions />} />
-
-          <Route path="balance-history" element={<BalanceHistory />} />
-
-          <Route path="donation-box" element={<DonationBox />} />
+            <Route path="market" element={<Market />} />
+          </Route>
         </Route>
-      </Route>
-    )
+      </Routes>
+    </Router>
   );
-  return <RouterProvider router={router} />;
 };
 
 export default App;

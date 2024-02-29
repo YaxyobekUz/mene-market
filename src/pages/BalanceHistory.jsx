@@ -10,7 +10,7 @@ const BalanceHistory = () => {
   return (
     <div>
       <div className="admin_page-header">
-        <Link to="/admin">
+        <Link to="/admin/dashboard">
           <img
             width={24}
             height={24}

@@ -7,7 +7,7 @@ const RegularCustomers = () => {
   return (
     <div className="w-full">
       <div className="admin_page-header">
-        <Link to="/admin">
+        <Link to="/admin/dashboard">
           <img
             width={24}
             height={24}

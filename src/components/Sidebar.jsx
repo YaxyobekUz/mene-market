@@ -28,7 +28,7 @@ const Sidebar = () => {
                     <nav className="grow overflow-y-auto scroll_blue pb-5">
                         <ul className="navigation space-y-2">
                             <li className="navigation_item">
-                                <NavLink className="navigation_item_link" to='/admin'>
+                                <NavLink className="navigation_item_link" to='/admin/dashboard'>
                                     <span className="navigation_item_link_icon-wrapper">
                                         <img src={home} width={20} height={20} alt="home icon image" className="navigation_item_link_icon" />
                                     </span>
