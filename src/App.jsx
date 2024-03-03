@@ -20,7 +20,7 @@ import RegularCustomers from "./pages/RegularCustomers";
 import Appeals from "./pages/Appeals";
 import Requests from "./pages/Requests";
 import Competitions from "./pages/Competitions";
-import BalanceHistory from "./pages/BalanceHistory";
+import BalanceHistory from "./pages/BalanceHistoryPage";
 import DonationBox from "./pages/DonationBox";
 import Market from "./pages/Market";
 import Flow from "./pages/Flow";
