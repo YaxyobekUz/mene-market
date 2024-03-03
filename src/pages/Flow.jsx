@@ -10,7 +10,7 @@ const Flow = () => {
       <div className="admin_page-body">
         {/* contenyt header */}
         <div className="flex-center-between mb-6">
-          <p className="">Havolalar</p>
+          <h1 className="text-medium-18">Havolalar</h1>
           <div className="admin_page-body_input-wrapper">
             <input
               placeholder="Qidirish"
