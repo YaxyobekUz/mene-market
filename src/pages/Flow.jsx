@@ -5,20 +5,6 @@ import search from "../assets/images/svg/search-icon-white.svg";
 import trash from "../assets/images/svg/trash.svg";
 import copy from "../assets/images/svg/copy.svg";
 const Flow = () => {
-  function myFunction(event) {
-    // Elementga focus qilish
-    event.target.focus();
-    // Elementga klik qilish
-    event.target.click();
-  }
-
-  function handleKeyPress(event) {
-    // agar Enter tugmasi bosilgan bo'lsa
-    if (event.key === "Enter") {
-      // Eventni amalga oshirish
-      myFunction(event);
-    }
-  }
   return (
     <div className="w-full">
       <div className="admin_page-body">
