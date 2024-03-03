@@ -410,7 +410,7 @@ html {
   }
 
   .tab-menu_btn-active {
-    @apply !border-primary-skyblue-500 bg-linear-gradient_blue-500 text-white ;
+    @apply !border-primary-skyblue-500 bg-linear-gradient_blue-500 text-white;
   }
 
   /* product details page */
@@ -611,15 +611,15 @@ html {
 
   /* btns */
   .btn-skyblue {
-    @apply inline-block min-w-max min-h-max text-regular-16 text-primary-skyblue-500 rounded-lg border border-primary-skyblue-500 !py-2 !px-4;
+    @apply inline-block min-w-max min-h-max text-regular-16 text-primary-skyblue-500 rounded-lg border border-primary-skyblue-500 !py-2 !px-4 focus:outline-1 focus:outline-primary-skyblue-500 focus:outline-offset-0;
   }
 
   .btn-success {
-    @apply inline-block min-w-max min-h-max text-regular-16 text-secondary-green-500 rounded-lg border border-secondary-green-500 !py-2 !px-4;
+    @apply inline-block min-w-max min-h-max text-regular-16 text-secondary-green-500 rounded-lg border border-secondary-green-500 !py-2 !px-4 focus:outline-1 focus:outline-secondary-green-500 focus:outline-offset-0;
   }
 
   .btn-danger {
-    @apply inline-block min-w-max min-h-max text-regular-16 text-primary-red-500 rounded-lg border border-primary-red-500 !py-2 !px-4;
+    @apply inline-block min-w-max min-h-max text-regular-16 text-primary-red-500 rounded-lg border border-primary-red-500 !py-2 !px-4 focus:outline-1 focus:outline-primary-red-500 focus:outline-offset-0;
   }
 
   /* thead, tbody */
@@ -641,7 +641,7 @@ html {
   }
 
   .admin table th {
-    @apply text-regular-14 text-primary-gray-50;
+    @apply text-regular-14 text-primary-gray-500;
   }
 
   .admin table td {

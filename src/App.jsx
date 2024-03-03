@@ -23,6 +23,7 @@ import Competitions from "./pages/Competitions";
 import BalanceHistory from "./pages/BalanceHistory";
 import DonationBox from "./pages/DonationBox";
 import Market from "./pages/Market";
+import Flow from "./pages/Flow";
 
 const App = () => {
   return (
@@ -49,6 +50,8 @@ const App = () => {
             </Route>
 
             <Route path="market" element={<Market />} />
+
+            <Route path="flow" element={<Flow />} />
           </Route>
         </Route>
       </Routes>
