@@ -28,6 +28,7 @@ import Flow from "./pages/Flow";
 import Statistics from "./pages/Statistics";
 import Payment from "./pages/Payment";
 import Profile from "./pages/Profile";
+import ConnectWithTelegram from "./pages/ConnectWithTelegram";
 
 const App = () => {
   return (
@@ -58,6 +59,11 @@ const App = () => {
             <Route path="payment" element={<Payment />} />
             <Route path="profile" element={<ProfileRoot />}>
               <Route index element={<Profile />} />
+              <Route index path="account" element={<Profile />} />
+              <Route
+                path="connect-with-telegram"
+                element={<ConnectWithTelegram />}
+              />
             </Route>
           </Route>
         </Route>

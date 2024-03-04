@@ -27,7 +27,7 @@ const Profile = () => {
 
           <label className="block space-y-3">
             <span className="text-regular-13 text-[#C4C5C4]">E-pochta</span>
-            <input type="text" placeholder="E-pochta" required />
+            <input type="email" placeholder="E-pochta" required />
           </label>
 
           <label className="block space-y-3">
