@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import MainRoot from "./layouts/MainRoot";
 import AdminRoot from "./layouts/AdminRoot";
 import DashboardRoot from "./layouts/DashboardRoot";
+import ProfileRoot from "./layouts/ProfileRoot";
 
 // pages
 import Home from "./pages/Home";
@@ -54,6 +55,7 @@ const App = () => {
             <Route path="flow" element={<Flow />} />
             <Route path="statistics" element={<Statistics />} />
             <Route path="payment" element={<Payment />} />
+            <Route path="profile" element={<ProfileRoot />}></Route>
           </Route>
         </Route>
       </Routes>

@@ -799,6 +799,14 @@ html {
   .product_list_item_link {
     @apply text-regular-16;
   }
+
+  .admin_page_profile-list a {
+    @apply transition-colors duration-300 border-b border-transparent hover:border-white;
+  }
+
+  .admin_page_profile-list .active {
+    @apply text-white border-b border-white;
+  }
 }
 
 @layer base {
