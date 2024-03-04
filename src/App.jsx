@@ -27,6 +27,7 @@ import Market from "./pages/Market";
 import Flow from "./pages/Flow";
 import Statistics from "./pages/Statistics";
 import Payment from "./pages/Payment";
+import Profile from "./pages/Profile";
 
 const App = () => {
   return (
@@ -55,7 +56,9 @@ const App = () => {
             <Route path="flow" element={<Flow />} />
             <Route path="statistics" element={<Statistics />} />
             <Route path="payment" element={<Payment />} />
-            <Route path="profile" element={<ProfileRoot />}></Route>
+            <Route path="profile" element={<ProfileRoot />}>
+              <Route index element={<Profile />} />
+            </Route>
           </Route>
         </Route>
       </Routes>
