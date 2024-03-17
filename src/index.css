@@ -558,12 +558,12 @@ html {
 
   .register-form_password-input-wrapper,
   .login-form_password-input-wrapper {
-    @apply flex-center relative;
+    @apply flex flex-col relative;
   }
 
   .register-form_password-input-wrapper-button,
   .login-form_password-input-wrapper-button {
-    @apply absolute right-0;
+    @apply absolute top-2 right-0 rounded-sm;
   }
 
   .register-form_privacy-policy-wrapper,
@@ -583,13 +583,22 @@ html {
 
   .register-form_input-checkbox,
   .login-form_input-checkbox {
-    @apply w-6 h-6 rounded border-primary-gray-500;
+    @apply w-5 h-5 border-primary-gray-500 !rounded-lg outline-offset-0;
     border-width: 1.5px;
   }
 
   .register-form_submit-btn,
   .login-form_submit-btn {
     @apply flex-center justify-center py-2.5 px-10 text-white text-regular-16 w-full rounded-lg bg-primary-black-800;
+  }
+
+  /* invalid */
+  .is-invalid {
+    @apply !border-primary-red-500;
+  }
+
+  .is-invalid + span {
+    @apply !inline-block;
   }
 
   /* admin */
@@ -817,8 +826,7 @@ html {
   }
 
   *:focus {
-    @apply outline outline-offset-2;
-    outline-color: rgba(26, 62, 221, 0.5) /* primary blue 700 */;
+    @apply outline-none outline-transparent;
   }
 
   h1,
