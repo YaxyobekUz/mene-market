@@ -95,7 +95,7 @@ const Header = () => {
                         </div>
 
                         {/* log in wrapper */}
-                        <Link to='/login' className="flex-center space-x-1">
+                        <Link to='/auth/login' className="flex-center space-x-1">
                             <img width={24} height={24} src={userIcon} alt="web" className="w-6 h-6" />
                             <span className='max-450:hidden'>Kirish</span>
                         </Link>
