@@ -6,6 +6,7 @@ import MainRoot from "./layouts/MainRoot";
 import AdminRoot from "./layouts/AdminRoot";
 import DashboardRoot from "./layouts/DashboardRoot";
 import ProfileRoot from "./layouts/ProfileRoot";
+import AuthRoot from "./layouts/AuthRoot";
 
 // pages
 import Home from "./pages/Home";
@@ -40,8 +41,10 @@ const App = () => {
           <Route path="/product/:productName" element={<ProductDetail />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/public-offer" element={<PublicOffer />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
+          <Route path="/auth" element={<AuthRoot />}>
+            <Route path="login" element={<Login />} />
+            <Route path="register" element={<Register />} />
+          </Route>
           <Route path="/category/:categoryName" element={<Category />} />
           <Route path="/admin" element={<AdminRoot />}>
             <Route path="dashboard" element={<DashboardRoot />}>
