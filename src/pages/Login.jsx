@@ -1,13 +1,20 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
+
+// axios & jwt
+import axios from "axios";
+import { useJwt } from "react-jwt";
+
+// redux
+import { useDispatch } from "react-redux";
+import { loggedIn } from "../store/slices/productBasketSlice";
+
+// toast
+import { toast } from "react-toastify";
 
 // images
 import logo from "../assets/images/other/logo.png";
 import chair from "../assets/images/other/chair.png";
-import { Link } from "react-router-dom";
-import axios from "axios";
-import { toast } from "react-toastify";
-import { useDispatch, useSelector } from "react-redux";
-import { loggedIn } from "../store/slices/productBasketSlice";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -64,7 +71,7 @@ const Login = () => {
         .then((response) => {
           if (response.status === 200) {
             // notification
-            toast.success("Akkauntga kirldi", {
+            toast.success("Akkauntga kirildi", {
               position: "bottom-right",
               autoClose: 3500,
               hideProgressBar: true,
@@ -75,9 +82,15 @@ const Login = () => {
             });
             dispatch(loggedIn());
 
-            console.log(response);
             // set user data to localstorage
-            // localStorage.setItem("user", response.data.userId);
+            const token = response.data.token;
+            localStorage.setItem(
+              "user",
+              JSON.stringify({
+                token: token,
+                ...JSON.parse(response.config.data),
+              })
+            );
           }
         })
         .catch((error) => {
@@ -221,7 +234,7 @@ const Login = () => {
                       className="login-form_input-checkbox"
                     />
                     <span className="login-form_sub-content_input-label">
-                      Meni eslab qolish
+                      Meni eslab qol
                     </span>
                   </label>
                   <Link to="/">Parolni unutdingizmi?</Link>
@@ -230,7 +243,7 @@ const Login = () => {
                   disabled={loading}
                   className="login-form_submit-btn transition-opacity disabled:opacity-70"
                 >
-                  Kirish
+                  {!loading ? "Kirish" : "Akkauntga kirilmoqda..."}
                 </button>
               </form>
             </div>
@@ -293,3 +306,15 @@ export default Login;
 //     </div>
 //   );
 // }
+
+// 1. JSON-lik tokenni olish
+// const token =
+// "";
+
+// 2. jsonwebtoken paketini o'rnatish
+// const jwt = require("jsonwebtoken");
+
+// 3. Tokenni decode qilish
+// Foydalanuvchi ID sini chiqarish
+// const userId = decodedToken;
+// console.log(userId);

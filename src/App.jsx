@@ -1,5 +1,14 @@
-import React from "react";
+import React, { useMemo, useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+
+// for auth
+import { useJwt } from "react-jwt";
+import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { loggedIn } from "./store/slices/productBasketSlice";
+
+// images
+import logo from "./assets/images/other/logo.png";
 
 // layouts
 import MainRoot from "./layouts/MainRoot";
@@ -32,6 +41,51 @@ import Profile from "./pages/Profile";
 import ConnectWithTelegram from "./pages/ConnectWithTelegram";
 
 const App = () => {
+  const dispatch = useDispatch();
+  const { isLoggedIn } = useSelector((store) => store.isLoggedIn);
+  const [loader, setLoader] = useState(true); // Agar biz ikkinchi qiymatni false qilib berishni unutib qolgan bo'lsak, unda u true deb qoldiriladi
+  const getUserData = localStorage.getItem("user");
+  const userData = JSON.parse(getUserData);
+  const { decodedToken } = useJwt(userData.token);
+
+  if (decodedToken) {
+    axios
+      .get(
+        `https://menemarcket.azurewebsites.net/api/User/ById?id=${decodedToken.UserId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${userData.token}`,
+          },
+        }
+      )
+      .then((response) => {
+        const user = response.data;
+        const password = user.password;
+        const email = user.email;
+
+        if (userData.password === password && userData.email === email) {
+          dispatch(loggedIn());
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+      .finally(() => setLoader(false)); // Agar so'rov tugagan bo'lsa, loader o'zgaruvchisini false qilamiz
+  }
+
+  // Agar loader true bo'lsa, "Loading..." ni chiqaramiz
+  if (loader) {
+    return (
+      <div className="flex-center justify-center w-full h-screen bg-white">
+        <img 
+        width={96}
+        height={48}
+         src={logo} alt="mene market logo" className="w-24 h-12" />
+      </div>
+    );
+  }
+
+  // Agar loader false bo'lsa, Router va Routes larni chiqaramiz
   return (
     <Router>
       <Routes>

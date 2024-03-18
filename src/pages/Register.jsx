@@ -1,13 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+
+// axios & jwy
+import axios from "axios";
+
+// toast
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 // images
 import logo from "../assets/images/other/logo.png";
 import chair from "../assets/images/other/chair.png";
-import { Link, useLocation, useNavigate } from "react-router-dom";
-import axios from "axios";
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-
 const Register = () => {
   const setNavigate = useNavigate();
   const [passwordInput, setPasswordInput] = useState(true);
@@ -64,7 +67,7 @@ const Register = () => {
     const name = inputPattern(defaultPattern, elNameInput, "is-invalid");
 
     // check form elements value and loader
-    if (!loader && email && password && userName) {
+    if (!loader && email && password && userName && name) {
       // add loader
       setLoader(true);
 
@@ -96,6 +99,8 @@ const Register = () => {
             setTimeout(() => {
               setNavigate("/auth/login");
             }, 1000);
+
+            console.log(response);
           }
         })
         .catch((error) => {
@@ -173,7 +178,7 @@ const Register = () => {
               </span>
               <input
                 type="email"
-                className="register-form_input js-email-input invalid:border-primary-red-500"
+                className="register-form_input js-email-input"
                 placeholder="E-pochta manzilingiz"
               />
               <span className="hidden text-regular-14 text-primary-red-500 italic !mt-1.5">
@@ -276,7 +281,7 @@ const Register = () => {
                   loader || !isAgree ? "opacity-70" : "opacity-100"
                 } register-form_submit-btn js-submit-btn transition-colors`}
               >
-                Ro'yxatdan o'tish
+                {!loader ? "Ro'yxatdan o'tish" : "Ro'yxatdan o'tilmoqda..."}
               </button>
             </form>
           </div>
