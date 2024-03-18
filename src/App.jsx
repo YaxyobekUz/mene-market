@@ -43,44 +43,53 @@ import ConnectWithTelegram from "./pages/ConnectWithTelegram";
 const App = () => {
   const dispatch = useDispatch();
   const { isLoggedIn } = useSelector((store) => store.isLoggedIn);
-  const [loader, setLoader] = useState(true); // Agar biz ikkinchi qiymatni false qilib berishni unutib qolgan bo'lsak, unda u true deb qoldiriladi
+  const [loader, setLoader] = useState(true);
   const getUserData = localStorage.getItem("user");
   const userData = JSON.parse(getUserData);
-  const { decodedToken } = useJwt(userData.token);
 
-  if (decodedToken) {
-    axios
-      .get(
-        `https://menemarcket.azurewebsites.net/api/User/ById?id=${decodedToken.UserId}`,
-        {
-          headers: {
-            Authorization: `Bearer ${userData.token}`,
-          },
-        }
-      )
-      .then((response) => {
-        const user = response.data;
-        const password = user.password;
-        const email = user.email;
+  if (getUserData) {
+    const { decodedToken } = useJwt(userData.token);
 
-        if (userData.password === password && userData.email === email) {
-          dispatch(loggedIn());
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      })
-      .finally(() => setLoader(false)); // Agar so'rov tugagan bo'lsa, loader o'zgaruvchisini false qilamiz
+    if (decodedToken) {
+      axios
+        .get(
+          `https://menemarcket.azurewebsites.net/api/User/ById?id=${decodedToken.UserId}`,
+          {
+            headers: {
+              Authorization: `Bearer ${userData.token}`,
+            },
+          }
+        )
+        .then((response) => {
+          const user = response.data;
+          const password = user.password;
+          const email = user.email;
+
+          if (userData.password === password && userData.email === email) {
+            dispatch(loggedIn());
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        })
+        .finally(() => setLoader(false));
+    }
+  } else {
+    setTimeout(() => {
+      setLoader(false);
+    }, 2000);
   }
 
-  // Agar loader true bo'lsa, "Loading..." ni chiqaramiz
   if (loader) {
     return (
       <div className="flex-center justify-center w-full h-screen bg-white">
-        <img 
-        width={96}
-        height={48}
-         src={logo} alt="mene market logo" className="w-24 h-12" />
+        <img
+          width={96}
+          height={48}
+          src={logo}
+          alt="mene market logo"
+          className="w-24 h-12"
+        />
       </div>
     );
   }
