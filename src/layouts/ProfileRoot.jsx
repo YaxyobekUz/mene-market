@@ -3,9 +3,11 @@ import { NavLink, Outlet, useLocation } from "react-router-dom";
 
 // images
 import edit from "../assets/images/svg/edit.svg";
+import { useSelector } from "react-redux";
 const ProfileRoot = () => {
   const location = useLocation();
   const pathname = location.pathname;
+  const { userData } = useSelector((store) => store.userData);
   return (
     <div className="admin_page-body">
       <div className="flex-start gap-6">
@@ -38,8 +40,10 @@ const ProfileRoot = () => {
               </div>
 
               {/* user name */}
-              <h1 className="text-semibold-20">Yaxyobek</h1>
-              <p className="text-regular-13">#125679</p>
+              <h1 className="text-semibold-20">
+                {userData.firstName + " " + userData.lastName}
+              </h1>
+              <p className="text-regular-13 text-center">{userData.userId}</p>
             </div>
 
             <ul className="admin_page_profile-list space-y-3">

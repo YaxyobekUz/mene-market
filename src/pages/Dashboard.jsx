@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 // images
 import profile from "../assets/images/svg/profile.svg";
@@ -13,6 +14,8 @@ import info from "../assets/images/svg/info.svg";
 import crown from "../assets/images/svg/crown.svg";
 
 const Dashboard = () => {
+  const { userData } = useSelector((store) => store.userData);
+
   return (
     <div className="containr">
       <div className="w-full space-y-6">
@@ -26,12 +29,13 @@ const Dashboard = () => {
                 onDrag={(e) => {
                   console.log(e);
                 }}
+                title={userData.firstName + " " + userData.lastName}
                 src={profile}
-                alt="Yaxyobek Xabibullayev"
+                alt={userData.firstName + " " + userData.lastName}
                 className="w-16 h-16 rounded-full bg-primary-gray-500"
               />
               <h1 className="text-white text-bold-28 font-semibold ">
-                Yaxyobek Xabibullayev
+                {userData.firstName + " " + userData.lastName}
               </h1>
               <p className="text-regular-14 text-primary-gray-500">
                 Xush kelibsiz!
@@ -48,13 +52,23 @@ const Dashboard = () => {
                   <h3 className="text-regular-14 text-primary-gray-500">
                     Sotib olganlar
                   </h3>
-                  <p className="text-white">145 kishi</p>
+                  <p className="text-white">
+                    {userData.offerLinks.clients
+                      ? userData.offerLinks.clients.length
+                      : 0}{" "}
+                    kishi
+                  </p>
                 </li>
                 <li className="bg-linear-gradient_black-800 max-w-[210px] w-full px-6 py-5 space-y-1.5 rounded-20">
                   <h3 className="text-regular-14 text-primary-gray-500">
                     Havola orqali kirganlar
                   </h3>
-                  <p className="text-white">1,465 kishi</p>
+                  <p className="text-white">
+                    {userData.offerLinks.clients
+                      ? userData.offerLinks.clients.length
+                      : 0}{" "}
+                    kishi
+                  </p>
                 </li>
               </ul>
 
@@ -90,7 +104,7 @@ const Dashboard = () => {
                     O'rtacha
                   </span>
                   <span className="text-[50px] leading-none font-bold text-white">
-                    9.3
+                    0.0
                   </span>
                   <span className="text-regular-14 text-primary-gray-500">
                     Sotib olish ehtimoli

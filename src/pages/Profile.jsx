@@ -1,6 +1,9 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import userDataSlice, { setUserData } from "../store/slices/userDataSlice";
 
 const Profile = () => {
+  const { userData } = useSelector((store) => store.userData);
   return (
     <form className="space-y-10">
       <div className="space-y-6">
@@ -8,7 +11,12 @@ const Profile = () => {
         <div className="space-y-6">
           <label className="block space-y-3">
             <span className="text-regular-13 text-[#C4C5C4]">Ism</span>
-            <input type="text" placeholder="Ism" required />
+            <input
+              defaultValue={userData.firstName}
+              type="text"
+              placeholder="Ism"
+              required
+            />
           </label>
 
           <label className="block space-y-3">
@@ -26,7 +34,12 @@ const Profile = () => {
 
           <label className="block space-y-3">
             <span className="text-regular-13 text-[#C4C5C4]">E-pochta</span>
-            <input type="email" placeholder="E-pochta" required />
+            <input
+              defaultValue={userData.email}
+              type="email"
+              placeholder="E-pochta"
+              required
+            />
           </label>
         </div>
       </div>

@@ -19,7 +19,6 @@ const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [passwordInput, setPasswordInput] = useState(true);
-  const [logginCount, setLogginCount] = useState(0);
   const [loading, setLoading] = useState(false);
 
   const login = (event) => {

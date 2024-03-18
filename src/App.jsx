@@ -39,6 +39,7 @@ import Statistics from "./pages/Statistics";
 import Payment from "./pages/Payment";
 import Profile from "./pages/Profile";
 import ConnectWithTelegram from "./pages/ConnectWithTelegram";
+import { setUserData } from "./store/slices/userDataSlice";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -65,7 +66,9 @@ const App = () => {
           const password = user.password;
           const email = user.email;
 
+
           if (userData.password === password && userData.email === email) {
+            dispatch(setUserData(user));
             dispatch(loggedIn());
           }
         })
