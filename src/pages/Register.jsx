@@ -11,7 +11,6 @@ import "react-toastify/dist/ReactToastify.css";
 // images
 import logo from "../assets/images/other/logo.png";
 import chair from "../assets/images/other/chair.png";
-import { isLoggedIn } from "../js/auth";
 const Register = () => {
   const setNavigate = useNavigate();
   const [passwordInput, setPasswordInput] = useState(true);

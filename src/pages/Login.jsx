@@ -3,7 +3,6 @@ import { Link, useNavigate } from "react-router-dom";
 
 // axios & jwt
 import axios from "axios";
-import { useJwt } from "react-jwt";
 
 // redux
 import { useDispatch } from "react-redux";
@@ -15,7 +14,6 @@ import { toast } from "react-toastify";
 // images
 import logo from "../assets/images/other/logo.png";
 import chair from "../assets/images/other/chair.png";
-import { configureLoggedIn, isLoggedIn } from "../js/auth";
 
 const Login = () => {
   const dispatch = useDispatch();
