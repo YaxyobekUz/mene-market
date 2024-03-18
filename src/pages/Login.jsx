@@ -15,6 +15,7 @@ import { toast } from "react-toastify";
 // images
 import logo from "../assets/images/other/logo.png";
 import chair from "../assets/images/other/chair.png";
+import { configureLoggedIn, isLoggedIn } from "../js/auth";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -259,66 +260,3 @@ const Login = () => {
 };
 
 export default Login;
-
-// function App() {
-//   const [user, setUser] = useState(null);
-
-//   // Foydalanuvchi ma'lumotlarini local storage ga saqlash
-//   const saveUserToLocalStorage = (user) => {
-//     localStorage.setItem("user", JSON.stringify(user));
-//   };
-
-//   // Foydalanuvchi ma'lumotlarini local storage dan olish
-//   const getUserFromLocalStorage = () => {
-//     const userString = localStorage.getItem("user");
-//     const user = JSON.parse(userString);
-//     return user;
-//   };
-
-//   // Avtorizatsiya funksiyasi
-//   const loginUser = () => {
-//     const user = { id: 1, name: "John", email: "john@example.com" };
-//     setUser(user);
-//     saveUserToLocalStorage(user);
-//   };
-
-//   // Tizimdagi foydalanuvchi ma'lumotlarini olish
-//   const fetchUserData = () => {
-//     const user = getUserFromLocalStorage();
-//     setUser(user);
-//   };
-
-//   // Componentning ochilishida local storage dan foydalanuvchi ma'lumotlarini olish
-//   useState(() => {
-//     fetchUserData();
-//   }, []);
-
-//   // Foydalanuvchi tizimda ro'yxatdan o'tganmi tekshirish
-//   if (!user) {
-//     return (
-//       <div>
-//         <button onClick={loginUser}>Kirish</button>
-//       </div>
-//     );
-//   }
-
-//   // Foydalanuvchi ro'yxatdan o'tgan bo'lsa uni ko'rsatish
-//   return (
-//     <div>
-//       <h2>Siz tizimda ro'yxatdan o'tgansiz: {user.name}</h2>
-//       <p>Email: {user.email}</p>
-//     </div>
-//   );
-// }
-
-// 1. JSON-lik tokenni olish
-// const token =
-// "";
-
-// 2. jsonwebtoken paketini o'rnatish
-// const jwt = require("jsonwebtoken");
-
-// 3. Tokenni decode qilish
-// Foydalanuvchi ID sini chiqarish
-// const userId = decodedToken;
-// console.log(userId);

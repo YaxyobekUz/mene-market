@@ -19,8 +19,8 @@ const Sidebar = () => {
   const navigate = useNavigate();
   const logout = () => {
       localStorage.removeItem("user");
-      dispatch(notLoggedIn());
       navigate("/");
+      dispatch(notLoggedIn());
       window.location.reload();
   };
   return (

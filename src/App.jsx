@@ -92,50 +92,52 @@ const App = () => {
         />
       </div>
     );
+  } else {
+    return (
+      <Router>
+        <Routes>
+          <Route path="/" element={<MainRoot />}>
+            <Route index element={<Home />} />
+            <Route path="/products" element={<Products />} />
+            <Route path="/product/:productName" element={<ProductDetail />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/public-offer" element={<PublicOffer />} />
+            <Route path="/auth" element={<AuthRoot />}>
+              <Route path="login" element={<Login />} />
+              <Route path="register" element={<Register />} />
+            </Route>
+            <Route path="/category/:categoryName" element={<Category />} />
+            <Route path="/admin" element={<AdminRoot />}>
+              <Route path="dashboard" element={<DashboardRoot />}>
+                <Route index element={<Dashboard />} />
+                <Route
+                  path="regular-customers"
+                  element={<RegularCustomers />}
+                />
+                <Route path="appeals" element={<Appeals />} />
+                <Route path="requests" element={<Requests />} />
+                <Route path="competitions" element={<Competitions />} />
+                <Route path="balance-history" element={<BalanceHistory />} />
+                <Route path="donation-box" element={<DonationBox />} />
+              </Route>
+              <Route path="market" element={<Market />} />
+              <Route path="flow" element={<Flow />} />
+              <Route path="statistics" element={<Statistics />} />
+              <Route path="payment" element={<Payment />} />
+              <Route path="profile" element={<ProfileRoot />}>
+                <Route index element={<Profile />} />
+                <Route index path="account" element={<Profile />} />
+                <Route
+                  path="connect-with-telegram"
+                  element={<ConnectWithTelegram />}
+                />
+              </Route>
+            </Route>
+          </Route>
+        </Routes>
+      </Router>
+    );
   }
-
-  // Agar loader false bo'lsa, Router va Routes larni chiqaramiz
-  return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<MainRoot />}>
-          <Route index element={<Home />} />
-          <Route path="/products" element={<Products />} />
-          <Route path="/product/:productName" element={<ProductDetail />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/public-offer" element={<PublicOffer />} />
-          <Route path="/auth" element={<AuthRoot />}>
-            <Route path="login" element={<Login />} />
-            <Route path="register" element={<Register />} />
-          </Route>
-          <Route path="/category/:categoryName" element={<Category />} />
-          <Route path="/admin" element={<AdminRoot />}>
-            <Route path="dashboard" element={<DashboardRoot />}>
-              <Route index element={<Dashboard />} />
-              <Route path="regular-customers" element={<RegularCustomers />} />
-              <Route path="appeals" element={<Appeals />} />
-              <Route path="requests" element={<Requests />} />
-              <Route path="competitions" element={<Competitions />} />
-              <Route path="balance-history" element={<BalanceHistory />} />
-              <Route path="donation-box" element={<DonationBox />} />
-            </Route>
-            <Route path="market" element={<Market />} />
-            <Route path="flow" element={<Flow />} />
-            <Route path="statistics" element={<Statistics />} />
-            <Route path="payment" element={<Payment />} />
-            <Route path="profile" element={<ProfileRoot />}>
-              <Route index element={<Profile />} />
-              <Route index path="account" element={<Profile />} />
-              <Route
-                path="connect-with-telegram"
-                element={<ConnectWithTelegram />}
-              />
-            </Route>
-          </Route>
-        </Route>
-      </Routes>
-    </Router>
-  );
 };
 
 export default App;

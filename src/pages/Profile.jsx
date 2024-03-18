@@ -13,31 +13,20 @@ const Profile = () => {
 
           <label className="block space-y-3">
             <span className="text-regular-13 text-[#C4C5C4]">
-              Familiya (Ixtiyoriy)
-            </span>
-            <input type="text" placeholder="Familiya" />
-          </label>
-
-          <label className="block space-y-3">
-            <span className="text-regular-13 text-[#C4C5C4]">
               Telefon raqam
             </span>
-            <input type="tel" placeholder="Telefon raqam" required />
+            <input
+              disabled
+              className="disabled:opacity-50"
+              type="tel"
+              placeholder="Telefon raqam"
+              required
+            />
           </label>
 
           <label className="block space-y-3">
             <span className="text-regular-13 text-[#C4C5C4]">E-pochta</span>
             <input type="email" placeholder="E-pochta" required />
-          </label>
-
-          <label className="block space-y-3">
-            <span className="text-regular-13 text-[#C4C5C4]">Viloyat</span>
-            <input type="text" placeholder="Viloyat" required />
-          </label>
-
-          <label className="block space-y-3">
-            <span className="text-regular-13 text-[#C4C5C4]">Tuman</span>
-            <input type="text" placeholder="Tuman" required />
           </label>
         </div>
       </div>
@@ -67,9 +56,7 @@ const Profile = () => {
           </label>
 
           <button className="btn-primary_linear-blue px-10 py-3 rounded-lg">
-            <span className="text-regular-16">
-              O’zgarishlarni saqlash
-            </span>
+            <span className="text-regular-16">O’zgarishlarni saqlash</span>
           </button>
         </div>
       </div>
