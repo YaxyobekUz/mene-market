@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 // axios & jwt
 import axios from "axios";
@@ -18,6 +18,7 @@ import chair from "../assets/images/other/chair.png";
 
 const Login = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [passwordInput, setPasswordInput] = useState(true);
   const [logginCount, setLogginCount] = useState(0);
   const [loading, setLoading] = useState(false);
@@ -80,6 +81,7 @@ const Login = () => {
               draggable: false,
               theme: "light",
             });
+
             dispatch(loggedIn());
 
             // set user data to localstorage
@@ -91,6 +93,8 @@ const Login = () => {
                 ...JSON.parse(response.config.data),
               })
             );
+            navigate("/");
+            window.location.reload();
           }
         })
         .catch((error) => {
