@@ -12,9 +12,19 @@ const Profile = () => {
           <label className="block space-y-3">
             <span className="text-regular-13 text-[#C4C5C4]">Ism</span>
             <input
-              defaultValue={userData.firstName}
+              defaultValue={userData && userData.firstName}
               type="text"
               placeholder="Ism"
+              required
+            />
+          </label>
+
+          <label className="block space-y-3">
+            <span className="text-regular-13 text-[#C4C5C4]">Familiya</span>
+            <input
+              defaultValue={userData && userData.lastName}
+              type="text"
+              placeholder="Familiya(Ixtiyoriy)"
               required
             />
           </label>
@@ -35,7 +45,7 @@ const Profile = () => {
           <label className="block space-y-3">
             <span className="text-regular-13 text-[#C4C5C4]">E-pochta</span>
             <input
-              defaultValue={userData.email}
+              defaultValue={userData && userData.email}
               type="email"
               placeholder="E-pochta"
               required

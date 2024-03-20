@@ -1,30 +1,36 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-// axios & jwy
-import axios from "axios";
-
-// toast
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-
 // images
 import logo from "../assets/images/other/logo.png";
 import chair from "../assets/images/other/chair.png";
+import { register } from "../api/auth/register";
 const Register = () => {
   const setNavigate = useNavigate();
   const [passwordInput, setPasswordInput] = useState(true);
   const [loader, setLoader] = useState(false);
   const [isAgree, setIsAgree] = useState(false);
 
-  const addUser = (event) => {
-    // get element
+  const onSubmit = (event) => {
+    // get form elements
     const getElement = (name) => {
       return event.target.querySelector(name);
     };
+    const elUserNameInput = getElement(".js-username-input");
+    const elNameInput = getElement(".js-name-input");
+    const elEmailInput = getElement(".js-email-input");
+    const elPasswordInput = getElement(".js-password-input");
+    const elSurnameInput = getElement(".js-surname-input");
 
-    // input pattern
-    const inputPattern = (pattern, input, className) => {
+    // patterns
+    const defaultPattern = /^(?=.*[a-zA-Z0-9]).{1,}$/;
+    const usernamePattern = /^[a-zA-Z0-9][a-zA-Z0-9-]*$/;
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const passwordPattern =
+      /^(?=(?:.*[0-9]){4})(?=(?:.*[a-zA-Z]){4})[a-zA-Z0-9]{8,}$/;
+
+    // check form elements value
+    const checkInputPattern = (pattern, input, className) => {
       if (pattern.test(input.value)) {
         input.classList.remove(className);
         return true;
@@ -35,87 +41,47 @@ const Register = () => {
       }
     };
 
-    // patterns
-    const defaultPattern = /^(?=.*[a-zA-Z0-9]).{1,}$/;
-    const usernamePattern = /^[a-zA-Z0-9][a-zA-Z0-9-]*$/;
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    const passwordPattern =
-      /^(?=(?:.*[0-9]){4})(?=(?:.*[a-zA-Z]){4})[a-zA-Z0-9]{8,}$/;
-
-    // form elements
-    const elUserNameInput = getElement(".js-username-input");
-    const elNameInput = getElement(".js-name-input");
-    const elEmailInput = getElement(".js-email-input");
-    const elPasswordInput = getElement(".js-password-input");
-    const elSubmitBtn = getElement(".js-submit-btn");
-
-    // password
-    const password = inputPattern(
+    // inputs
+    const password = checkInputPattern(
       passwordPattern,
       elPasswordInput,
       "is-invalid"
     );
-    // email
-    const email = inputPattern(emailPattern, elEmailInput, "is-invalid");
-    // username
-    const userName = inputPattern(
+    const email = checkInputPattern(emailPattern, elEmailInput, "is-invalid");
+    const userName = checkInputPattern(
       usernamePattern,
       elUserNameInput,
       "is-invalid"
     );
-    // name
-    const name = inputPattern(defaultPattern, elNameInput, "is-invalid");
+    const name = checkInputPattern(defaultPattern, elNameInput, "is-invalid");
+    const surname = checkInputPattern(
+      defaultPattern,
+      elNameInput,
+      "is-invalid"
+    );
 
     // check form elements value and loader
     if (!loader && email && password && userName && name) {
-      // add loader
+      // set loader
       setLoader(true);
 
-      // data
-      axios
-        .post("https://menemarcket.azurewebsites.net/api/Accaunt/Register", {
-          firstName: elNameInput.value,
-          lastName: "string",
-          email: elEmailInput.value,
-          password: elPasswordInput.value,
-          balance: 0,
-          isArchived: true,
-          role: 0,
-        })
+      const userData = {
+        firstName: elNameInput.value,
+        lastName: elSurnameInput.value,
+        email: elEmailInput.value,
+        password: elPasswordInput.value,
+        balance: 0,
+        isArchived: false,
+        role: 0,
+      };
+
+      register(userData)
         .then((response) => {
-          if (response.status === 200) {
-            // notification
-            toast.success("Muvaffaqiyatli", {
-              position: "bottom-right",
-              autoClose: 2500,
-              hideProgressBar: true,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: false,
-              theme: "light",
-            });
-
-            // navigate
-            setTimeout(() => {
-              setNavigate("/auth/login");
-            }, 1000);
-
-            console.log(response);
-          }
+          setTimeout(() => {
+            setNavigate("/auth/login");
+          }, 1000);
         })
-        .catch((error) => {
-          // error notification
-          toast.error("Xatolik yuz berdi", {
-            position: "bottom-right",
-            autoClose: 2500,
-            hideProgressBar: true,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: false,
-            theme: "light",
-          });
-          console.log(error);
-        })
+        .catch((error) => {})
         .finally(() => setLoader(false));
     }
   };
@@ -125,7 +91,9 @@ const Register = () => {
         {/* img wrapper */}
         <div
           className="flex justify-center w-full h-full bg-center bg-cover bg-no-repeat max-768:hidden"
-          style={{ backgroundImage: `url(${chair})` }}
+          style={{
+            backgroundImage: `url(${chair})`,
+          }}
         >
           {/* logo */}
           <Link to="/" className="mt-16">
@@ -142,24 +110,26 @@ const Register = () => {
         {/* main content, login form */}
         <div className="flex justify-center px-16 py-8 h-screen overflow-y-auto w-full max-1024:px-5 max-860:py-10 max-768:h-auto max-768:overflow-y-visible scroll_hidden">
           <div className="max-w-[456px] w-full my-auto">
-            {/* title */}
-            <h1 className="mb-6">Ro'yxatdan o'tish</h1>
+            {/* title */} <h1 className="mb-6"> Ro 'yxatdan o' tish </h1>
             <p className="text-regular-16 text-primary-gray-500 mb-8">
-              Allaqachon akkuntingiz bormi?{" "}
+              Allaqachon akkuntingiz bormi ?
               <Link to="/auth/login" className="text-primary-blue-700 mb-8">
                 Kirish
               </Link>
             </p>
-
             {/* form */}
             <form
+              id="registration-form"
               onSubmit={(event) => {
                 event.preventDefault();
-                addUser(event);
+                onSubmit(event);
               }}
               className="register-form"
             >
               <input
+                autoComplete="off"
+                autoFocus
+                name="name"
                 type="text"
                 className="register-form_input js-name-input"
                 placeholder="Ismingiz"
@@ -168,33 +138,46 @@ const Register = () => {
                 Ismingizni kiriting
               </span>
               <input
+                autoComplete="off"
+                name="surname"
+                type="text"
+                className="register-form_input js-surname-input"
+                placeholder="Familiyangiz(Ixtiyoriy)"
+              />
+              <span className="hidden text-regular-14 text-primary-red-500 italic !mt-1.5">
+                Familiyangizni kiriting
+              </span>
+              <input
+                autoComplete="off"
                 type="text"
                 className="register-form_input js-username-input"
                 placeholder="Foydalanuvchi nomi"
               />
               <span className="hidden text-regular-14 text-primary-red-500 italic !mt-1.5">
-                Foydalanuvchi nomini a-z, 0-9 va - belgilaridan yaratishingiz
-                mumkin.
+                Foydalanuvchi nomini a - z, 0 - 9 va - belgilaridan
+                yaratishingiz mumkin.
               </span>
               <input
+                autoComplete="off"
+                name="email"
                 type="email"
                 className="register-form_input js-email-input"
                 placeholder="E-pochta manzilingiz"
               />
               <span className="hidden text-regular-14 text-primary-red-500 italic !mt-1.5">
-                E-pochta formatini to'g'ri kiriting
+                E - pochta formatini to 'g' ri kiriting
               </span>
               <div className="login-form_password-input-wrapper">
                 <input
+                  autoComplete="off"
+                  name="password"
                   type={`${passwordInput ? "password" : "text"}`}
                   className="login-form_input js-password-input"
                   placeholder="Parol"
                 />
-
                 <span className="hidden text-regular-14 text-primary-red-500 italic !mt-1.5">
-                  Parol kamida 4ta son va 4ta harfdan iborat bo'lishi kerak
+                  Parol kamida 4 ta son va 4 ta harfdan iborat bo 'lishi kerak
                 </span>
-
                 <button
                   className="login-form_password-input-wrapper-button"
                   type="button"
@@ -249,10 +232,10 @@ const Register = () => {
                   )}
                 </button>
               </div>
-
               {/* agree */}
               <label className="register-form_privacy-policy-wrapper">
                 <input
+                  autoComplete="off"
                   onChange={(e) => {
                     if (e.target.checked) {
                       setIsAgree(true);
@@ -264,15 +247,15 @@ const Register = () => {
                   className="register-form_input-checkbox js-checkbox-input"
                 />
                 <span className="register-form_privacy-policy-wrapper_text">
-                  <span>Men </span>
+                  <span> Men </span>
                   <Link to="/public-offer#maxfiylik-siyosati">
-                    Maxfiylik siyosati{" "}
+                    Maxfiylik siyosati
                   </Link>
-                  <span>va </span>
+                  <span> va </span>
                   <Link to="/public-offer#foydalanish-shartlari">
                     Foydalanish shartlari
                   </Link>
-                  <span> ga roziman</span>
+                  <span> ga roziman </span>
                 </span>
               </label>
               <button

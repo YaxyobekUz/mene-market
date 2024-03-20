@@ -1,8 +1,13 @@
 import React from "react";
 import { Outlet, useLocation } from "react-router-dom";
+
+// components
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+
+// toast
 import { ToastContainer, Zoom } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 const MainRoot = () => {
   const location = useLocation();
@@ -21,16 +26,12 @@ const MainRoot = () => {
       {authPage && <Footer />}
       <ToastContainer
         position="bottom-right"
-        autoClose={2500}
-        limit={8}
-        hideProgressBar
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss={false}
+        autoClose={3500}
+        hideProgressBar={true}
+        closeOnClick={true}
+        pauseOnHover={true}
         draggable={false}
-        pauseOnHover
-        theme="light"
+        theme={"light "}
         transition={Zoom}
       />
     </div>

@@ -1,11 +1,12 @@
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 // for auth
-import { useJwt } from "react-jwt";
-import axios from "axios";
-import { useDispatch, useSelector } from "react-redux";
 import { loggedIn } from "./store/slices/productBasketSlice";
+import { setUserData } from "./store/slices/userDataSlice";
+import { autoLogIn } from "./api/auth/autoLogin";
+import { useDispatch, useSelector } from "react-redux";
+import { decodeToken } from "react-jwt";
 
 // images
 import logo from "./assets/images/other/logo.png";
@@ -39,53 +40,86 @@ import Statistics from "./pages/Statistics";
 import Payment from "./pages/Payment";
 import Profile from "./pages/Profile";
 import ConnectWithTelegram from "./pages/ConnectWithTelegram";
-import { setUserData } from "./store/slices/userDataSlice";
+import ErrorPage from "./pages/ErrorPage";
 
 const App = () => {
   const dispatch = useDispatch();
-  const { isLoggedIn } = useSelector((store) => store.isLoggedIn);
+  const isLoggedIn = useSelector((store) => store.isLoggedIn);
   const [loader, setLoader] = useState(true);
-  const getUserData = localStorage.getItem("user");
-  const userData = JSON.parse(getUserData);
 
-  if (getUserData) {
-    const { decodedToken } = useJwt(userData.token);
+  // auto login
+  useEffect(() => {
+    const getUserData = localStorage.getItem("user");
+    if (getUserData) {
+      const userData = JSON.parse(getUserData);
+      const decodedToken = decodeToken(userData.token);
+      if (decodedToken) {
+        setLoader(true);
+        autoLogIn({ token: userData.token, id: decodedToken.UserId })
+          .then((response) => {
+            const data = response.data;
 
-    if (decodedToken) {
-      axios
-        .get(
-          `https://menemarcket.azurewebsites.net/api/User/ById?id=${decodedToken.UserId}`,
-          {
-            headers: {
-              Authorization: `Bearer ${userData.token}`,
-            },
-          }
-        )
-        .then((response) => {
-          const user = response.data;
-          const password = user.password;
-          const email = user.email;
+            const confirmLogin =
+              data.email === userData.email &&
+              data.password === userData.password;
 
-
-          if (userData.password === password && userData.email === email) {
-            dispatch(setUserData(user));
-            dispatch(loggedIn());
-          }
-        })
-        .catch((error) => {
-          console.log(error);
-        })
-        .finally(() => setLoader(false));
+            if (confirmLogin) {
+              dispatch(loggedIn());
+              dispatch(setUserData(data));
+            }
+          })
+          .catch((error) => {
+            console.log("Tizimga kirish amalga oshmadi", error);
+          })
+          .finally(() => setLoader(false));
+      } else {
+        setTimeout(() => {
+          setLoader(false);
+        }, 1000);
+      }
+    } else {
+      setTimeout(() => {
+        setLoader(false);
+      }, 1000);
     }
-  } else {
-    setTimeout(() => {
-      setLoader(false);
-    }, 2000);
-  }
+  }, []);
 
-  if (loader) {
-    return (
-      <div className="flex-center justify-center w-full h-screen bg-white">
+  // loader
+  const [loaderStyles, setLoaderStyles] = useState({
+    display: "flex",
+    opacity: 1,
+    transform: "translateY(0px)",
+  });
+
+  useEffect(() => {
+    if (!loader) {
+      setLoaderStyles({
+        display: "flex",
+        opacity: 0,
+        transform: "translateY(100px)",
+      });
+
+      const timeout = setTimeout(() => {
+        setLoaderStyles({
+          display: "none",
+          opacity: 1,
+          transform: "translateY(0px)",
+        });
+      }, 500);
+
+      return () => clearTimeout(timeout);
+    }
+  }, [loader]);
+  return (
+    <>
+      {/* loader */}
+      <div
+        style={{
+          ...loaderStyles,
+          transition: "opacity 0.4s ease, transform 0.3s ease",
+        }}
+        className="z-50 fixed inset-0 min-w-full min-h-screen items-center justify-center bg-white"
+      >
         <img
           width={96}
           height={48}
@@ -94,9 +128,8 @@ const App = () => {
           className="w-24 h-12"
         />
       </div>
-    );
-  } else {
-    return (
+
+      {/* router */}
       <Router>
         <Routes>
           <Route path="/" element={<MainRoot />}>
@@ -107,40 +140,47 @@ const App = () => {
             <Route path="/public-offer" element={<PublicOffer />} />
             <Route path="/auth" element={<AuthRoot />}>
               <Route path="login" element={<Login />} />
-              <Route path="register" element={<Register />} />
+              <Route path="signup" element={<Register />} />
             </Route>
             <Route path="/category/:categoryName" element={<Category />} />
-            <Route path="/admin" element={<AdminRoot />}>
-              <Route path="dashboard" element={<DashboardRoot />}>
-                <Route index element={<Dashboard />} />
-                <Route
-                  path="regular-customers"
-                  element={<RegularCustomers />}
-                />
-                <Route path="appeals" element={<Appeals />} />
-                <Route path="requests" element={<Requests />} />
-                <Route path="competitions" element={<Competitions />} />
-                <Route path="balance-history" element={<BalanceHistory />} />
-                <Route path="donation-box" element={<DonationBox />} />
+
+            {/* admin */}
+            {isLoggedIn && (
+              <Route path="/admin" element={<AdminRoot />}>
+                <Route path="dashboard" element={<DashboardRoot />}>
+                  <Route index element={<Dashboard />} />
+                  <Route
+                    path="regular-customers"
+                    element={<RegularCustomers />}
+                  />
+                  <Route path="appeals" element={<Appeals />} />
+                  <Route path="requests" element={<Requests />} />
+                  <Route path="competitions" element={<Competitions />} />
+                  <Route path="balance-history" element={<BalanceHistory />} />
+                  <Route path="donation-box" element={<DonationBox />} />
+                </Route>
+                <Route path="market" element={<Market />} />
+                <Route path="flow" element={<Flow />} />
+                <Route path="statistics" element={<Statistics />} />
+                <Route path="payment" element={<Payment />} />
+                <Route path="profile" element={<ProfileRoot />}>
+                  <Route index element={<Profile />} />
+                  <Route index path="account" element={<Profile />} />
+                  <Route
+                    path="connect-with-telegram"
+                    element={<ConnectWithTelegram />}
+                  />
+                </Route>
               </Route>
-              <Route path="market" element={<Market />} />
-              <Route path="flow" element={<Flow />} />
-              <Route path="statistics" element={<Statistics />} />
-              <Route path="payment" element={<Payment />} />
-              <Route path="profile" element={<ProfileRoot />}>
-                <Route index element={<Profile />} />
-                <Route index path="account" element={<Profile />} />
-                <Route
-                  path="connect-with-telegram"
-                  element={<ConnectWithTelegram />}
-                />
-              </Route>
-            </Route>
+            )}
           </Route>
+
+          {/* error page */}
+          <Route path="*" element={<ErrorPage />} />
         </Routes>
       </Router>
-    );
-  }
+    </>
+  );
 };
 
 export default App;

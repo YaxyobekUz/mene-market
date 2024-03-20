@@ -44,7 +44,9 @@ const Flow = () => {
             </tr>
           </thead>
           <tbody>
-            {userData.offerLinks && userData.offerLinks.length > 0 ? (
+            {userData &&
+            userData.offerLinks &&
+            userData.offerLinks.length > 0 ? (
               <tr>
                 <td className="w-1/6 !px-2">Choper</td>
                 <td className="w-1/6 !px-2">
@@ -127,17 +129,21 @@ const Flow = () => {
                 </td>
               </tr>
             ) : (
-              <tr className="space-x-2">
-                <span className="text-primary-gray-500">
-                  Siz hali hech qanday oqim yaratmadingiz. Oqim yaratish uchun
-                </span>
-                <Link
-                  to="/admin/market"
-                  className="underline text-primary-blue-700"
-                >
-                  Market
-                </Link>
-                <span className="text-primary-gray-500">sahifasiga kiring</span>
+              <tr>
+                <td className="block space-x-2">
+                  <span className="text-primary-gray-500">
+                    Siz hali hech qanday oqim yaratmadingiz. Oqim yaratish uchun
+                  </span>
+                  <Link
+                    to="/admin/market"
+                    className="underline text-primary-blue-700"
+                  >
+                    Market
+                  </Link>
+                  <span className="text-primary-gray-500">
+                    sahifasiga kiring
+                  </span>
+                </td>
               </tr>
             )}
           </tbody>

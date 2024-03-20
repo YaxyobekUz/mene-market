@@ -29,13 +29,13 @@ const Dashboard = () => {
                 onDrag={(e) => {
                   console.log(e);
                 }}
-                title={userData.firstName + " " + userData.lastName}
+                title={userData && userData.firstName + " " + userData.lastName}
                 src={profile}
-                alt={userData.firstName + " " + userData.lastName}
+                alt={userData && userData.firstName + " " + userData.lastName}
                 className="w-16 h-16 rounded-full bg-primary-gray-500"
               />
               <h1 className="text-white text-bold-28 font-semibold ">
-                {userData.firstName + " " + userData.lastName}
+                {userData && userData.firstName + " " + userData.lastName}
               </h1>
               <p className="text-regular-14 text-primary-gray-500">
                 Xush kelibsiz!
@@ -53,8 +53,8 @@ const Dashboard = () => {
                     Sotib olganlar
                   </h3>
                   <p className="text-white">
-                    {userData.offerLinks.clients
-                      ? userData.offerLinks.clients.length
+                    {userData && userData.offerLinks.clients
+                      ? userData && userData.offerLinks.clients.length
                       : 0}{" "}
                     kishi
                   </p>
@@ -64,8 +64,8 @@ const Dashboard = () => {
                     Havola orqali kirganlar
                   </h3>
                   <p className="text-white">
-                    {userData.offerLinks.clients
-                      ? userData.offerLinks.clients.length
+                    {userData && userData.offerLinks.clients
+                      ? userData && userData.offerLinks.clients.length
                       : 0}{" "}
                     kishi
                   </p>

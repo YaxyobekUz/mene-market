@@ -41,9 +41,11 @@ const ProfileRoot = () => {
 
               {/* user name */}
               <h1 className="text-semibold-20">
-                {userData.firstName + " " + userData.lastName}
+                {userData && userData.firstName + " " + userData.lastName}
               </h1>
-              <p className="text-regular-13 text-center">{userData.userId}</p>
+              <p className="text-regular-13 text-center">
+                {userData && userData.userId}
+              </p>
             </div>
 
             <ul className="admin_page_profile-list space-y-3">

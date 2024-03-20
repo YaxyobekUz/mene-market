@@ -1,11 +1,14 @@
 import React from "react";
 import BalanceHistory from "../components/BalanceHistory";
+import { useSelector } from "react-redux";
 
 // images
 import mastercardLogo1 from "../assets/images/svg/mastercard-logo.svg";
 import creditCard from "../assets/images/svg/credit-card.svg";
 import edit from "../assets/images/svg/edit.svg";
 const Payment = () => {
+  const { userData } = useSelector((store) => store.userData);
+
   return (
     <div className="space-y-6">
       {/* top */}
@@ -45,7 +48,9 @@ const Payment = () => {
             <p className="text-regular-13 text-[#E9EDF7] mb-2">
               Hozirgi balans
             </p>
-            <b className="text-semibold-23">15 560 000 so’m</b>
+            <b className="text-semibold-23">
+              {userData && userData.balance ? userData.balance : 0} so’m
+            </b>
 
             {/* shadow */}
             <svg
@@ -109,14 +114,14 @@ const Payment = () => {
                 />
               </div>
               <div>
-                <p className="text-regular-14">To’lab berildi</p>
+                <p className="text-regular-14">Kunlik tranzaksiya</p>
                 <p className="text-regular-14 text-[#A0AEC0]">
-                  Bugun 16:30 holatiga ko’ra
+                  Bugun hech qanday tranzaksiya amalga oshirilmadi
                 </p>
               </div>
             </div>
 
-            <p className="text-regular-14">-800 000 so’m</p>
+            <p className="text-regular-14">0 so’m</p>
           </div>
         </div>
       </div>
@@ -157,20 +162,20 @@ const Payment = () => {
                 strokeWidth="0.75"
                 strokeMiterlimit="10"
                 strokeLinecap="round"
-                stroke-linejoin="round"
+                strokeLinejoin="round"
               />
               <path
                 d="M2.40052 6.82592L6.82719 2.39925C8.24052 0.985919 8.94719 0.979252 10.3472 2.37925L13.6205 5.65259C15.0205 7.05259 15.0139 7.75925 13.6005 9.17259L9.17386 13.5993C7.76052 15.0126 7.05385 15.0193 5.65385 13.6193L2.38052 10.3459C0.980521 8.94592 0.980521 8.24592 2.40052 6.82592Z"
                 stroke="white"
                 strokeWidth="0.75"
-                strokeMinecap="round"
+                strokeminecap="round"
                 strokeLinejoin="round"
               />
               <path
                 d="M1.33301 14.6655H14.6663"
                 stroke="white"
                 strokeWidth="0.75"
-                strokeMinecap="round"
+                strokeminecap="round"
                 strokeLinejoin="round"
               />
             </svg>
@@ -202,7 +207,11 @@ const Payment = () => {
                 className="admin_linear-border !bg-white/5 !border-white/50 !font-medium !text-lg !leading-5 !border-2 !rounded-20 !py-[18px] !px-12 placeholder:!text-lg placeholder:!leading-5 placeholder:!font-semibold focus:!outline-none focus:!border-white"
               />
 
-              <button aria-label="edit" title="edit" className="absolute right-4">
+              <button
+                aria-label="edit"
+                title="edit"
+                className="absolute right-4"
+              >
                 <img
                   width={24}
                   height={24}

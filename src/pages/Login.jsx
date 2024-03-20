@@ -1,15 +1,10 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-// axios & jwt
-import axios from "axios";
-
-// redux
+// redux & login
 import { useDispatch } from "react-redux";
 import { loggedIn } from "../store/slices/productBasketSlice";
-
-// toast
-import { toast } from "react-toastify";
+import { logIn } from "../api/auth/login";
 
 // images
 import logo from "../assets/images/other/logo.png";
@@ -18,19 +13,24 @@ import chair from "../assets/images/other/chair.png";
 const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [loader, setLoader] = useState(false);
   const [passwordInput, setPasswordInput] = useState(true);
-  const [loading, setLoading] = useState(false);
 
-  const login = (event) => {
-    event.preventDefault();
-
-    // get element
+  const onSubmit = (event) => {
+    // get form elements
     const getElement = (name) => {
       return event.target.querySelector(name);
     };
+    const elEmailInput = getElement(".js-email-input");
+    const elPasswordInput = getElement(".js-password-input");
 
-    // input pattern
-    const inputPattern = (pattern, input, className) => {
+    // patterns
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const passwordPattern =
+      /^(?=(?:.*[0-9]){4})(?=(?:.*[a-zA-Z]){4})[a-zA-Z0-9]{8,}$/;
+
+    // check form elements value
+    const checkInputPattern = (pattern, input, className) => {
       if (pattern.test(input.value)) {
         input.classList.remove(className);
         return true;
@@ -40,74 +40,29 @@ const Login = () => {
         return false;
       }
     };
-
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    const passwordPattern =
-      /^(?=(?:.*[0-9]){4})(?=(?:.*[a-zA-Z]){4})[a-zA-Z0-9]{8,}$/;
-
-    // form elements
-    const elEmailInput = getElement(".js-email-input");
-    const elPasswordInput = getElement(".js-password-input");
-
-    // check form elements value
-    // password
-    const password = inputPattern(
+    const password = checkInputPattern(
       passwordPattern,
       elPasswordInput,
       "is-invalid"
     );
-    // email
-    const email = inputPattern(emailPattern, elEmailInput, "is-invalid");
+    const email = checkInputPattern(emailPattern, elEmailInput, "is-invalid");
 
     // login
-    if (!loading && email && password) {
-      setLoading(true);
-      axios
-        .post("https://menemarcket.azurewebsites.net/api/Accaunt/Login", {
-          email: elEmailInput.value,
-          password: elPasswordInput.value,
-        })
+    if (!loader && email && password) {
+      // set loader
+      setLoader(true);
+
+      const userData = {
+        email: elEmailInput.value,
+        password: elPasswordInput.value,
+      };
+
+      logIn(userData)
         .then((response) => {
-          if (response.status === 200) {
-            // notification
-            toast.success("Akkauntga kirildi", {
-              position: "bottom-right",
-              autoClose: 3500,
-              hideProgressBar: true,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: false,
-              theme: "light",
-            });
-
-            dispatch(loggedIn());
-
-            // set user data to localstorage
-            const token = response.data.token;
-            localStorage.setItem(
-              "user",
-              JSON.stringify({
-                token: token,
-                ...JSON.parse(response.config.data),
-              })
-            );
-            navigate("/");
-            window.location.reload();
-          }
+          dispatch(loggedIn());
         })
-        .catch((error) => {
-          console.log(error);
-          toast.error("E-pochta yoki parol noto'g'ri", {
-            position: "bottom-right",
-            autoClose: 3500,
-            hideProgressBar: true,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: false,
-            theme: "light",
-          });
-        })
-        .finally(() => setLoading(false));
+        .catch((error) => {})
+        .finally(() => setLoader(false));
     }
   };
 
@@ -139,10 +94,7 @@ const Login = () => {
               <h1 className="mb-6">Kirish</h1>
               <p className="text-regular-16 text-primary-gray-500 mb-8">
                 Akkauntingiz yo'qmi?{" "}
-                <Link
-                  to="/auth/register"
-                  className="text-primary-blue-700 mb-8"
-                >
+                <Link to="/auth/signup" className="text-primary-blue-700 mb-8">
                   Ro'yxatdan o'tish
                 </Link>
               </p>
@@ -150,20 +102,23 @@ const Login = () => {
               {/* form */}
               <form
                 onSubmit={(event) => {
-                  login(event);
+                  event.preventDefault();
+                  onSubmit(event);
                 }}
                 className="login-form"
               >
                 <input
-                  type="text"
+                  name="email"
+                  type="email"
                   className="login-form_input js-email-input"
-                  placeholder="E-pochta yoki foydalanuvchi nomi"
+                  placeholder="E-pochta"
                 />
                 <span className="hidden text-regular-14 text-primary-red-500 italic !mt-1.5">
                   E-pochta formatini to'g'ri kiriting
                 </span>
                 <div className="login-form_password-input-wrapper">
                   <input
+                    name="password"
                     type={`${passwordInput ? "password" : "text"}`}
                     className="login-form_input js-password-input"
                     placeholder="Parol"
@@ -242,10 +197,10 @@ const Login = () => {
                   <Link to="/">Parolni unutdingizmi?</Link>
                 </div>
                 <button
-                  disabled={loading}
+                  disabled={loader}
                   className="login-form_submit-btn transition-opacity disabled:opacity-70"
                 >
-                  {!loading ? "Kirish" : "Akkauntga kirilmoqda..."}
+                  {!loader ? "Kirish" : "Akkauntga kirilmoqda..."}
                 </button>
               </form>
             </div>

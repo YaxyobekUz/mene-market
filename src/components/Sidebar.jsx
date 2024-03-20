@@ -19,9 +19,8 @@ const Sidebar = () => {
   const navigate = useNavigate();
   const logout = () => {
       localStorage.removeItem("user");
-      navigate("/");
       dispatch(notLoggedIn());
-      window.location.reload();
+      navigate("/");
   };
   return (
     <div className="sticky left-0 top-0 bottom-0 px-6 py-8 h-screen max-w-max bg-sidebar backdrop-filter backdrop-blur-[120px]">

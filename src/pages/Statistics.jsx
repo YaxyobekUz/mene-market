@@ -1,8 +1,12 @@
 import React from "react";
+import { useSelector } from "react-redux";
 
 // images
 import search from "../assets/images/svg/search-icon-white.svg";
+import { Link } from "react-router-dom";
 const Statistics = () => {
+  const { userData } = useSelector((store) => store.userData);
+
   return (
     <div className="w-full">
       <div className="admin_page-body">
@@ -43,187 +47,40 @@ const Statistics = () => {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td className="w-[16%] !px-2">Chopper</td>
-              <td className="w-[7%] !px-2">105</td>
-              <td className="w-[7%] !px-2">96</td>
-              <td className="w-[10%] !px-2">65</td>
-              <td className="w-[11%] !px-2">14</td>
-              <td className="w-[8%] !px-2">14</td>
-              <td className="w-[11%] !px-2">12</td>
-              <td className="w-[7%] !px-2">10</td>
-              <td className="w-[9%] !px-2">5</td>
-              <td className="w-[7%] !px-2">5</td>
-              <td className="w-[7%] !px-2">1</td>
-            </tr>
-
-            <tr>
-              <td className="w-[16%] !px-2">Chopper</td>
-              <td className="w-[7%] !px-2">105</td>
-              <td className="w-[7%] !px-2">96</td>
-              <td className="w-[10%] !px-2">65</td>
-              <td className="w-[11%] !px-2">14</td>
-              <td className="w-[8%] !px-2">14</td>
-              <td className="w-[11%] !px-2">12</td>
-              <td className="w-[7%] !px-2">10</td>
-              <td className="w-[9%] !px-2">5</td>
-              <td className="w-[7%] !px-2">5</td>
-              <td className="w-[7%] !px-2">1</td>
-            </tr>
-
-            <tr>
-              <td className="w-[16%] !px-2">Chopper</td>
-              <td className="w-[7%] !px-2">105</td>
-              <td className="w-[7%] !px-2">96</td>
-              <td className="w-[10%] !px-2">65</td>
-              <td className="w-[11%] !px-2">14</td>
-              <td className="w-[8%] !px-2">14</td>
-              <td className="w-[11%] !px-2">12</td>
-              <td className="w-[7%] !px-2">10</td>
-              <td className="w-[9%] !px-2">5</td>
-              <td className="w-[7%] !px-2">5</td>
-              <td className="w-[7%] !px-2">1</td>
-            </tr>
-
-            <tr>
-              <td className="w-[16%] !px-2">Chopper</td>
-              <td className="w-[7%] !px-2">105</td>
-              <td className="w-[7%] !px-2">96</td>
-              <td className="w-[10%] !px-2">65</td>
-              <td className="w-[11%] !px-2">14</td>
-              <td className="w-[8%] !px-2">14</td>
-              <td className="w-[11%] !px-2">12</td>
-              <td className="w-[7%] !px-2">10</td>
-              <td className="w-[9%] !px-2">5</td>
-              <td className="w-[7%] !px-2">5</td>
-              <td className="w-[7%] !px-2">1</td>
-            </tr>
-
-            <tr>
-              <td className="w-[16%] !px-2">Chopper</td>
-              <td className="w-[7%] !px-2">105</td>
-              <td className="w-[7%] !px-2">96</td>
-              <td className="w-[10%] !px-2">65</td>
-              <td className="w-[11%] !px-2">14</td>
-              <td className="w-[8%] !px-2">14</td>
-              <td className="w-[11%] !px-2">12</td>
-              <td className="w-[7%] !px-2">10</td>
-              <td className="w-[9%] !px-2">5</td>
-              <td className="w-[7%] !px-2">5</td>
-              <td className="w-[7%] !px-2">1</td>
-            </tr>
-
-            <tr>
-              <td className="w-[16%] !px-2">Chopper</td>
-              <td className="w-[7%] !px-2">105</td>
-              <td className="w-[7%] !px-2">96</td>
-              <td className="w-[10%] !px-2">65</td>
-              <td className="w-[11%] !px-2">14</td>
-              <td className="w-[8%] !px-2">14</td>
-              <td className="w-[11%] !px-2">12</td>
-              <td className="w-[7%] !px-2">10</td>
-              <td className="w-[9%] !px-2">5</td>
-              <td className="w-[7%] !px-2">5</td>
-              <td className="w-[7%] !px-2">1</td>
-            </tr>
-            
-            <tr>
-              <td className="w-[16%] !px-2">Chopper</td>
-              <td className="w-[7%] !px-2">105</td>
-              <td className="w-[7%] !px-2">96</td>
-              <td className="w-[10%] !px-2">65</td>
-              <td className="w-[11%] !px-2">14</td>
-              <td className="w-[8%] !px-2">14</td>
-              <td className="w-[11%] !px-2">12</td>
-              <td className="w-[7%] !px-2">10</td>
-              <td className="w-[9%] !px-2">5</td>
-              <td className="w-[7%] !px-2">5</td>
-              <td className="w-[7%] !px-2">1</td>
-            </tr>
-
-            <tr>
-              <td className="w-[16%] !px-2">Chopper</td>
-              <td className="w-[7%] !px-2">105</td>
-              <td className="w-[7%] !px-2">96</td>
-              <td className="w-[10%] !px-2">65</td>
-              <td className="w-[11%] !px-2">14</td>
-              <td className="w-[8%] !px-2">14</td>
-              <td className="w-[11%] !px-2">12</td>
-              <td className="w-[7%] !px-2">10</td>
-              <td className="w-[9%] !px-2">5</td>
-              <td className="w-[7%] !px-2">5</td>
-              <td className="w-[7%] !px-2">1</td>
-            </tr>
-
-            <tr>
-              <td className="w-[16%] !px-2">Chopper</td>
-              <td className="w-[7%] !px-2">105</td>
-              <td className="w-[7%] !px-2">96</td>
-              <td className="w-[10%] !px-2">65</td>
-              <td className="w-[11%] !px-2">14</td>
-              <td className="w-[8%] !px-2">14</td>
-              <td className="w-[11%] !px-2">12</td>
-              <td className="w-[7%] !px-2">10</td>
-              <td className="w-[9%] !px-2">5</td>
-              <td className="w-[7%] !px-2">5</td>
-              <td className="w-[7%] !px-2">1</td>
-            </tr>
-            
-            <tr>
-              <td className="w-[16%] !px-2">Chopper</td>
-              <td className="w-[7%] !px-2">105</td>
-              <td className="w-[7%] !px-2">96</td>
-              <td className="w-[10%] !px-2">65</td>
-              <td className="w-[11%] !px-2">14</td>
-              <td className="w-[8%] !px-2">14</td>
-              <td className="w-[11%] !px-2">12</td>
-              <td className="w-[7%] !px-2">10</td>
-              <td className="w-[9%] !px-2">5</td>
-              <td className="w-[7%] !px-2">5</td>
-              <td className="w-[7%] !px-2">1</td>
-            </tr>
-
-            <tr>
-              <td className="w-[16%] !px-2">Chopper</td>
-              <td className="w-[7%] !px-2">105</td>
-              <td className="w-[7%] !px-2">96</td>
-              <td className="w-[10%] !px-2">65</td>
-              <td className="w-[11%] !px-2">14</td>
-              <td className="w-[8%] !px-2">14</td>
-              <td className="w-[11%] !px-2">12</td>
-              <td className="w-[7%] !px-2">10</td>
-              <td className="w-[9%] !px-2">5</td>
-              <td className="w-[7%] !px-2">5</td>
-              <td className="w-[7%] !px-2">1</td>
-            </tr>
-
-            <tr>
-              <td className="w-[16%] !px-2">Chopper</td>
-              <td className="w-[7%] !px-2">105</td>
-              <td className="w-[7%] !px-2">96</td>
-              <td className="w-[10%] !px-2">65</td>
-              <td className="w-[11%] !px-2">14</td>
-              <td className="w-[8%] !px-2">14</td>
-              <td className="w-[11%] !px-2">12</td>
-              <td className="w-[7%] !px-2">10</td>
-              <td className="w-[9%] !px-2">5</td>
-              <td className="w-[7%] !px-2">5</td>
-              <td className="w-[7%] !px-2">1</td>
-            </tr>
-            
-            <tr>
-              <td className="w-[16%] !px-2">Chopper</td>
-              <td className="w-[7%] !px-2">105</td>
-              <td className="w-[7%] !px-2">96</td>
-              <td className="w-[10%] !px-2">65</td>
-              <td className="w-[11%] !px-2">14</td>
-              <td className="w-[8%] !px-2">14</td>
-              <td className="w-[11%] !px-2">12</td>
-              <td className="w-[7%] !px-2">10</td>
-              <td className="w-[9%] !px-2">5</td>
-              <td className="w-[7%] !px-2">5</td>
-              <td className="w-[7%] !px-2">1</td>
-            </tr>
+            {userData &&
+            userData.offerLinks &&
+            userData.offerLinks.length > 0 ? (
+              <tr>
+                <td className="w-[16%] !px-2">Chopper</td>
+                <td className="w-[7%] !px-2">105</td>
+                <td className="w-[7%] !px-2">96</td>
+                <td className="w-[10%] !px-2">65</td>
+                <td className="w-[11%] !px-2">14</td>
+                <td className="w-[8%] !px-2">14</td>
+                <td className="w-[11%] !px-2">12</td>
+                <td className="w-[7%] !px-2">10</td>
+                <td className="w-[9%] !px-2">5</td>
+                <td className="w-[7%] !px-2">5</td>
+                <td className="w-[7%] !px-2">1</td>
+              </tr>
+            ) : (
+              <tr>
+                <td className="block space-x-2">
+                  <span className="text-primary-gray-500">
+                    Siz hali hech qanday oqim yaratmadingiz. Oqim yaratish uchun
+                  </span>
+                  <Link
+                    to="/admin/market"
+                    className="underline text-primary-blue-700"
+                  >
+                    Market
+                  </Link>
+                  <span className="text-primary-gray-500">
+                    sahifasiga kiring
+                  </span>
+                </td>
+              </tr>
+            )}
           </tbody>
         </table>
       </div>

@@ -8,7 +8,6 @@ import stars from '../assets/images/svg/stars.svg';
 import shoppingCart from '../assets/images/svg/shopping-cart.svg';
 const Category = () => {
     const { categoryName } = useParams();
-    console.log(categoryName);
     const data = productsData.filter((product) => product.type.toLocaleLowerCase() === categoryName.toLowerCase());
     return (
         <div className='pb-16 max-768:pb-14 max-450:pb-10'>
