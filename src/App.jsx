@@ -1,10 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Navigate,
+} from "react-router-dom";
 
 // for auth
-import { loggedIn } from "./store/slices/productBasketSlice";
+import { loggedIn, notLoggedIn } from "./store/slices/productBasketSlice";
 import { setUserData } from "./store/slices/userDataSlice";
-import { autoLogIn } from "./api/auth/autoLogin";
+import { getUserById } from "./api/auth/getUserById";
 import { useDispatch, useSelector } from "react-redux";
 import { decodeToken } from "react-jwt";
 
@@ -44,18 +49,23 @@ import ErrorPage from "./pages/ErrorPage";
 
 const App = () => {
   const dispatch = useDispatch();
-  const isLoggedIn = useSelector((store) => store.isLoggedIn);
+  const { isLoggedIn } = useSelector((store) => store.isLoggedIn);
   const [loader, setLoader] = useState(true);
 
   // auto login
   useEffect(() => {
     const getUserData = localStorage.getItem("user");
+    // check stored user data
     if (getUserData) {
       const userData = JSON.parse(getUserData);
       const decodedToken = decodeToken(userData.token);
+
+      // check decoded token
       if (decodedToken) {
         setLoader(true);
-        autoLogIn({ token: userData.token, id: decodedToken.UserId })
+
+        // get user data by id
+        getUserById({ token: userData.token, id: decodedToken.UserId })
           .then((response) => {
             const data = response.data;
 
@@ -70,6 +80,7 @@ const App = () => {
           })
           .catch((error) => {
             console.log("Tizimga kirish amalga oshmadi", error);
+            dispatch(notLoggedIn());
           })
           .finally(() => setLoader(false));
       } else {
@@ -84,7 +95,7 @@ const App = () => {
     }
   }, []);
 
-  // loader
+  // loader & loader styles
   const [loaderStyles, setLoaderStyles] = useState({
     display: "flex",
     opacity: 1,
@@ -138,11 +149,15 @@ const App = () => {
             <Route path="/product/:productName" element={<ProductDetail />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/public-offer" element={<PublicOffer />} />
-            <Route path="/auth" element={<AuthRoot />}>
-              <Route path="login" element={<Login />} />
-              <Route path="signup" element={<Register />} />
-            </Route>
             <Route path="/category/:categoryName" element={<Category />} />
+
+            {/* auth */}
+            {!isLoggedIn && (
+              <Route path="/auth" element={<AuthRoot />}>
+                <Route path="login" element={<Login />} />
+                <Route path="signup" element={<Register />} />
+              </Route>
+            )}
 
             {/* admin */}
             {isLoggedIn && (

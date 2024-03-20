@@ -1,7 +1,7 @@
 import axios from "../axios/axios";
 import { toast } from "react-toastify";
 
-export const autoLogIn = (userData) => {
+export const getUserById = (userData) => {
   return axios
     .get("/User/ById?id=" + userData.id, {
       headers: {

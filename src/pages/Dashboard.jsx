@@ -15,7 +15,6 @@ import crown from "../assets/images/svg/crown.svg";
 
 const Dashboard = () => {
   const { userData } = useSelector((store) => store.userData);
-
   return (
     <div className="containr">
       <div className="w-full space-y-6">

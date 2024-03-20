@@ -10,11 +10,11 @@ const ProfileRoot = () => {
   const { userData } = useSelector((store) => store.userData);
   return (
     <div className="admin_page-body">
-      <div className="flex-start gap-6">
+      <div className="flex gap-6">
         {/* profile */}
-        <div className="flex flex-col sticky h-auto top-6 w-[262px] shrink-0 border border-[#EDEDED] rounded-lg py-10 px-4">
+        <div className="flex flex-col w-72 shrink-0 border border-[#EDEDED] rounded-lg py-10 px-4">
           <div className="grow sticky top-6 space-y-10">
-            <div className="flex-center flex-col gap-1.5">
+            <div className="flex-center flex-col gap-3">
               {/* img */}
               <div className="relative">
                 <img
@@ -40,11 +40,18 @@ const ProfileRoot = () => {
               </div>
 
               {/* user name */}
-              <h1 className="text-semibold-20">
-                {userData && userData.firstName + " " + userData.lastName}
-              </h1>
-              <p className="text-regular-13 text-center">
-                {userData && userData.userId}
+              {userData &&
+              userData.firstName.length + userData.lastName > 24 ? (
+                <p className="text-semibold-20">
+                  {userData && userData.firstName + " " + userData.lastName}
+                </p>
+              ) : (
+                <marquee className="text-semibold-20 text-center line-clamp-3">
+                  {userData && userData.firstName + " " + userData.lastName}
+                </marquee>
+              )}
+              <p className="text-regular-13 text-center text-primary-gray-500">
+                #{userData && userData.userId}
               </p>
             </div>
 

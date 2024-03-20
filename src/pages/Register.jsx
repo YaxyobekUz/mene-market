@@ -112,7 +112,7 @@ const Register = () => {
           <div className="max-w-[456px] w-full my-auto">
             {/* title */} <h1 className="mb-6"> Ro 'yxatdan o' tish </h1>
             <p className="text-regular-16 text-primary-gray-500 mb-8">
-              Allaqachon akkuntingiz bormi ?
+              <span>Allaqachon akkuntingiz bormi? </span>
               <Link to="/auth/login" className="text-primary-blue-700 mb-8">
                 Kirish
               </Link>
@@ -246,13 +246,13 @@ const Register = () => {
                   type="checkbox"
                   className="register-form_input-checkbox js-checkbox-input"
                 />
-                <span className="register-form_privacy-policy-wrapper_text">
+                <span className="register-form_privacy-policy-wrapper_text !text-base">
                   <span> Men </span>
-                  <Link to="/public-offer#maxfiylik-siyosati">
+                  <Link to="/public-offer#maxfiylik-siyosati" className="!text-base">
                     Maxfiylik siyosati
                   </Link>
                   <span> va </span>
-                  <Link to="/public-offer#foydalanish-shartlari">
+                  <Link to="/public-offer#foydalanish-shartlari" className="!text-base">
                     Foydalanish shartlari
                   </Link>
                   <span> ga roziman </span>

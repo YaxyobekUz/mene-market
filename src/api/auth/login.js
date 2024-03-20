@@ -1,22 +1,21 @@
 import axios from "../axios/axios";
 import { toast } from "react-toastify";
 
-export const logIn = (userData) => {
+export const logIn = (userData, saveDataToLocalStorage) => {
   return axios
     .post("/Accaunt/Login", userData)
     .then((response) => {
       // set user data to localstorage
-      const token = response.data.token;
-      localStorage.setItem(
-        "user",
-        JSON.stringify({
-          token: token,
-          ...JSON.parse(response.config.data),
-        })
-      );
-
-      // success notification
-      toast.success("Akkauntga kirildi");
+      if (saveDataToLocalStorage) {
+        const token = response.data.token;
+        localStorage.setItem(
+          "user",
+          JSON.stringify({
+            token: token,
+            ...JSON.parse(response.config.data),
+          })
+        );
+      }
       return response;
     })
     .catch((error) => {

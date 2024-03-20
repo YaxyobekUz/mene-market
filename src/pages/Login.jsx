@@ -9,6 +9,10 @@ import { logIn } from "../api/auth/login";
 // images
 import logo from "../assets/images/other/logo.png";
 import chair from "../assets/images/other/chair.png";
+import { setUserData } from "../store/slices/userDataSlice";
+import { decodeToken } from "react-jwt";
+import { getUserById } from "../api/auth/getUserById";
+import { toast } from "react-toastify";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -23,6 +27,7 @@ const Login = () => {
     };
     const elEmailInput = getElement(".js-email-input");
     const elPasswordInput = getElement(".js-password-input");
+    const elCheckboxInput = getElement(".js-checkbox-input");
 
     // patterns
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -46,23 +51,42 @@ const Login = () => {
       "is-invalid"
     );
     const email = checkInputPattern(emailPattern, elEmailInput, "is-invalid");
+    const saveDataToLocalStorage = elCheckboxInput.checked;
 
     // login
     if (!loader && email && password) {
       // set loader
       setLoader(true);
 
+      // form user data
       const userData = {
         email: elEmailInput.value,
         password: elPasswordInput.value,
       };
 
-      logIn(userData)
+      // log in
+      logIn(userData, saveDataToLocalStorage)
         .then((response) => {
-          dispatch(loggedIn());
+          const token = decodeToken(response.data.token);
+          getUserById({ id: token.UserId, token: response.data.token })
+            .then((response) => {
+              dispatch(setUserData(response.data));
+              dispatch(loggedIn());
+              navigate("/");
+              // success notification
+              toast.success("Akkauntga kirildi");
+            })
+            .catch((error) =>
+              console.log(
+                "Foydalanuvchi ma'lumotlarini olishda xatolik:",
+                error
+              )
+            )
+            .finally(() => setLoader(false));
         })
-        .catch((error) => {})
-        .finally(() => setLoader(false));
+        .catch((error) =>
+          console.log("Foydalanuvchi ma'lumotlarini olishda xatolik:", error)
+        );
     }
   };
 
@@ -93,7 +117,7 @@ const Login = () => {
               {/* title */}
               <h1 className="mb-6">Kirish</h1>
               <p className="text-regular-16 text-primary-gray-500 mb-8">
-                Akkauntingiz yo'qmi?{" "}
+                <span>Akkauntingiz yo'qmi? </span>
                 <Link to="/auth/signup" className="text-primary-blue-700 mb-8">
                   Ro'yxatdan o'tish
                 </Link>
@@ -119,6 +143,7 @@ const Login = () => {
                 <div className="login-form_password-input-wrapper">
                   <input
                     name="password"
+                    autoComplete="off"
                     type={`${passwordInput ? "password" : "text"}`}
                     className="login-form_input js-password-input"
                     placeholder="Parol"
@@ -188,7 +213,7 @@ const Login = () => {
                   <label className="login-form_sub-content_input-wrapper">
                     <input
                       type="checkbox"
-                      className="login-form_input-checkbox"
+                      className="login-form_input-checkbox js-checkbox-input"
                     />
                     <span className="login-form_sub-content_input-label">
                       Meni eslab qol
