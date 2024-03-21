@@ -68,25 +68,19 @@ const Login = () => {
       logIn(userData, saveDataToLocalStorage)
         .then((response) => {
           const token = decodeToken(response.data.token);
+
+          // set user data
           getUserById({ id: token.UserId, token: response.data.token })
             .then((response) => {
               dispatch(setUserData(response.data));
               dispatch(loggedIn());
-              navigate("/");
+
               // success notification
               toast.success("Akkauntga kirildi");
             })
-            .catch((error) =>
-              console.log(
-                "Foydalanuvchi ma'lumotlarini olishda xatolik:",
-                error
-              )
-            )
             .finally(() => setLoader(false));
         })
-        .catch((error) =>
-          console.log("Foydalanuvchi ma'lumotlarini olishda xatolik:", error)
-        );
+        .catch(() => setLoader(false));
     }
   };
 

@@ -1,10 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {
-  BrowserRouter as Router,
-  Route,
-  Routes,
-  Navigate,
-} from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 // for auth
 import { loggedIn, notLoggedIn } from "./store/slices/productBasketSlice";
@@ -14,7 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { decodeToken } from "react-jwt";
 
 // images
-import logo from "./assets/images/other/logo.png";
+import Loader from "./components/Loader";
 
 // layouts
 import MainRoot from "./layouts/MainRoot";
@@ -78,20 +73,13 @@ const App = () => {
               dispatch(setUserData(data));
             }
           })
-          .catch((error) => {
-            console.log("Tizimga kirish amalga oshmadi", error);
-            dispatch(notLoggedIn());
-          })
+          .catch(() => dispatch(notLoggedIn()))
           .finally(() => setLoader(false));
       } else {
-        setTimeout(() => {
-          setLoader(false);
-        }, 1000);
+        setTimeout(() => setLoader(false), 1000);
       }
     } else {
-      setTimeout(() => {
-        setLoader(false);
-      }, 1000);
+      setTimeout(() => setLoader(false), 1000);
     }
   }, []);
 
@@ -121,24 +109,11 @@ const App = () => {
       return () => clearTimeout(timeout);
     }
   }, [loader]);
+
   return (
     <>
       {/* loader */}
-      <div
-        style={{
-          ...loaderStyles,
-          transition: "opacity 0.4s ease, transform 0.3s ease",
-        }}
-        className="z-50 fixed inset-0 min-w-full min-h-screen items-center justify-center bg-white"
-      >
-        <img
-          width={96}
-          height={48}
-          src={logo}
-          alt="mene market logo"
-          className="w-24 h-12"
-        />
-      </div>
+      <Loader loaderStyles={loaderStyles} />
 
       {/* router */}
       <Router>
@@ -152,12 +127,10 @@ const App = () => {
             <Route path="/category/:categoryName" element={<Category />} />
 
             {/* auth */}
-            {!isLoggedIn && (
-              <Route path="/auth" element={<AuthRoot />}>
-                <Route path="login" element={<Login />} />
-                <Route path="signup" element={<Register />} />
-              </Route>
-            )}
+            <Route path="/auth" element={<AuthRoot />}>
+              <Route path="login" element={<Login />} />
+              <Route path="signup" element={<Register />} />
+            </Route>
 
             {/* admin */}
             {isLoggedIn && (

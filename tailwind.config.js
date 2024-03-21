@@ -87,11 +87,23 @@ export default {
       gap: {
         30: "30px",
       },
-    },
 
-    // backdrop
-    backdropBlur: {
-      120: "120px",
+      // backdrop
+      backdropBlur: {
+        120: "120px",
+      },
+
+      // animation
+      keyframes: {
+        progress: {
+          "0%": { width: "0%" },
+          "100%": { width: "100%" },
+        },
+      },
+
+      animation: {
+        progress: "progress 15s linear",
+      },
     },
 
     screens: {
