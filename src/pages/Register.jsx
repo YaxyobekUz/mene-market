@@ -5,60 +5,46 @@ import { Link, useNavigate } from "react-router-dom";
 import logo from "../assets/images/other/logo.png";
 import chair from "../assets/images/other/chair.png";
 import { register } from "../api/auth/register";
+
+// helpers & regex
+import { getElement, validateInput } from "../js/helpers";
+import {
+  emailRegex,
+  passwordRegex,
+  defaultRegex,
+  usernameRegex,
+} from "../js/regexes";
+
 const Register = () => {
   const setNavigate = useNavigate();
   const [passwordInput, setPasswordInput] = useState(true);
   const [loader, setLoader] = useState(false);
   const [isAgree, setIsAgree] = useState(false);
 
-  const onSubmit = (event) => {
-    // get form elements
-    const getElement = (name) => {
-      return event.target.querySelector(name);
-    };
-    const elUserNameInput = getElement(".js-username-input");
-    const elNameInput = getElement(".js-name-input");
-    const elEmailInput = getElement(".js-email-input");
-    const elPasswordInput = getElement(".js-password-input");
-    const elSurnameInput = getElement(".js-surname-input");
-
-    // patterns
-    const defaultPattern = /^(?=.*[a-zA-Z0-9]).{1,}$/;
-    const usernamePattern = /^[a-zA-Z0-9][a-zA-Z0-9-]*$/;
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    const passwordPattern =
-      /^(?=(?:.*[0-9]){4})(?=(?:.*[a-zA-Z]){4})[a-zA-Z0-9]{8,}$/;
-
-    // check form elements value
-    const checkInputPattern = (pattern, input, className) => {
-      if (pattern.test(input.value)) {
-        input.classList.remove(className);
-        return true;
-      } else {
-        input.classList.add(className);
-        input.focus();
-        return false;
-      }
-    };
+  const onSubmit = (e) => {
+    // form elements
+    const elUserNameInput = getElement(e, ".js-username-input");
+    const elNameInput = getElement(e, ".js-name-input");
+    const elEmailInput = getElement(e, ".js-email-input");
+    const elPasswordInput = getElement(e, ".js-password-input");
+    const elSurnameInput = getElement(e, ".js-surname-input");
 
     // inputs
-    const password = checkInputPattern(
-      passwordPattern,
+    const password = validateInput(
+      passwordRegex,
       elPasswordInput,
       "is-invalid"
     );
-    const email = checkInputPattern(emailPattern, elEmailInput, "is-invalid");
-    const userName = checkInputPattern(
-      usernamePattern,
+    const email = validateInput(emailRegex, elEmailInput, "is-invalid");
+    const userName = validateInput(
+      usernameRegex,
       elUserNameInput,
       "is-invalid"
     );
-    const name = checkInputPattern(defaultPattern, elNameInput, "is-invalid");
-    const surname = checkInputPattern(
-      defaultPattern,
-      elNameInput,
-      "is-invalid"
-    );
+    const name = validateInput(defaultRegex, elNameInput, "is-invalid");
+    elSurnameInput.value.length
+      ? validateInput(defaultRegex, elSurnameInput, "is-invalid")
+      : elSurnameInput.classList.remove("is-invalid");
 
     // check form elements value and loader
     if (!loader && email && password && userName && name) {
@@ -110,7 +96,7 @@ const Register = () => {
         {/* main content, login form */}
         <div className="flex justify-center px-16 py-8 h-screen overflow-y-auto w-full max-1024:px-5 max-860:py-10 max-768:h-auto max-768:overflow-y-visible scroll_hidden">
           <div className="max-w-[456px] w-full my-auto">
-            {/* title */} <h1 className="mb-6"> Ro 'yxatdan o' tish </h1>
+            {/* title */} <h1 className="mb-6">Ro'yxatdan o'tish </h1>
             <p className="text-regular-16 text-primary-gray-500 mb-8">
               <span>Allaqachon akkuntingiz bormi? </span>
               <Link to="/auth/login" className="text-primary-blue-700 mb-8">
@@ -145,7 +131,7 @@ const Register = () => {
                 placeholder="Familiyangiz(Ixtiyoriy)"
               />
               <span className="hidden text-regular-14 text-primary-red-500 italic !mt-1.5">
-                Familiyangizni kiriting
+                Familiyangizni to'g'ri kiriting
               </span>
               <input
                 autoComplete="off"
@@ -154,8 +140,7 @@ const Register = () => {
                 placeholder="Foydalanuvchi nomi"
               />
               <span className="hidden text-regular-14 text-primary-red-500 italic !mt-1.5">
-                Foydalanuvchi nomini a - z, 0 - 9 va - belgilaridan
-                yaratishingiz mumkin.
+                Foydalanuvchi nomini to'g'ri kiriting
               </span>
               <input
                 autoComplete="off"
@@ -165,7 +150,7 @@ const Register = () => {
                 placeholder="E-pochta manzilingiz"
               />
               <span className="hidden text-regular-14 text-primary-red-500 italic !mt-1.5">
-                E - pochta formatini to 'g' ri kiriting
+                E-pochta formatini to'g'ri kiriting
               </span>
               <div className="login-form_password-input-wrapper">
                 <input
@@ -176,7 +161,7 @@ const Register = () => {
                   placeholder="Parol"
                 />
                 <span className="hidden text-regular-14 text-primary-red-500 italic !mt-1.5">
-                  Parol kamida 4 ta son va 4 ta harfdan iborat bo 'lishi kerak
+                  Parol kamida 8 ta belgidan iborat bo'lishi kerak
                 </span>
                 <button
                   className="login-form_password-input-wrapper-button"
@@ -248,11 +233,17 @@ const Register = () => {
                 />
                 <span className="register-form_privacy-policy-wrapper_text !text-base">
                   <span> Men </span>
-                  <Link to="/public-offer#maxfiylik-siyosati" className="!text-base">
+                  <Link
+                    to="/public-offer#maxfiylik-siyosati"
+                    className="!text-base"
+                  >
                     Maxfiylik siyosati
                   </Link>
                   <span> va </span>
-                  <Link to="/public-offer#foydalanish-shartlari" className="!text-base">
+                  <Link
+                    to="/public-offer#foydalanish-shartlari"
+                    className="!text-base"
+                  >
                     Foydalanish shartlari
                   </Link>
                   <span> ga roziman </span>

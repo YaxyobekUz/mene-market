@@ -50,6 +50,7 @@ const App = () => {
 
   // auto login
   useEffect(() => {
+    setLoader(true);
     const getUserData = localStorage.getItem("user");
     // check stored user data
     if (getUserData) {
@@ -74,7 +75,9 @@ const App = () => {
               dispatch(setUserData(data));
             }
           })
-          .catch(() => dispatch(notLoggedIn()))
+          .catch(() => {
+            dispatch(notLoggedIn());
+          })
           .finally(() => setLoader(false));
       } else {
         setTimeout(() => setLoader(false), 1000);

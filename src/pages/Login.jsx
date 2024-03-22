@@ -1,56 +1,43 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-// redux & login
+// redux
 import { useDispatch } from "react-redux";
 import { loggedIn } from "../store/slices/productBasketSlice";
+import { setUserData } from "../store/slices/userDataSlice";
+
+// auth
 import { logIn } from "../api/auth/login";
+import { getUserById } from "../api/auth/getUserById";
+import { decodeToken } from "react-jwt";
+
+// toast
+import { toast } from "react-toastify";
 
 // images
 import logo from "../assets/images/other/logo.png";
 import chair from "../assets/images/other/chair.png";
-import { setUserData } from "../store/slices/userDataSlice";
-import { decodeToken } from "react-jwt";
-import { getUserById } from "../api/auth/getUserById";
-import { toast } from "react-toastify";
 
+// helpers
+import { emailRegex, passwordRegex } from "../js/regexes";
+import { getElement, validateInput } from "../js/helpers";
 const Login = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const [loader, setLoader] = useState(false);
   const [passwordInput, setPasswordInput] = useState(true);
 
-  const onSubmit = (event) => {
-    // get form elements
-    const getElement = (name) => {
-      return event.target.querySelector(name);
-    };
-    const elEmailInput = getElement(".js-email-input");
-    const elPasswordInput = getElement(".js-password-input");
-    const elCheckboxInput = getElement(".js-checkbox-input");
+  const onSubmit = (e) => {
+    // form elements
+    const elEmailInput = getElement(e, ".js-email-input");
+    const elPasswordInput = getElement(e, ".js-password-input");
+    const elCheckboxInput = getElement(e, ".js-checkbox-input");
 
-    // patterns
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    const passwordPattern =
-      /^(?=(?:.*[0-9]){4})(?=(?:.*[a-zA-Z]){4})[a-zA-Z0-9]{8,}$/;
-
-    // check form elements value
-    const checkInputPattern = (pattern, input, className) => {
-      if (pattern.test(input.value)) {
-        input.classList.remove(className);
-        return true;
-      } else {
-        input.classList.add(className);
-        input.focus();
-        return false;
-      }
-    };
-    const password = checkInputPattern(
-      passwordPattern,
+    const password = validateInput(
+      passwordRegex,
       elPasswordInput,
       "is-invalid"
     );
-    const email = checkInputPattern(emailPattern, elEmailInput, "is-invalid");
+    const email = validateInput(emailRegex, elEmailInput, "is-invalid");
     const saveDataToLocalStorage = elCheckboxInput.checked;
 
     // login

@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink, Outlet, useLocation } from "react-router-dom";
+import { Link, NavLink, Outlet, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 // images
@@ -25,19 +25,22 @@ const ProfileRoot = () => {
                   alt="profile image"
                   className="w-20 h-20 aspect-square bg-linear-gradient_blue-500 rounded-full"
                 />
-                <button
-                  className="absolute -bottom-0.5 -right-0.5 bg-linear-gradient_blue-500 rounded-full border-2 border-[#a4d9ff] p-1.5"
-                  aria-label="edit"
-                  title="edit"
-                >
-                  <img
-                    width={16}
-                    height={16}
-                    src={edit}
-                    alt="profile edit"
-                    className="w-4 h-4 aspect-square"
-                  />
-                </button>
+                {(pathname === "/admin/profile/" ||
+                  pathname === "/admin/profile") && (
+                  <button
+                    className="absolute -bottom-0.5 -right-0.5 bg-linear-gradient_blue-500 rounded-full border-2 border-[#a4d9ff] p-1.5"
+                    aria-label="edit"
+                    title="edit"
+                  >
+                    <img
+                      width={16}
+                      height={16}
+                      src={edit}
+                      alt="profile edit"
+                      className="w-4 h-4 aspect-square"
+                    />
+                  </button>
+                )}
               </div>
               {/* user name */}
               {userData &&
@@ -57,17 +60,18 @@ const ProfileRoot = () => {
 
             <ul className="admin_page_profile-list space-y-3">
               <li>
-                <NavLink
-                  to="/admin/profile/"
+                <Link
+                  to="/admin/profile" 
                   className={`
                   ${
-                    (pathname === "/admin/profile/" && "active") ||
-                    (pathname === "/admin/profile" && "active")
+                    (pathname === "/admin/profile/" ||
+                      pathname === "/admin/profile") &&
+                    "active"
                   } 
                   block text-regular-16 py-2 text-primary-gray-500`}
                 >
-                  Profile
-                </NavLink>
+                  Profil
+                </Link>
               </li>
               <li>
                 <NavLink
