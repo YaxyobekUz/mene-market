@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 // images
-import profile from "../assets/images/svg/profile.svg";
+import profile from "../assets/images/other/user.jpg";
 import contact from "../assets/images/svg/contact.svg";
 import message from "../assets/images/svg/message.svg";
 import question from "../assets/images/svg/question.svg";

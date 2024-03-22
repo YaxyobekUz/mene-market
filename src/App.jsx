@@ -41,6 +41,7 @@ import Payment from "./pages/Payment";
 import Profile from "./pages/Profile";
 import ConnectWithTelegram from "./pages/ConnectWithTelegram";
 import ErrorPage from "./pages/ErrorPage";
+import Account from "./pages/Account";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -153,7 +154,7 @@ const App = () => {
                 <Route path="payment" element={<Payment />} />
                 <Route path="profile" element={<ProfileRoot />}>
                   <Route index element={<Profile />} />
-                  <Route index path="account" element={<Profile />} />
+                  <Route path="account" element={<Account />} />
                   <Route
                     path="connect-with-telegram"
                     element={<ConnectWithTelegram />}
