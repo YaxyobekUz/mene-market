@@ -1,30 +1,16 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
-import { Link, Outlet, useNavigate } from "react-router-dom";
+import { Link, Outlet} from "react-router-dom";
 
 // images
 import image from "../assets/images/svg/success.svg";
 
 const AuthRoot = () => {
   const { isLoggedIn } = useSelector((store) => store.isLoggedIn);
-  const navigate = useNavigate();
-  useEffect(() => {
-    if (isLoggedIn) {
-      setTimeout(() => {
-        navigate("/");
-      }, 15000);
-    }
-  }, [isLoggedIn]);
-
   // content
   if (isLoggedIn) {
     return (
       <>
-        {/* progress bar */}
-        <div className="fixed inset-x-0 top-0 w-full h-1.5">
-          <div className="animate-progress h-full bg-linear-gradient_blue-500"></div>
-        </div>
-
         {/* content */}
         <div className="flex items-center gap-8 justify-center min-w-full min-h-screen py-10 max-860:flex-col overflow-y-auto max-860:pt-5">
           <img

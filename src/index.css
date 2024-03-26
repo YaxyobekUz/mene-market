@@ -594,7 +594,7 @@ html {
 
   /* invalid */
   .is-invalid {
-    @apply !border-primary-red-500;
+    @apply !border-primary-red-500 !outline-primary-red-500;
   }
 
   .is-invalid + span {

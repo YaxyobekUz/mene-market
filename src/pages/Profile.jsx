@@ -1,13 +1,59 @@
-import React from "react";
+import React, { useState } from "react";
+
+// axios & redux
+import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import userDataSlice, { setUserData } from "../store/slices/userDataSlice";
 
+// helpers
+import { getElement, validateInput } from "../js/helpers";
+import { defaultRegex } from "../js/regexes";
+
 const Profile = () => {
+  const [changeUserData, setChangeUserData] = useState(false);
   const { userData } = useSelector((store) => store.userData);
 
-  if (!userData) {
-    return null;
-  }
+  const formatInputValues = (input) => {
+    const value = input.value;
+    const words = value.trim().split(/\s+/);
+    const filteredWords = words.filter((word) => word !== "");
+    const formattedText = filteredWords.join(" ");
+    input.value = formattedText;
+  };
+
+  // change user data
+  const onSubmit = (e) => {
+    const nameInput = getElement(e, ".js-name-input");
+    const surnameInput = getElement(e, ".js-surname-input");
+
+    // format input values
+    formatInputValues(nameInput);
+    formatInputValues(surnameInput);
+
+    // check input values
+    const validateSurnameInput = validateInput(
+      defaultRegex,
+      surnameInput,
+      "is-invalid"
+    );
+    const validateNameInput = validateInput(
+      defaultRegex,
+      nameInput,
+      "is-invalid"
+    );
+
+    if (validateSurnameInput || validateNameInput) {
+      axios.put(
+        "/api/User",
+        {},
+        {
+          header: {
+            Authorization: `Bearer ${userData.token}`,
+          },
+        }
+      );
+    }
+  };
 
   return (
     <div className="space-y-6">
@@ -22,11 +68,10 @@ const Profile = () => {
         <label className="block space-y-3">
           <span className="text-regular-13 text-[#C4C5C4]">Ism</span>
           <input
-            className="placeholder-shown: invalid:border-primary-red-500 invalid:!outline-primary-red-500"
-            defaultValue={userData.firstName}
+            className="js-name-input"
             type="text"
             placeholder="Ism"
-            required
+            defaultValue={userData.firstName}
           />
           <span className="hidden text-regular-14 text-primary-red-500 italic !mt-2">
             Ismingizni kiriting
@@ -36,15 +81,18 @@ const Profile = () => {
         <label className="block space-y-3">
           <span className="text-regular-13 text-[#C4C5C4]">Familiya</span>
           <input
-            defaultValue={userData.lastName}
+            className="js-surname-input"
             type="text"
             placeholder="Familiya(Ixtiyoriy)"
-            required
+            defaultValue={userData.lastName}
           />
+          <span className="hidden text-regular-14 text-primary-red-500 italic !mt-2">
+            Familiyangizni kiriting
+          </span>
         </label>
 
         <button
-          disabled={false}
+          disabled={!changeUserData}
           className="btn-primary_linear-blue px-10 py-3 rounded-lg"
         >
           <span className="text-regular-16">O’zgarishlarni saqlash</span>
