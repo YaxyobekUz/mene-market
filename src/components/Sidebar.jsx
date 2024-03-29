@@ -18,27 +18,28 @@ const Sidebar = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const logout = () => {
-      localStorage.removeItem("user");
-      dispatch(notLoggedIn());
-      navigate("/");
+    localStorage.removeItem("user");
+    dispatch(notLoggedIn());
+    navigate("/");
   };
   return (
-    <div className="sticky left-0 top-0 bottom-0 px-6 py-8 h-screen max-w-max bg-sidebar backdrop-filter backdrop-blur-[120px]">
-      <div className="flex flex-col justify-between w-52 h-full">
+    <div className="sticky left-0 inset-y-0 px-6 py-8 h-screen w-full max-w-max bg-sidebar backdrop-filter backdrop-blur-[120px] max-1024:static max-1024:max-w-full max-1024:h-auto max-1024:py-0">
+      <div className="flex flex-col justify-between w-52 h-full max-1024:hidden">
         {/* main content */}
+        {/* laptop + */}
         <div className="flex flex-col h-full">
           {/* logo */}
-          <Link to="/" className="flex-center flex-col">
+          <Link to="/" className="flex-center flex-col mb-4">
             <img
               src={logo}
               width={96}
               height={48}
               alt="logo image"
-              className="w-24 h-12 mb-4"
+              className="w-24 h-12"
             />
           </Link>
 
-          {/* line */}
+          {/* line (border) */}
           <hr className="sidebar-hr w-full h-0.5 mb-3" />
 
           {/* navigation */}
@@ -148,6 +149,34 @@ const Sidebar = () => {
             <span className="navigation_item_link_body">Chiqish</span>
           </button>
         </div>
+      </div>
+
+      {/* sidebar tablet & mobile content */}
+      <div className="hidden py-3 max-1024:flex-center-between">
+        {/* logo */}
+        <Link to="/" className="flex-center flex-col">
+          <img
+            src={logo}
+            width={96}
+            height={48}
+            alt="logo image"
+            className="w-24 h-12"
+          />
+        </Link>
+
+        {/* profile page link  */}
+        <NavLink className="navigation_item_link" to="/admin/profile">
+          <span className="navigation_item_link_icon-wrapper">
+            <img
+              src={profile}
+              width={20}
+              height={20}
+              alt="profile icon image"
+              className="navigation_item_link_icon"
+            />
+          </span>
+          <span className="navigation_item_link_body">Profil</span>
+        </NavLink>
       </div>
     </div>
   );

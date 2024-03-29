@@ -71,7 +71,7 @@ const Profile = () => {
             className="js-name-input"
             type="text"
             placeholder="Ism"
-            defaultValue={userData.firstName}
+            defaultValue={userData ? userData.firstName : ""}
           />
           <span className="hidden text-regular-14 text-primary-red-500 italic !mt-2">
             Ismingizni kiriting
@@ -84,7 +84,7 @@ const Profile = () => {
             className="js-surname-input"
             type="text"
             placeholder="Familiya(Ixtiyoriy)"
-            defaultValue={userData.lastName}
+            defaultValue={userData ? userData.lastName : ""}
           />
           <span className="hidden text-regular-14 text-primary-red-500 italic !mt-2">
             Familiyangizni kiriting

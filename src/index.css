@@ -663,15 +663,15 @@ html {
   }
 
   .navigation {
-    @apply space-y-1;
+    @apply justify-between max-1024:flex max-768:gap-2;
   }
 
   .navigation_item {
-    @apply w-full;
+    @apply w-full max-1024:w-36 max-768:w-1/5;
   }
 
   .navigation_item_link {
-    @apply flex-center py-3 px-4 rounded-xl gap-3 transition-colors;
+    @apply flex-center py-3 px-4 rounded-xl gap-3 transition-colors max-1024:p-3 max-768:flex-col;
   }
 
   .navigation_item_link.active {
@@ -696,7 +696,7 @@ html {
   }
 
   .navigation_item_link_body {
-    @apply text-white text-medium-14;
+    @apply text-white text-medium-14 max-640:hidden;
   }
 
   @keyframes infinite-rotate-animation {
