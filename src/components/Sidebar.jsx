@@ -165,14 +165,14 @@ const Sidebar = () => {
         </Link>
 
         {/* profile page link  */}
-        <NavLink className="navigation_item_link" to="/admin/profile">
-          <span className="navigation_item_link_icon-wrapper">
+        <NavLink className="navigation_item_link  max-640:!p-0 max-640:!bg-transparent" to="/admin/profile">
+          <span className="navigation_item_link_icon-wrapper  max-640:!p-0 max-640:!bg-transparent">
             <img
               src={profile}
               width={20}
               height={20}
               alt="profile icon image"
-              className="navigation_item_link_icon"
+              className="navigation_item_link_icon  max-640:w-9 max-640:h-9"
             />
           </span>
           <span className="navigation_item_link_body">Profil</span>
