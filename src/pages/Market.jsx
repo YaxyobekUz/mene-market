@@ -25,28 +25,28 @@ const Market = () => {
   return (
     <div className="  ">
       {/* tab */}
-        <div className="tab-menu scroll_gray max-w-min">
-          {tabButtons.map((button) => {
-            return (
-              <button
-                key={button.id}
-                className={`${
-                  activeBtnValue.toLowerCase() === button.type.toLowerCase()
-                    ? "tab-menu_btn-active"
-                    : ""
-                } tab-menu_btn`}
-                onClick={() => {
-                  setActiveBtnValue(button.type.toLowerCase());
-                }}
-              >
-                {button.name}
-              </button>
-            );
-          })}
-        </div>
+      <div className="tab-menu scroll_gray max-w-min">
+        {tabButtons.map((button) => {
+          return (
+            <button
+              key={button.id}
+              className={`${
+                activeBtnValue.toLowerCase() === button.type.toLowerCase()
+                  ? "tab-menu_btn-active"
+                  : ""
+              } tab-menu_btn`}
+              onClick={() => {
+                setActiveBtnValue(button.type.toLowerCase());
+              }}
+            >
+              {button.name}
+            </button>
+          );
+        })}
+      </div>
 
       {/* products */}
-      <ul className="grid grid-cols-3 gap-6">
+      <ul className="grid grid-cols-3 gap-6 max-1124:grid-cols-2 max-1024:grid-cols-3 max-860:grid-cols-2 max-640:gap-3 max-490:grid-cols-1">
         {products.map((product) => {
           return (
             <li key={product.id} className="product">

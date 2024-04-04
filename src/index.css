@@ -783,7 +783,7 @@ html {
   .admin .product_content {
     @apply space-y-2;
   }
-
+  
   .product_price-wrapper {
     @apply flex-center gap-2.5;
   }
