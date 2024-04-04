@@ -742,7 +742,7 @@ html {
   }
 
   .admin_page-body_input-wrapper {
-    @apply flex-center relative max-w-[409px] w-full justify-center;
+    @apply flex-center relative max-w-[409px] w-full justify-center max-640:max-w-full;
   }
 
   .admin_page-body_input-wrapper img {
@@ -783,7 +783,7 @@ html {
   .admin .product_content {
     @apply space-y-2;
   }
-  
+
   .product_price-wrapper {
     @apply flex-center gap-2.5;
   }

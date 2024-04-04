@@ -8,10 +8,9 @@ import market from "../assets/images/svg/market.svg";
 import link from "../assets/images/svg/link.svg";
 import statistics from "../assets/images/svg/statistics.svg";
 import wallet from "../assets/images/svg/wallet.svg";
-import profile from "../assets/images/svg/profile.svg";
 const AdminRoot = () => {
   return (
-    <div className="admin flex items-start bg-radial-gradient_blue-500 text-white max-1024:flex-col">
+    <div className="admin flex items-start grow bg-radial-gradient_blue-500 text-white max-1024:flex-col">
       <Sidebar />
 
       {/* main */}
