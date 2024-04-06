@@ -93,7 +93,7 @@ const Profile = () => {
 
         <button
           disabled={!changeUserData}
-          className="btn-primary_linear-blue px-10 py-3 rounded-lg"
+          className="btn-primary_linear-blue px-10 py-3 rounded-lg max-640:px-6 max-640:py-2"
         >
           <span className="text-regular-16">O’zgarishlarni saqlash</span>
         </button>

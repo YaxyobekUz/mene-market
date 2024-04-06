@@ -16,7 +16,7 @@ const ConnectWithTelegram = () => {
             <input type="text" placeholder="Foydalanuvchi nomi" />
           </label>
 
-          <button className="btn-primary_linear-blue px-10 py-3 rounded-lg">
+          <button className="btn-primary_linear-blue px-10 py-3 rounded-lg max-640:px-6 max-640:py-2">
             <span className="text-regular-16">Biriktirish</span>
           </button>
         </div>

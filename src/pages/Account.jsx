@@ -14,7 +14,7 @@ const Account = () => {
             <input
               type="email"
               placeholder="E-pochta"
-              defaultValue={userData.email}
+              defaultValue={userData && userData.email}
               required
             />
             <span className="hidden text-regular-14 text-primary-red-500 italic !mt-2">
@@ -50,7 +50,7 @@ const Account = () => {
             </span>
           </label>
 
-          <button className="btn-primary_linear-blue px-10 py-3 rounded-lg">
+          <button className="btn-primary_linear-blue px-10 py-3 rounded-lg max-640:px-6 max-640:py-2">
             <span className="text-regular-16">O’zgarishlarni saqlash</span>
           </button>
         </div>
