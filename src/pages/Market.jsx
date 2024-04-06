@@ -5,10 +5,6 @@ import { productsData, tabButtons } from "../assets/data";
 // images
 import link from "../assets/images/svg/link-solid-icon.svg";
 const Market = () => {
-  // scroll to top
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
 
   const [products, setProducts] = useState([]);
   const [activeBtnValue, setActiveBtnValue] = useState("all");

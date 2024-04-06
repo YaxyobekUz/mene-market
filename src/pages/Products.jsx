@@ -6,11 +6,6 @@ import { productsData, tabButtons } from "../assets/data";
 import stars from "../assets/images/svg/stars.svg";
 import shoppingCart from "../assets/images/svg/shopping-cart.svg";
 const Products = () => {
-  // scroll to top
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
   const [products, setProducts] = useState([]);
   const [activeBtnValue, setActiveBtnValue] = useState("all");
   useEffect(() => {

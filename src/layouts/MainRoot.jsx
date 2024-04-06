@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 
 // components
@@ -7,7 +7,7 @@ import Footer from "../components/Footer";
 
 // toast
 import { ToastContainer, Zoom } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css";
 
 const MainRoot = () => {
   const location = useLocation();
@@ -17,6 +17,11 @@ const MainRoot = () => {
 
   const authPage = firstLocation !== "auth";
   const adminPage = firstLocation !== "admin";
+
+  // scroll to top
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location]);
   return (
     <div className="flex flex-col min-h-screen">
       {authPage && adminPage && <Header />}
