@@ -26,8 +26,8 @@ const ProfileRoot = () => {
                   alt="profile image"
                   className="w-20 h-20 aspect-square bg-linear-gradient_blue-500 rounded-full max-640:w-16 max-640:h-16"
                 />
-                {(pathname === "/admin/profile/" ||
-                  pathname === "/admin/profile") && (
+                {(pathname === "/admin/dashboard/profile/" ||
+                  pathname === "/admin/dashboard/profile") && (
                   <button
                     className="absolute -bottom-0.5 -right-0.5 bg-linear-gradient_blue-500 rounded-full border-2 border-[#a4d9ff] p-1.5 max-640:p-1"
                     aria-label="edit"
@@ -63,11 +63,11 @@ const ProfileRoot = () => {
               <ul className="admin_page_profile-list space-y-3 max-768:space-y-0 max-768:grid max-768:grid-cols-3 max-768:gap-1 max-768:min-w-max">
                 <li>
                   <Link
-                    to="/admin/profile"
+                    to="/admin/dashboard/profile"
                     className={`
                   ${
-                    (pathname === "/admin/profile/" ||
-                      pathname === "/admin/profile") &&
+                    (pathname === "/admin/dashboard/profile/" ||
+                      pathname === "/admin/dashboard/profile") &&
                     "active"
                   } 
                   block text-regular-16 py-2 text-primary-gray-500 max-768:text-center max-450:text-regular-14`}
@@ -77,7 +77,7 @@ const ProfileRoot = () => {
                 </li>
                 <li>
                   <NavLink
-                    to="/admin/profile/account"
+                    to="/admin/dashboard/profile/account"
                     className="block text-regular-16 py-2 text-primary-gray-500 max-768:text-center max-450:text-regular-14"
                   >
                     Login & parol
@@ -85,7 +85,7 @@ const ProfileRoot = () => {
                 </li>
                 <li>
                   <NavLink
-                    to="/admin/profile/connect-with-telegram"
+                    to="/admin/dashboard/profile/connect-with-telegram"
                     className="block text-regular-16 py-2 text-primary-gray-500 max-768:text-center max-450:text-regular-14"
                   >
                     Telegram bilan bog’lash

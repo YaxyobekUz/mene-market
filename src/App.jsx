@@ -150,19 +150,19 @@ const App = () => {
                   <Route path="competitions" element={<Competitions />} />
                   <Route path="balance-history" element={<BalanceHistory />} />
                   <Route path="donation-box" element={<DonationBox />} />
+                  <Route path="profile" element={<ProfileRoot />}>
+                    <Route index element={<Profile />} />
+                    <Route path="account" element={<Account />} />
+                    <Route
+                      path="connect-with-telegram"
+                      element={<ConnectWithTelegram />}
+                    />
+                  </Route>
                 </Route>
                 <Route path="market" element={<Market />} />
                 <Route path="flow" element={<Flow />} />
                 <Route path="statistics" element={<Statistics />} />
                 <Route path="payment" element={<Payment />} />
-                <Route path="profile" element={<ProfileRoot />}>
-                  <Route index element={<Profile />} />
-                  <Route path="account" element={<Account />} />
-                  <Route
-                    path="connect-with-telegram"
-                    element={<ConnectWithTelegram />}
-                  />
-                </Route>
               </Route>
             )}
           </Route>

@@ -119,7 +119,7 @@ const Sidebar = () => {
                 </NavLink>
               </li>
               <li className="navigation_item">
-                <NavLink className="navigation_item_link" to="/admin/profile">
+                <NavLink className="navigation_item_link" to="/admin/dashboard/profile">
                   <span className="navigation_item_link_icon-wrapper">
                     <img
                       src={profile}
@@ -165,7 +165,7 @@ const Sidebar = () => {
         </Link>
 
         {/* profile page link  */}
-        <NavLink className="navigation_item_link  max-640:!p-0 max-640:!bg-transparent" to="/admin/profile">
+        <NavLink className="navigation_item_link  max-640:!p-0 max-640:!bg-transparent" to="/admin/dashboard/profile">
           <span className="navigation_item_link_icon-wrapper  max-640:!p-0 max-640:!bg-transparent">
             <img
               src={profile}
