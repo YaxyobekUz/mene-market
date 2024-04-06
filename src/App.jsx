@@ -1,5 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  createBrowserRouter,
+  createRoutesFromElements,
+  RouterProvider,
+} from "react-router-dom";
 
 // for auth
 import { loggedIn, notLoggedIn } from "./store/slices/productBasketSlice";
@@ -114,65 +121,70 @@ const App = () => {
     }
   }, [loader]);
 
-  return (
-    <>
-      {/* loader */}
-      <Loader loaderStyles={loaderStyles} />
+  const router = createBrowserRouter(
+    createRoutesFromElements(
+      <>
+        {/* router */}
+        <Route
+          path="/"
+          element={
+            <>
+              <MainRoot />
+              {/* loader */}
+              <Loader loaderStyles={loaderStyles} />
+            </>
+          }
+        >
+          <Route index element={<Home />} />
+          <Route path="/products" element={<Products />} />
+          <Route path="/product/:productName" element={<ProductDetail />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/public-offer" element={<PublicOffer />} />
+          <Route path="/category/:categoryName" element={<Category />} />
 
-      {/* router */}
-      <Router>
-        <Routes>
-          <Route path="/" element={<MainRoot />}>
-            <Route index element={<Home />} />
-            <Route path="/products" element={<Products />} />
-            <Route path="/product/:productName" element={<ProductDetail />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/public-offer" element={<PublicOffer />} />
-            <Route path="/category/:categoryName" element={<Category />} />
-
-            {/* auth */}
-            <Route path="/auth" element={<AuthRoot />}>
-              <Route path="login" element={<Login />} />
-              <Route path="signup" element={<Register />} />
-            </Route>
-
-            {/* admin */}
-            {isLoggedIn && (
-              <Route path="/admin" element={<AdminRoot />}>
-                <Route path="dashboard" element={<DashboardRoot />}>
-                  <Route index element={<Dashboard />} />
-                  <Route
-                    path="regular-customers"
-                    element={<RegularCustomers />}
-                  />
-                  <Route path="appeals" element={<Appeals />} />
-                  <Route path="requests" element={<Requests />} />
-                  <Route path="competitions" element={<Competitions />} />
-                  <Route path="balance-history" element={<BalanceHistory />} />
-                  <Route path="donation-box" element={<DonationBox />} />
-                  <Route path="profile" element={<ProfileRoot />}>
-                    <Route index element={<Profile />} />
-                    <Route path="account" element={<Account />} />
-                    <Route
-                      path="connect-with-telegram"
-                      element={<ConnectWithTelegram />}
-                    />
-                  </Route>
-                </Route>
-                <Route path="market" element={<Market />} />
-                <Route path="flow" element={<Flow />} />
-                <Route path="statistics" element={<Statistics />} />
-                <Route path="payment" element={<Payment />} />
-              </Route>
-            )}
+          {/* auth */}
+          <Route path="/auth" element={<AuthRoot />}>
+            <Route path="login" element={<Login />} />
+            <Route path="signup" element={<Register />} />
           </Route>
 
+          {/* admin */}
+          {isLoggedIn && (
+            <Route path="/admin" element={<AdminRoot />}>
+              <Route path="dashboard" element={<DashboardRoot />}>
+                <Route index element={<Dashboard />} />
+                <Route
+                  path="regular-customers"
+                  element={<RegularCustomers />}
+                />
+                <Route path="appeals" element={<Appeals />} />
+                <Route path="requests" element={<Requests />} />
+                <Route path="competitions" element={<Competitions />} />
+                <Route path="balance-history" element={<BalanceHistory />} />
+                <Route path="donation-box" element={<DonationBox />} />
+                <Route path="profile" element={<ProfileRoot />}>
+                  <Route index element={<Profile />} />
+                  <Route path="account" element={<Account />} />
+                  <Route
+                    path="connect-with-telegram"
+                    element={<ConnectWithTelegram />}
+                  />
+                </Route>
+              </Route>
+              <Route path="market" element={<Market />} />
+              <Route path="flow" element={<Flow />} />
+              <Route path="statistics" element={<Statistics />} />
+              <Route path="payment" element={<Payment />} />
+            </Route>
+          )}
           {/* error page */}
           <Route path="*" element={<ErrorPage />} />
-        </Routes>
-      </Router>
-    </>
+        </Route>
+      </>
+    )
   );
+
+  return <RouterProvider router={router} />;
 };
 
 export default App;
