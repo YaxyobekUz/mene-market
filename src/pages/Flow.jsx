@@ -33,7 +33,7 @@ const Flow = () => {
 
         {/* main content */}
         <div className="w-full overflow-x-auto">
-          <table className="block min-w-[1024px]">
+          <table className="block min-w-[1192px]">
             <thead>
               <tr>
                 <th className="w-1/6 !px-2">Havola nomi</th>
