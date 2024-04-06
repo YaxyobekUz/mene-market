@@ -12,9 +12,9 @@ const Payment = () => {
   return (
     <div className="space-y-6">
       {/* top */}
-      <div className="flex gap-6">
-        {/* plastic card image */}
-        <div className="flex flex-col w-full max-w-[462px] bg-[url('../src/assets/images/other/credit-card-bg.jpg')] bg-blue-950 bg-no-repeat bg-cover backdrop-filter backdrop-blur-120 p-6 rounded-20">
+      <div className="flex gap-6 max-768:flex-col">
+        {/* plastic card */}
+        <div className="flex flex-col w-full max-w-[462px] bg-[url('../src/assets/images/other/credit-card-bg.jpg')] bg-blue-950 bg-no-repeat bg-cover backdrop-filter backdrop-blur-120 p-6 rounded-20 max-860:max-w-xs max-768:h-[212px] max-768:max-w-full max-450:h-[194px]">
           <div className="flex-center-between mb-auto">
             <p>ID:15612</p>
             <img
@@ -22,11 +22,13 @@ const Payment = () => {
               height={32}
               src={mastercardLogo1}
               alt="mastercard logo"
-              className="w-[49px] h-8"
+              className="w-[49px] h-8 max-860:w-9 max-860:h-6"
             />
           </div>
 
-          <p className="text-semibold-23 mb-4">XXXX XXXX XXXX XXXX</p>
+          <p className="text-semibold-23 mb-4 max-860:text-semibold-20">
+            5477 **** **** 5920
+          </p>
 
           <div className="flex gap-6">
             <div>
@@ -43,18 +45,19 @@ const Payment = () => {
         </div>
 
         {/* balance */}
-        <div className="w-full bg-linear-gradient_black-800 backdrop-filter backdrop-blur-120 rounded-20 p-6">
-          <div className="flex justify-center flex-col relative overflow-hidden w-full bg-linear-gradient_black-800 backdrop-filter backdrop-blur-120 rounded-[14px] p-6 mb-12">
+        <div className="w-full bg-linear-gradient_black-800 backdrop-filter backdrop-blur-120 rounded-20 p-6 max-860:p-5 max-768:p-6 max-450:p-5 ">
+          <div className="flex justify-center flex-col relative overflow-hidden w-full bg-linear-gradient_black-800 backdrop-filter backdrop-blur-120 rounded-[14px] p-6 mb-12 max-860:mb-5 max-768:mb-8 max-450:p-5">
             <p className="text-regular-13 text-[#E9EDF7] mb-2">
               Hozirgi balans
             </p>
-            <b className="text-semibold-23">
+
+            <b className="text-semibold-23 max-860:text-semibold-20 max-450:text-medium-18">
               {userData && userData.balance ? userData.balance : 0} so’m
             </b>
 
             {/* shadow */}
             <svg
-              className="absolute right-0"
+              className="absolute right-0 max-450:w-24"
               width="156"
               height="97"
               viewBox="0 0 156 97"
@@ -84,7 +87,7 @@ const Payment = () => {
 
             {/* graph */}
             <svg
-              className="absolute right-8"
+              className="absolute right-8 max-860:w-9 max-860:h-4 max-450:right-3.5"
               width="43"
               height="19"
               viewBox="0 0 43 19"
@@ -101,10 +104,11 @@ const Payment = () => {
             </svg>
           </div>
 
-          <div className="flex-center-between">
+          {/* bottom */}
+          <div className="flex-center-between gap-2">
             <div className="flex-center gap-2">
               {/* img */}
-              <div className="bg-white/10 p-3 rounded-full">
+              <div className="bg-white/10 p-3 rounded-full shrink-0 max-860:p-2">
                 <img
                   width={24}
                   height={24}
@@ -115,21 +119,19 @@ const Payment = () => {
               </div>
               <div>
                 <p className="text-regular-14">Kunlik tranzaksiya</p>
-                <p className="text-regular-14 text-[#A0AEC0]">
-                  Bugun hech qanday tranzaksiya amalga oshirilmadi
-                </p>
+                <p className="text-regular-14 text-[#A0AEC0]">Jami miqdor</p>
               </div>
             </div>
 
-            <p className="text-regular-14">0 so’m</p>
+            <p className="text-regular-14 shrink-0">0 so’m</p>
           </div>
         </div>
       </div>
 
       {/* mid */}
       <div className="admin_page-body">
-        <div className="flex-center-between mb-2.5">
-          <p>To’lovga sorov berish formasi</p>
+        <div className="flex-center-between mb-2.5 max-768:mb-5">
+          <p className="max-540:text-base max-540:font-normal">To’lovga sorov berish formasi</p>
 
           <button className="btn-primary_linear-blue rounded-xl px-4 gap-0.5">
             <svg
@@ -184,8 +186,9 @@ const Payment = () => {
           </button>
         </div>
 
-        <div className="flex gap-2.5">
-          <label className="w-full space-y-2.5">
+        {/* inputs */}
+        <div className="grid grid-cols-2 gap-2.5 max-768:grid-cols-1 max-768:gap-4">
+          <label className="space-y-2.5">
             <span className="text-regular-14">Karta raqamingizni kiriting</span>
             <div className="flex-center relative w-full">
               <svg
@@ -204,32 +207,18 @@ const Payment = () => {
                 type="text"
                 placeholder="0000 0000 0000 0000"
                 maxLength={19}
-                className="admin_linear-border !bg-white/5 !border-white/50 !font-medium !text-lg !leading-5 !border-2 !rounded-20 !py-[18px] !px-12 placeholder:!text-lg placeholder:!leading-5 placeholder:!font-semibold focus:!outline-none focus:!border-white"
+                className="!bg-white/5 !border-white/50 !font-medium !text-lg !leading-5 !border-2 !rounded-20 !py-[18px] !px-12 placeholder:!text-lg placeholder:!leading-5 placeholder:!font-semibold focus:!outline-none focus:!border-white max-540:!text-sm max-540:!pt-4 max-540:!pb-3 max-540:!rounded-2xl"
               />
-
-              <button
-                aria-label="edit"
-                title="edit"
-                className="absolute right-4"
-              >
-                <img
-                  width={24}
-                  height={24}
-                  src={edit}
-                  alt="edit"
-                  className="w-6 h-6"
-                />
-              </button>
             </div>
           </label>
 
-          <label className="w-full space-y-2.5">
+          <label className="space-y-2.5">
             <span className="text-regular-14">Summani kiriting</span>
             <div className="flex-center relative w-full">
               <input
                 type="number"
                 placeholder="1.000.000"
-                className="admin_linear-border !bg-white/5 !border-white/50 !font-medium !text-lg !leading-5 !border-2 !rounded-20 !py-[18px] !px-4 placeholder:!text-lg placeholder:!leading-5 placeholder:!font-semibold focus:!outline-none focus:!border-white"
+                className="!bg-white/5 !border-white/50 !font-medium !text-lg !leading-5 !border-2 !rounded-20 !py-[18px] !px-4 placeholder:!text-lg placeholder:!leading-5 placeholder:!font-semibold focus:!outline-none focus:!border-white max-540:!text-sm max-540:!pt-4 max-540:!pb-3 max-540:!rounded-2xl"
               />
             </div>
           </label>
