@@ -11,7 +11,7 @@ const BalanceHistory = () => {
   return (
     <div className="admin_page-body">
       <div className="flex-center-between mb-6">
-        <h2 className="text-medium-18">Tranzaktsiyalaringiz</h2>
+        <h2 className="text-medium-18 max-640:text-base max-375:text-regular-14">Tranzaktsiyalaringiz</h2>
         <div className="flex-center gap-2">
           <img
             width={24}
@@ -52,14 +52,14 @@ const BalanceHistory = () => {
                 <p className="text-regular-14 text-secondary-green-500">+123</p>
               </li>
             ) : (
-              <span className="text-primary-gray-500">
+              <span className="text-primary-gray-500 max-490:text-base">
                 Hech qanday pul o'tkazmalari aniqlanmadi
               </span>
             )}
           </ul>
         </li>
 
-        {/* <li className="space-y-4">
+        <li className="space-y-4">
           <h3 className="text-regular-13 text-primary-gray-500">Bugun</h3>
           <ul className="space-y-4">
             <li className="flex-center-between gap-5">
@@ -69,10 +69,10 @@ const BalanceHistory = () => {
                   height={36}
                   src={iconDanger}
                   alt="arrow bottom"
-                  className="w-9 h-9"
+                  className="w-9 h-9 max-450:w-8 max-450:h-8"
                 />
                 <div>
-                  <h4 className="text-regular-16">
+                  <h4 className="text-regular-16 line-clamp-1 max-450:text-regular-14 max-450:mb-1">
                     Lorem ipsum dolor sit amet.
                   </h4>
                   <p className="text-regular-14 text-[#C4C5C4]">
@@ -90,10 +90,10 @@ const BalanceHistory = () => {
                   height={36}
                   src={iconSuccess}
                   alt="arrow top"
-                  className="w-9 h-9"
+                  className="w-9 h-9 max-450:w-8 max-450:h-8"
                 />
                 <div>
-                  <h4 className="text-regular-16">
+                  <h4 className="text-regular-16 line-clamp-1 max-450:text-regular-14 max-450:mb-1">
                     Lorem ipsum dolor sit amet.
                   </h4>
                   <p className="text-regular-14 text-[#C4C5C4]">
@@ -104,7 +104,7 @@ const BalanceHistory = () => {
               <p className="text-regular-14 text-secondary-green-500">+123</p>
             </li>
           </ul>
-        </li> */}
+        </li>
       </ul>
     </div>
   );
