@@ -36,116 +36,118 @@ const Requests = () => {
           />
         </div>
 
-        <table className="block">
-          <thead>
-            <tr>
-              <th className="w-1/6">Mahsulot</th>
-              <th className="w-1/6">Buyurtmachi</th>
-              <th className="w-1/6">Manzil</th>
-              <th className="w-1/6">Sana</th>
-              <th className="w-1/6">Oqim</th>
-              <th className="w-1/6">Holati</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td className="w-1/6">Airpods Max</td>
-              <td className="w-1/6">Lorem ipsum</td>
-              <td className="w-1/6">
-                <address>Lorem ipsum</address>
-              </td>
-              <td className="w-1/6">14/12/23</td>
-              <td className="w-1/6">Lorem ipsum</td>
-              <td className="w-1/6">
-                <div className="btn-success">Aktiv</div>
-              </td>
-            </tr>
-            <tr>
-              <td className="w-1/6">Airpods Max</td>
-              <td className="w-1/6">Lorem ipsum</td>
-              <td className="w-1/6">
-                <address>Lorem ipsum</address>
-              </td>
-              <td className="w-1/6">14/12/23</td>
-              <td className="w-1/6">Lorem ipsum</td>
-              <td className="w-1/6">
-                <div className="btn-success">Aktiv</div>
-              </td>
-            </tr>
-            <tr>
-              <td className="w-1/6">Airpods Max</td>
-              <td className="w-1/6">Lorem ipsum</td>
-              <td className="w-1/6">
-                <address>Lorem ipsum</address>
-              </td>
-              <td className="w-1/6">14/12/23</td>
-              <td className="w-1/6">Lorem ipsum</td>
-              <td className="w-1/6">
-                <div className="btn-skyblue">Muzlatilgan</div>
-              </td>
-            </tr>
-            <tr>
-              <td className="w-1/6">Airpods Max</td>
-              <td className="w-1/6">Lorem ipsum</td>
-              <td className="w-1/6">
-                <address>Lorem ipsum</address>
-              </td>
-              <td className="w-1/6">14/12/23</td>
-              <td className="w-1/6">Lorem ipsum</td>
-              <td className="w-1/6">
-                <div className="btn-success">Aktiv</div>
-              </td>
-            </tr>
-            <tr>
-              <td className="w-1/6">Airpods Max</td>
-              <td className="w-1/6">Lorem ipsum</td>
-              <td className="w-1/6">
-                <address>Lorem ipsum</address>
-              </td>
-              <td className="w-1/6">14/12/23</td>
-              <td className="w-1/6">Lorem ipsum</td>
-              <td className="w-1/6">
-                <div className="btn-success">Aktiv</div>
-              </td>
-            </tr>
-            <tr>
-              <td className="w-1/6">Airpods Max</td>
-              <td className="w-1/6">Lorem ipsum</td>
-              <td className="w-1/6">
-                <address>Lorem ipsum</address>
-              </td>
-              <td className="w-1/6">14/12/23</td>
-              <td className="w-1/6">Lorem ipsum</td>
-              <td className="w-1/6">
-                <div className="btn-danger">To'xtatilgan</div>
-              </td>
-            </tr>
-            <tr>
-              <td className="w-1/6">Airpods Max</td>
-              <td className="w-1/6">Lorem ipsum</td>
-              <td className="w-1/6">
-                <address>Lorem ipsum</address>
-              </td>
-              <td className="w-1/6">14/12/23</td>
-              <td className="w-1/6">Lorem ipsum</td>
-              <td className="w-1/6">
-                <div className="btn-success">Aktiv</div>
-              </td>
-            </tr>
-            <tr>
-              <td className="w-1/6">Airpods Max</td>
-              <td className="w-1/6">Lorem ipsum</td>
-              <td className="w-1/6">
-                <address>Lorem ipsum</address>
-              </td>
-              <td className="w-1/6">14/12/23</td>
-              <td className="w-1/6">Lorem ipsum</td>
-              <td className="w-1/6">
-                <div className="btn-danger">To'xtatilgan</div>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+        <div className="table-wrapper">
+          <table className="block">
+            <thead>
+              <tr>
+                <th className="w-1/6">Mahsulot</th>
+                <th className="w-1/6">Buyurtmachi</th>
+                <th className="w-1/6">Manzil</th>
+                <th className="w-1/6">Sana</th>
+                <th className="w-1/6">Oqim</th>
+                <th className="w-1/6">Holati</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td className="w-1/6">Airpods Max</td>
+                <td className="w-1/6">Lorem ipsum</td>
+                <td className="w-1/6">
+                  <address>Lorem ipsum</address>
+                </td>
+                <td className="w-1/6">14/12/23</td>
+                <td className="w-1/6">Lorem ipsum</td>
+                <td className="w-1/6">
+                  <div className="btn-success">Aktiv</div>
+                </td>
+              </tr>
+              <tr>
+                <td className="w-1/6">Airpods Max</td>
+                <td className="w-1/6">Lorem ipsum</td>
+                <td className="w-1/6">
+                  <address>Lorem ipsum</address>
+                </td>
+                <td className="w-1/6">14/12/23</td>
+                <td className="w-1/6">Lorem ipsum</td>
+                <td className="w-1/6">
+                  <div className="btn-success">Aktiv</div>
+                </td>
+              </tr>
+              <tr>
+                <td className="w-1/6">Airpods Max</td>
+                <td className="w-1/6">Lorem ipsum</td>
+                <td className="w-1/6">
+                  <address>Lorem ipsum</address>
+                </td>
+                <td className="w-1/6">14/12/23</td>
+                <td className="w-1/6">Lorem ipsum</td>
+                <td className="w-1/6">
+                  <div className="btn-skyblue">Muzlatilgan</div>
+                </td>
+              </tr>
+              <tr>
+                <td className="w-1/6">Airpods Max</td>
+                <td className="w-1/6">Lorem ipsum</td>
+                <td className="w-1/6">
+                  <address>Lorem ipsum</address>
+                </td>
+                <td className="w-1/6">14/12/23</td>
+                <td className="w-1/6">Lorem ipsum</td>
+                <td className="w-1/6">
+                  <div className="btn-success">Aktiv</div>
+                </td>
+              </tr>
+              <tr>
+                <td className="w-1/6">Airpods Max</td>
+                <td className="w-1/6">Lorem ipsum</td>
+                <td className="w-1/6">
+                  <address>Lorem ipsum</address>
+                </td>
+                <td className="w-1/6">14/12/23</td>
+                <td className="w-1/6">Lorem ipsum</td>
+                <td className="w-1/6">
+                  <div className="btn-success">Aktiv</div>
+                </td>
+              </tr>
+              <tr>
+                <td className="w-1/6">Airpods Max</td>
+                <td className="w-1/6">Lorem ipsum</td>
+                <td className="w-1/6">
+                  <address>Lorem ipsum</address>
+                </td>
+                <td className="w-1/6">14/12/23</td>
+                <td className="w-1/6">Lorem ipsum</td>
+                <td className="w-1/6">
+                  <div className="btn-danger">To'xtatilgan</div>
+                </td>
+              </tr>
+              <tr>
+                <td className="w-1/6">Airpods Max</td>
+                <td className="w-1/6">Lorem ipsum</td>
+                <td className="w-1/6">
+                  <address>Lorem ipsum</address>
+                </td>
+                <td className="w-1/6">14/12/23</td>
+                <td className="w-1/6">Lorem ipsum</td>
+                <td className="w-1/6">
+                  <div className="btn-success">Aktiv</div>
+                </td>
+              </tr>
+              <tr>
+                <td className="w-1/6">Airpods Max</td>
+                <td className="w-1/6">Lorem ipsum</td>
+                <td className="w-1/6">
+                  <address>Lorem ipsum</address>
+                </td>
+                <td className="w-1/6">14/12/23</td>
+                <td className="w-1/6">Lorem ipsum</td>
+                <td className="w-1/6">
+                  <div className="btn-danger">To'xtatilgan</div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );
