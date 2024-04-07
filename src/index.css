@@ -742,8 +742,9 @@ html {
   }
 
   .admin_page-header a {
-    @apply absolute p-2 left-6 rounded-lg;
+    @apply absolute p-2 left-6 rounded-lg max-490:left-3;
   }
+
   .admin_page-header h1 {
     @apply max-490:text-base;
   }

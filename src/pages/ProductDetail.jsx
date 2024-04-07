@@ -126,7 +126,7 @@ const ProductDetail = () => {
               <div>
                 <div className="flex-start-between mb-2">
                   <span className="text-regular-14">204 ta buyurtma</span>
-                  <img src={stars} alt="stars" className="" />
+                  <img src={stars} alt="stars" />
                   <img
                     width={24}
                     height={24}

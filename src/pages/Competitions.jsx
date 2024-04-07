@@ -33,7 +33,7 @@ const Competitions = () => {
             className="w-[440px] h-[256px] bg-primary-black-800 rounded-lg object-cover object-center max-1124:w-80 max-768:w-full max-768:h-80 max-640:h-64 max-540:h-52 max-450:h-44 max-450:rounded-md max-375:h-40"
           />
 
-          <div className="">
+          <div>
             <h3 className="text-[29px] leading-8 font-semibold mb-4 line-clamp-1 max-640:text-semibold-23 max-450:text-semibold-20 max-450:mb-2 max-375:text-medium-18">
               Elektron pichoq chaxi
             </h3>
@@ -90,7 +90,7 @@ const Competitions = () => {
             className="w-[440px] h-[256px] bg-primary-black-800 rounded-lg object-cover object-center max-1124:w-80 max-768:w-full max-768:h-80 max-640:h-64 max-540:h-52 max-450:h-44 max-450:rounded-md max-375:h-40"
           />
 
-          <div className="">
+          <div>
             <h3 className="text-[29px] leading-8 font-semibold mb-4 line-clamp-1 max-640:text-semibold-23 max-450:text-semibold-20 max-450:mb-2 max-375:text-medium-18">
               Elektron pichoq chaxi
             </h3>

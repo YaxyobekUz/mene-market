@@ -20,87 +20,27 @@ const DonationBox = () => {
       </div>
       <div className="admin_page-body">
         <div className="flex-center-between mb-6">
-          <h2 className="text-medium-18">O'tkazmalar</h2>
-          <p>126 320 000 so’m</p>
+          <h2 className="text-medium-18 max-450:text-base">O'tkazmalar</h2>
+          <p className="max-450:text-base">126 320 000 so’m</p>
         </div>
 
         <ul className="space-y-6 mb-6">
           <li className="flex-center-between gap-5">
             <div>
-              <h2 className="text-regular-16">Maxfiy foydalanuvchi</h2>
+              <h3 className="text-regular-16 line-clamp-1">
+                Maxfiy foydalanuvchi
+              </h3>
               <p className="text-regular-14 text-[#A0AEC0]">#17365</p>
             </div>
-            <p className="text-regular-14 text-[#C4C5C4]">15 000 so’m</p>
-          </li>
-
-          <li className="flex-center-between gap-5">
-            <div>
-              <h2 className="text-regular-16">Maxfiy foydalanuvchi</h2>
-              <p className="text-regular-14 text-[#A0AEC0]">#17365</p>
-            </div>
-            <p className="text-regular-14 text-[#C4C5C4]">15 000 so’m</p>
-          </li>
-
-          <li className="flex-center-between gap-5">
-            <div>
-              <h2 className="text-regular-16">Maxfiy foydalanuvchi</h2>
-              <p className="text-regular-14 text-[#A0AEC0]">#17365</p>
-            </div>
-            <p className="text-regular-14 text-[#C4C5C4]">15 000 so’m</p>
-          </li>
-
-          <li className="flex-center-between gap-5">
-            <div>
-              <h2 className="text-regular-16">Maxfiy foydalanuvchi</h2>
-              <p className="text-regular-14 text-[#A0AEC0]">#17365</p>
-            </div>
-            <p className="text-regular-14 text-[#C4C5C4]">15 000 so’m</p>
-          </li>
-
-          <li className="flex-center-between gap-5">
-            <div>
-              <h2 className="text-regular-16">Maxfiy foydalanuvchi</h2>
-              <p className="text-regular-14 text-[#A0AEC0]">#17365</p>
-            </div>
-            <p className="text-regular-14 text-[#C4C5C4]">15 000 so’m</p>
-          </li>
-
-          <li className="flex-center-between gap-5">
-            <div>
-              <h2 className="text-regular-16">Maxfiy foydalanuvchi</h2>
-              <p className="text-regular-14 text-[#A0AEC0]">#17365</p>
-            </div>
-            <p className="text-regular-14 text-[#C4C5C4]">15 000 so’m</p>
-          </li>
-
-          <li className="flex-center-between gap-5">
-            <div>
-              <h2 className="text-regular-16">Maxfiy foydalanuvchi</h2>
-              <p className="text-regular-14 text-[#A0AEC0]">#17365</p>
-            </div>
-            <p className="text-regular-14 text-[#C4C5C4]">15 000 so’m</p>
-          </li>
-
-          <li className="flex-center-between gap-5">
-            <div>
-              <h2 className="text-regular-16">Maxfiy foydalanuvchi</h2>
-              <p className="text-regular-14 text-[#A0AEC0]">#17365</p>
-            </div>
-            <p className="text-regular-14 text-[#C4C5C4]">15 000 so’m</p>
-          </li>
-
-          <li className="flex-center-between gap-5">
-            <div>
-              <h2 className="text-regular-16">Maxfiy foydalanuvchi</h2>
-              <p className="text-regular-14 text-[#A0AEC0]">#17365</p>
-            </div>
-            <p className="text-regular-14 text-[#C4C5C4]">15 000 so’m</p>
+            <p className="text-regular-14 text-[#C4C5C4] whitespace-nowrap">
+              15 000 so’m
+            </p>
           </li>
         </ul>
 
         <div className="flex-start gap-2 border border-white rounded-lg p-4">
           <svg
-          className="w-4 h-4 shrink-0"
+            className="w-4 h-4 shrink-0"
             width="16"
             height="16"
             viewBox="0 0 16 16"
@@ -114,7 +54,7 @@ const DonationBox = () => {
           </svg>
 
           <p className="text-regular-14">
-            Assalomu aleykum, hurmatli jamoamiz adminlari.
+            Assalomu alaykum, hurmatli jamoamiz adminlari.
             <br />
             <br />
             Ushbu sahifada siz yani 100k.uz saytiadminlari yordamida hayriya
