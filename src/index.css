@@ -632,6 +632,14 @@ html {
   }
 
   /* thead, tbody */
+  .admin table {
+    width: 1192px;  
+  }
+
+  .table-wrapper {
+    @apply overflow-x-auto scroll_hidden;
+  }
+
   .admin table :is(thead, tbody) {
     @apply block w-full;
   }
@@ -730,11 +738,14 @@ html {
   }
 
   .admin_page-header {
-    @apply flex-center justify-center relative text-center bg-linear-gradient_black-800 backdrop-filter backdrop-blur-120 rounded-20 py-8 mb-6;
+    @apply flex-center justify-center relative text-center bg-linear-gradient_black-800 backdrop-filter backdrop-blur-120 rounded-20 py-8 mb-6 max-490:py-5 max-490:mb-5;
   }
 
   .admin_page-header a {
     @apply absolute p-2 left-6 rounded-lg;
+  }
+  .admin_page-header h1 {
+    @apply max-490:text-base;
   }
 
   .admin_page-body {

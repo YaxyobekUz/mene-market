@@ -177,9 +177,10 @@ const App = () => {
               <Route path="payment" element={<Payment />} />
             </Route>
           )}
-          {/* error page */}
-          <Route path="*" element={<ErrorPage />} />
         </Route>
+
+        {/* error page */}
+        <Route path="*" element={<ErrorPage />} />
       </>
     )
   );

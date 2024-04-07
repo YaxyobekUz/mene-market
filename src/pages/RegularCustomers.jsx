@@ -21,111 +21,110 @@ const RegularCustomers = () => {
 
       <div className="w-full admin_page-body">
         <div className="flex-center-between gap-5 mb-6">
-          <p className="text-medium-18">Promokodlar</p>
+          <p className="text-medium-18 max-490:text-base">Promokodlar</p>
           <div className="flex gap-2.5">
             <button className="text-secondary-green-500 text-regular-13 p-0.5 rounded-sm focus:outline-secondary-green-500/50">
               Promo-kod yaratish
             </button>
-            <button className="text-primary-skyblue-500 text-regular-13 p-0.5 rounded-sm focus:outline-primary-skyblue-500/50">
-              Yuborish
-            </button>
           </div>
         </div>
 
-        <table className="block">
-          <thead>
-            <tr>
-              <th className="w-1/6">Promocode</th>
-              <th className="w-1/6">Tashrif</th>
-              <th className="w-1/6">O’rnatishlar</th>
-              <th className="w-1/6">Ko’rishlar soni</th>
-              <th className="w-1/6">Buyurtma</th>
-              <th className="w-1/6">Holati</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td className="w-1/6">mene-market</td>
-              <td className="w-1/6">99</td>
-              <td className="w-1/6">81</td>
-              <td className="w-1/6">654</td>
-              <td className="w-1/6">78</td>
-              <td className="w-1/6">
-                <div className="btn-success">Aktiv</div>
-              </td>
-            </tr>
-            <tr>
-              <td className="w-1/6">mene-market</td>
-              <td className="w-1/6">99</td>
-              <td className="w-1/6">81</td>
-              <td className="w-1/6">654</td>
-              <td className="w-1/6">78</td>
-              <td className="w-1/6">
-                <div className="btn-success">Aktiv</div>
-              </td>
-            </tr>
-            <tr>
-              <td className="w-1/6">mene-market</td>
-              <td className="w-1/6">99</td>
-              <td className="w-1/6">81</td>
-              <td className="w-1/6">654</td>
-              <td className="w-1/6">78</td>
-              <td className="w-1/6">
-                <div className="btn-skyblue">Muzlatilgan</div>
-              </td>
-            </tr>
-            <tr>
-              <td className="w-1/6">mene-market</td>
-              <td className="w-1/6">99</td>
-              <td className="w-1/6">81</td>
-              <td className="w-1/6">654</td>
-              <td className="w-1/6">78</td>
-              <td className="w-1/6">
-                <div className="btn-success">Aktiv</div>
-              </td>
-            </tr>
-            <tr>
-              <td className="w-1/6">mene-market</td>
-              <td className="w-1/6">99</td>
-              <td className="w-1/6">81</td>
-              <td className="w-1/6">654</td>
-              <td className="w-1/6">78</td>
-              <td className="w-1/6">
-                <div className="btn-success">Aktiv</div>
-              </td>
-            </tr>
-            <tr>
-              <td className="w-1/6">mene-market</td>
-              <td className="w-1/6">99</td>
-              <td className="w-1/6">81</td>
-              <td className="w-1/6">654</td>
-              <td className="w-1/6">78</td>
-              <td className="w-1/6">
-                <div className="btn-danger">To'xtatilgan</div>
-              </td>
-            </tr>
-            <tr>
-              <td className="w-1/6">mene-market</td>
-              <td className="w-1/6">99</td>
-              <td className="w-1/6">81</td>
-              <td className="w-1/6">654</td>
-              <td className="w-1/6">78</td>
-              <td className="w-1/6">
-                <div className="btn-success">Aktiv</div>
-              </td>
-            </tr>
-            <tr>
-              <td className="w-1/6">mene-market</td>
-              <td className="w-1/6">99</td>
-              <td className="w-1/6">81</td>
-              <td className="w-1/6">654</td>
-              <td className="w-1/6">78</td>
-              <td className="w-1/6">
-                <div className="btn-danger">To'xtatilgan</div>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+        <div className="table-wrapper">
+          <table className="block">
+            <thead>
+              <tr>
+                <th className="w-1/6">Promocode</th>
+                <th className="w-1/6">Tashrif</th>
+                <th className="w-1/6">O’rnatishlar</th>
+                <th className="w-1/6">Ko’rishlar soni</th>
+                <th className="w-1/6">Buyurtma</th>
+                <th className="w-1/6">Holati</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td className="w-1/6">mene-market</td>
+                <td className="w-1/6">99</td>
+                <td className="w-1/6">81</td>
+                <td className="w-1/6">654</td>
+                <td className="w-1/6">78</td>
+                <td className="w-1/6">
+                  <div className="btn-success">Aktiv</div>
+                </td>
+              </tr>
+              <tr>
+                <td className="w-1/6">mene-market</td>
+                <td className="w-1/6">99</td>
+                <td className="w-1/6">81</td>
+                <td className="w-1/6">654</td>
+                <td className="w-1/6">78</td>
+                <td className="w-1/6">
+                  <div className="btn-success">Aktiv</div>
+                </td>
+              </tr>
+              <tr>
+                <td className="w-1/6">mene-market</td>
+                <td className="w-1/6">99</td>
+                <td className="w-1/6">81</td>
+                <td className="w-1/6">654</td>
+                <td className="w-1/6">78</td>
+                <td className="w-1/6">
+                  <div className="btn-skyblue">Muzlatilgan</div>
+                </td>
+              </tr>
+              <tr>
+                <td className="w-1/6">mene-market</td>
+                <td className="w-1/6">99</td>
+                <td className="w-1/6">81</td>
+                <td className="w-1/6">654</td>
+                <td className="w-1/6">78</td>
+                <td className="w-1/6">
+                  <div className="btn-success">Aktiv</div>
+                </td>
+              </tr>
+              <tr>
+                <td className="w-1/6">mene-market</td>
+                <td className="w-1/6">99</td>
+                <td className="w-1/6">81</td>
+                <td className="w-1/6">654</td>
+                <td className="w-1/6">78</td>
+                <td className="w-1/6">
+                  <div className="btn-success">Aktiv</div>
+                </td>
+              </tr>
+              <tr>
+                <td className="w-1/6">mene-market</td>
+                <td className="w-1/6">99</td>
+                <td className="w-1/6">81</td>
+                <td className="w-1/6">654</td>
+                <td className="w-1/6">78</td>
+                <td className="w-1/6">
+                  <div className="btn-danger">To'xtatilgan</div>
+                </td>
+              </tr>
+              <tr>
+                <td className="w-1/6">mene-market</td>
+                <td className="w-1/6">99</td>
+                <td className="w-1/6">81</td>
+                <td className="w-1/6">654</td>
+                <td className="w-1/6">78</td>
+                <td className="w-1/6">
+                  <div className="btn-success">Aktiv</div>
+                </td>
+              </tr>
+              <tr>
+                <td className="w-1/6">mene-market</td>
+                <td className="w-1/6">99</td>
+                <td className="w-1/6">81</td>
+                <td className="w-1/6">654</td>
+                <td className="w-1/6">78</td>
+                <td className="w-1/6">
+                  <div className="btn-danger">To'xtatilgan</div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );
