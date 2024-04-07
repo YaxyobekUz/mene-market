@@ -26,8 +26,8 @@ const Appeals = () => {
       <div className="w-full admin_page-body">
         {/* body header */}
         <div className="flex-center-between gap-5 mb-6">
-          <div className="flex gap-6 w-full">
-            <button className="flex-center gap-2.5 text-regular-16 text-[#C4C5C4] py-2 px-4 border border-white rounded-lg">
+          <div className="flex gap-6 w-full max-640:gap-4 max-490:flex-col">
+            <button className="flex-center gap-2.5 text-regular-16 max-490:text-regular-14 text-[#C4C5C4] py-2 px-4 border border-white rounded-lg shrink-0 max-490:justify-center">
               <span>Murojaat qilish</span>
               <img
                 width={24}
@@ -57,77 +57,101 @@ const Appeals = () => {
 
         {/* list */}
         <ul className="space-y-4">
-          <li className="flex-center-between gap-5">
-            <div className="flex-center gap-6">
-              <p className="text-regular-16">#2126</p>
+          <li className="flex-center-between gap-5 max-375:gap-3">
+            <div className="flex-center gap-6 max-490:gap-4 max-375:gap-2.5">
+              <p className="text-regular-16 max-490:text-regular-14">#123</p>
               <div>
-                <h3 className="text-regular-16">Ilova ishlashiga oid</h3>
+                <h3 className="text-regular-16 line-clamp-1 max-490:text-regular-14 max-490:mb-1">
+                  Ilova ishlashiga oid
+                </h3>
                 <p className="text-regular-14 text-[#C4C5C4]">
                   26-03-2024, 13 : 45
                 </p>
               </div>
             </div>
-            <div className="btn-danger">Yopiq</div>
+            <button className="btn-danger max-490:text-regular-14">
+              Yopiq
+            </button>
           </li>
-          <li className="flex-center-between gap-5">
-            <div className="flex-center gap-6">
-              <p className="text-regular-16">#2126</p>
+          <li className="flex-center-between gap-5 max-375:gap-3">
+            <div className="flex-center gap-6 max-490:gap-4 max-375:gap-2.5">
+              <p className="text-regular-16 max-490:text-regular-14">#123</p>
               <div>
-                <h3 className="text-regular-16">Ilova ishlashiga oid</h3>
+                <h3 className="text-regular-16 line-clamp-1 max-490:text-regular-14 max-490:mb-1">
+                  Ilova ishlashiga oid
+                </h3>
                 <p className="text-regular-14 text-[#C4C5C4]">
                   26-03-2024, 13 : 45
                 </p>
               </div>
             </div>
-            <div className="btn-success ">Ochiq</div>
+            <button className="btn-success max-490:text-regular-14">
+              Ochiq
+            </button>
           </li>
-          <li className="flex-center-between gap-5">
-            <div className="flex-center gap-6">
-              <p className="text-regular-16">#2126</p>
+          <li className="flex-center-between gap-5 max-375:gap-3">
+            <div className="flex-center gap-6 max-490:gap-4 max-375:gap-2.5">
+              <p className="text-regular-16 max-490:text-regular-14">#123</p>
               <div>
-                <h3 className="text-regular-16">Ilova ishlashiga oid</h3>
+                <h3 className="text-regular-16 line-clamp-1 max-490:text-regular-14 max-490:mb-1">
+                  Ilova ishlashiga oid
+                </h3>
                 <p className="text-regular-14 text-[#C4C5C4]">
                   26-03-2024, 13 : 45
                 </p>
               </div>
             </div>
-            <div className="btn-success ">Ochiq</div>
+            <button className="btn-success max-490:text-regular-14">
+              Ochiq
+            </button>
           </li>
-          <li className="flex-center-between gap-5">
-            <div className="flex-center gap-6">
-              <p className="text-regular-16">#2126</p>
+          <li className="flex-center-between gap-5 max-375:gap-3">
+            <div className="flex-center gap-6 max-490:gap-4 max-375:gap-2.5">
+              <p className="text-regular-16 max-490:text-regular-14">#123</p>
               <div>
-                <h3 className="text-regular-16">Ilova ishlashiga oid</h3>
+                <h3 className="text-regular-16 line-clamp-1 max-490:text-regular-14 max-490:mb-1">
+                  Ilova ishlashiga oid
+                </h3>
                 <p className="text-regular-14 text-[#C4C5C4]">
                   26-03-2024, 13 : 45
                 </p>
               </div>
             </div>
-            <div className="btn-danger">Yopiq</div>
+            <button className="btn-danger max-490:text-regular-14">
+              Yopiq
+            </button>
           </li>
-          <li className="flex-center-between gap-5">
-            <div className="flex-center gap-6">
-              <p className="text-regular-16">#2126</p>
+          <li className="flex-center-between gap-5 max-375:gap-3">
+            <div className="flex-center gap-6 max-490:gap-4 max-375:gap-2.5">
+              <p className="text-regular-16 max-490:text-regular-14">#123</p>
               <div>
-                <h3 className="text-regular-16">Ilova ishlashiga oid</h3>
+                <h3 className="text-regular-16 line-clamp-1 max-490:text-regular-14 max-490:mb-1">
+                  Ilova ishlashiga oid
+                </h3>
                 <p className="text-regular-14 text-[#C4C5C4]">
                   26-03-2024, 13 : 45
                 </p>
               </div>
             </div>
-            <div className="btn-success ">Ochiq</div>
+            <button className="btn-success max-490:text-regular-14">
+              Ochiq
+            </button>
           </li>
-          <li className="flex-center-between gap-5">
-            <div className="flex-center gap-6">
-              <p className="text-regular-16">#2126</p>
+          <li className="flex-center-between gap-5 max-375:gap-3">
+            <div className="flex-center gap-6 max-490:gap-4 max-375:gap-2.5">
+              <p className="text-regular-16 max-490:text-regular-14">#123</p>
               <div>
-                <h3 className="text-regular-16">Ilova ishlashiga oid</h3>
+                <h3 className="text-regular-16 line-clamp-1 max-490:text-regular-14 max-490:mb-1">
+                  Ilova ishlashiga oid
+                </h3>
                 <p className="text-regular-14 text-[#C4C5C4]">
                   26-03-2024, 13 : 45
                 </p>
               </div>
             </div>
-            <div className="btn-danger">Yopiq</div>
+            <button className="btn-danger max-490:text-regular-14">
+              Yopiq
+            </button>
           </li>
         </ul>
       </div>
