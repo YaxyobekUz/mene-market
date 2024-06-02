@@ -1,13 +1,23 @@
 import axios from "axios";
+const authData = JSON.parse(localStorage.getItem("auth"));
 
-// set base url
-axios.defaults.baseURL = "https://mnmarket.azurewebsites.net/api";
+// create Axios instance
+const axiosConfig = axios.create({
+  baseURL: "https://menemarket-8699a792d090.herokuapp.com/api",
+});
 
-// axios.interceptors.request.use((config) => {
-//   config.headers.Accept = "application/json, text/plain";
-//   config.headers["Content-Type"] = "application/json";
-//   return config;
-// });
+// Add a request interceptor
+axiosConfig.interceptors.request.use(
+  (config) => {
+    config.headers["Authorization"] = `Bearer ${
+      authData ? authData.token : ""
+    }`;
+    return config;
+  },
+  (error) => {
+    console.log("errorbek", error);
+    return Promise.reject(error);
+  }
+);
 
-// export axios
-export default axios;
+export default axiosConfig;
