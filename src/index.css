@@ -545,60 +545,18 @@ html {
     text-transform: initial !important;
   }
 
-  /* login & register */
-  .register-form,
-  .login-form {
+  /* auth */
+  .auth-form {
     @apply space-y-8 max-640:space-y-6 max-450:space-y-5;
   }
 
-  .register-form_input,
-  .login-form_input {
-    @apply rounded-none p-0 pb-3.5 border-b-2 border-primary-gray-500 focus:outline-0 focus:border-primary-blue-700 focus:border-opacity-70;
-  }
-
-  .register-form_password-input-wrapper,
-  .login-form_password-input-wrapper {
-    @apply flex flex-col relative;
-  }
-
-  .register-form_password-input-wrapper-button,
-  .login-form_password-input-wrapper-button {
-    @apply absolute top-2 right-0 rounded-sm;
-  }
-
-  .register-form_privacy-policy-wrapper,
-  .login-form_sub-content,
-  .login-form_sub-content_input-wrapper {
-    @apply flex-center gap-3 text-regular-16 text-primary-gray-500;
-  }
-
-  .login-form_sub-content {
-    @apply flex-center justify-between gap-4 flex-wrap-reverse;
-  }
-
-  .register-form_privacy-policy-wrapper a,
-  .login-form_sub-content a {
-    @apply text-medium-18 text-primary-black-800 max-540:text-regular-16;
-  }
-
-  .register-form_input-checkbox,
-  .login-form_input-checkbox {
-    @apply w-5 h-5 border-primary-gray-500 !rounded-lg outline-offset-0;
-    border-width: 1.5px;
-  }
-
-  .register-form_submit-btn,
-  .login-form_submit-btn {
-    @apply flex-center justify-center py-2.5 px-10 text-white text-regular-16 w-full rounded-lg bg-primary-black-800;
+  .auth-form-input {
+    @apply p-0 pb-3.5 rounded-none border-b-2 border-primary-gray-500;
   }
 
   /* invalid */
   .is-invalid {
-    @apply !border-primary-red-500 !outline-primary-red-500;
-  }
-
-  .is-invalid + span {
-    @apply !inline-block;
+    @apply !border-b-primary-red-500;
   }
 
   /* admin */
@@ -633,7 +591,7 @@ html {
 
   /* thead, tbody */
   .admin table {
-    width: 1192px;  
+    width: 1192px;
   }
 
   .table-wrapper {
