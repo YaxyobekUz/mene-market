@@ -1,259 +1,209 @@
 import React, { useState } from "react";
+
+// router dom
 import { Link, useNavigate } from "react-router-dom";
 
-// images
-import logo from "../assets/images/other/logo.png";
-import chair from "../assets/images/other/chair.png";
-import { register } from "../api/auth/register";
+// axios
+import axiosConfig from "../api/axios/axios";
 
-// helpers & regex
-import { getElement, validateInput } from "../js/helpers";
+// helpers
 import {
-  emailRegex,
-  passwordRegex,
-  defaultRegex,
-  usernameRegex,
-} from "../js/regexes";
+  checkInputValueByRegex,
+  errorNotification,
+  getElement,
+  successNotification,
+} from "../helpers/helpers";
+import { emailRegex, passwordRegex } from "../helpers/regexes";
+
+// images
+import eye from "../assets/images/svg/eye.svg";
+import logo from "../assets/images/other/logo.png";
+import eyeSlash from "../assets/images/svg/eye-slash.svg";
 
 const Register = () => {
-  const setNavigate = useNavigate();
-  const [passwordInput, setPasswordInput] = useState(true);
+  const navigate = useNavigate();
   const [loader, setLoader] = useState(false);
   const [isAgree, setIsAgree] = useState(false);
+  const [passwordInput, setPasswordInput] = useState(true);
 
-  const onSubmit = (e) => {
+  const register = (e) => {
+    e.preventDefault();
+
     // form elements
-    const elUserNameInput = getElement(e, ".js-username-input");
     const elNameInput = getElement(e, ".js-name-input");
     const elEmailInput = getElement(e, ".js-email-input");
-    const elPasswordInput = getElement(e, ".js-password-input");
     const elSurnameInput = getElement(e, ".js-surname-input");
+    const elPasswordInput = getElement(e, ".js-password-input");
 
-    // inputs
-    const password = validateInput(
-      passwordRegex,
-      elPasswordInput,
-      "is-invalid"
-    );
-    const email = validateInput(emailRegex, elEmailInput, "is-invalid");
-    const userName = validateInput(
-      usernameRegex,
-      elUserNameInput,
-      "is-invalid"
-    );
-    const name = validateInput(defaultRegex, elNameInput, "is-invalid");
-    elSurnameInput.value.length
-      ? validateInput(defaultRegex, elSurnameInput, "is-invalid")
-      : elSurnameInput.classList.remove("is-invalid");
+    const name = checkInputValueByRegex(elNameInput);
+    const email = checkInputValueByRegex(elEmailInput, emailRegex);
+    const password = checkInputValueByRegex(elPasswordInput, passwordRegex);
 
-    // check form elements value and loader
-    if (!loader && email && password && userName && name) {
+    // check form elements value
+    if (!loader && isAgree && email && password && name) {
       // set loader
       setLoader(true);
 
-      const userData = {
-        firstName: elNameInput.value,
-        lastName: elSurnameInput.value,
-        email: elEmailInput.value,
-        password: elPasswordInput.value,
-        balance: 0,
-        isArchived: false,
+      const formData = {
         role: 0,
+        balance: 0,
+        image: null,
+        userChats: [],
+        offerLinks: [],
+        productsSold: 0,
+        isArchived: false,
+        phoneNumber: null,
+        balanceHistorys: [],
+        email: elEmailInput.value.trim(),
+        firstName: elNameInput.value.trim(),
+        password: elPasswordInput.value.trim(),
+        lastName:
+          elSurnameInput.value.trim().length > 0
+            ? elSurnameInput.value.trim()
+            : null,
       };
 
-      register(userData)
-        .then((response) => {
-          setTimeout(() => {
-            setNavigate("/auth/login");
-          }, 1000);
+      axiosConfig
+        .post("/Accaunt/Register", formData)
+        .then((res) => {
+          if (res.status === 200) {
+            navigate("/auth/login");
+            successNotification("Muvaffaqiyatli ro'yxatdan o'tdingiz");
+          } else {
+            errorNotification("Nimadir xato ketdi");
+          }
         })
-        .catch((error) => {})
+        .catch(() => errorNotification.offline())
         .finally(() => setLoader(false));
     }
   };
+
   return (
     <div className="flex-center justify-center grow container !px-0 max-w-[1480px] h-full">
       <div className="grid grid-cols-2 h-screen w-full max-768:grid-cols-1">
-        {/* img wrapper */}
-        <div
-          className="flex justify-center w-full h-full bg-center bg-cover bg-no-repeat max-768:hidden"
-          style={{
-            backgroundImage: `url(${chair})`,
-          }}
-        >
-          {/* logo */}
+        {/* image */}
+        <div className="flex justify-center items-start w-full h-full bg-[url('./assets/images/other/chair.png')] bg-center bg-cover bg-no-repeat max-768:hidden">
           <Link to="/" className="mt-16">
             <img
               width={96}
               height={48}
               src={logo}
-              alt="mene market logo image"
+              alt="mene market logo"
               className="w-24 h-12"
             />
           </Link>
         </div>
 
-        {/* main content, login form */}
+        {/* register form */}
         <div className="flex justify-center px-16 py-8 h-screen overflow-y-auto w-full max-1024:px-5 max-860:py-10 max-768:h-auto max-768:overflow-y-visible scroll_hidden">
           <div className="max-w-[456px] w-full my-auto">
-            {/* title */} <h1 className="mb-6">Ro'yxatdan o'tish </h1>
+            <h1 className="mb-6">Ro'yxatdan o'tish </h1>
+
+            {/* description */}
             <p className="text-regular-16 text-primary-gray-500 mb-8">
               <span>Allaqachon akkuntingiz bormi? </span>
               <Link to="/auth/login" className="text-primary-blue-700 mb-8">
                 Kirish
               </Link>
             </p>
-            {/* form */}
-            <form
-              id="registration-form"
-              onSubmit={(event) => {
-                event.preventDefault();
-                onSubmit(event);
-              }}
-              className="register-form"
-            >
+
+            {/* login form */}
+            <form onSubmit={register} className="register-form">
+              {/* name */}
               <input
-                autoComplete="off"
                 autoFocus
                 name="name"
                 type="text"
-                className="register-form_input js-name-input"
+                autoComplete="off"
                 placeholder="Ismingiz"
+                className="auth-form-input js-name-input"
               />
-              <span className="hidden text-regular-14 text-primary-red-500 italic !mt-1.5">
-                Ismingizni kiriting
-              </span>
+
+              {/* surname */}
               <input
-                autoComplete="off"
+                type="text"
                 name="surname"
-                type="text"
-                className="register-form_input js-surname-input"
-                placeholder="Familiyangiz(Ixtiyoriy)"
-              />
-              <span className="hidden text-regular-14 text-primary-red-500 italic !mt-1.5">
-                Familiyangizni to'g'ri kiriting
-              </span>
-              <input
                 autoComplete="off"
-                type="text"
-                className="register-form_input js-username-input"
-                placeholder="Foydalanuvchi nomi"
+                className="auth-form-input js-surname-input"
+                placeholder="Familiyangiz (Ixtiyoriy)"
               />
-              <span className="hidden text-regular-14 text-primary-red-500 italic !mt-1.5">
-                Foydalanuvchi nomini to'g'ri kiriting
-              </span>
+
+              {/* email */}
               <input
-                autoComplete="off"
                 name="email"
                 type="email"
-                className="register-form_input js-email-input"
+                autoComplete="off"
                 placeholder="E-pochta manzilingiz"
+                className="auth-form-input js-email-input"
               />
-              <span className="hidden text-regular-14 text-primary-red-500 italic !mt-1.5">
-                E-pochta formatini to'g'ri kiriting
-              </span>
-              <div className="login-form_password-input-wrapper">
+
+              {/* password */}
+              <div className="flex flex-col relative">
                 <input
-                  autoComplete="off"
                   name="password"
-                  type={`${passwordInput ? "password" : "text"}`}
-                  className="login-form_input js-password-input"
+                  autoComplete="off"
                   placeholder="Parol"
+                  className="auth-form-input js-password-input"
+                  type={`${passwordInput ? "password" : "text"}`}
                 />
-                <span className="hidden text-regular-14 text-primary-red-500 italic !mt-1.5">
-                  Parol kamida 8 ta belgidan iborat bo'lishi kerak
-                </span>
+
+                {/* set toggle password input */}
                 <button
-                  className="login-form_password-input-wrapper-button"
                   type="button"
                   onClick={() => setPasswordInput(!passwordInput)}
+                  className="login-form_password-input-wrapper-button"
                 >
                   {passwordInput ? (
-                    <svg
+                    <img
+                      src={eye}
+                      width={24}
+                      height={24}
+                      alt="eye icon"
                       className="w-6 h-6"
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                    >
-                      <path
-                        d="M21.1303 9.8531C22.2899 11.0732 22.2899 12.9268 21.1303 14.1469C19.1745 16.2047 15.8155 19 12 19C8.18448 19 4.82549 16.2047 2.86971 14.1469C1.7101 12.9268 1.7101 11.0732 2.86971 9.8531C4.82549 7.79533 8.18448 5 12 5C15.8155 5 19.1745 7.79533 21.1303 9.8531Z"
-                        stroke="#949494"
-                        strokeWidth="1.5"
-                      />
-                      <path
-                        d="M15 12C15 13.6569 13.6569 15 12 15C10.3431 15 9 13.6569 9 12C9 10.3431 10.3431 9 12 9C13.6569 9 15 10.3431 15 12Z"
-                        stroke="#949494"
-                        strokeWidth="1.5"
-                      />
-                    </svg>
+                    />
                   ) : (
-                    <svg
+                    <img
+                      width={24}
+                      height={24}
+                      src={eyeSlash}
+                      alt="eye slash icon"
                       className="w-6 h-6"
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                    >
-                      <path
-                        d="M21.1303 9.8531C22.2899 11.0732 22.2899 12.9268 21.1303 14.1469C19.1745 16.2047 15.8155 19 12 19C8.18448 19 4.82549 16.2047 2.86971 14.1469C1.7101 12.9268 1.7101 11.0732 2.86971 9.8531C4.82549 7.79533 8.18448 5 12 5C15.8155 5 19.1745 7.79533 21.1303 9.8531Z"
-                        stroke="#949494"
-                        strokeWidth="1.5"
-                      />
-                      <path
-                        d="M15 12C15 13.6569 13.6569 15 12 15C10.3431 15 9 13.6569 9 12C9 10.3431 10.3431 9 12 9C13.6569 9 15 10.3431 15 12Z"
-                        stroke="#949494"
-                        strokeWidth="1.5"
-                      />
-                      <path
-                        d="M4 20L20 4"
-                        stroke="#949494"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                      />
-                    </svg>
+                    />
                   )}
                 </button>
               </div>
+
               {/* agree */}
-              <label className="register-form_privacy-policy-wrapper">
+              <label className="flex-center gap-3 text-regular-16 text-primary-gray-500">
                 <input
+                  type="checkbox"
                   autoComplete="off"
                   onChange={(e) => {
-                    if (e.target.checked) {
-                      setIsAgree(true);
-                    } else {
-                      setIsAgree(false);
-                    }
+                    e.target.checked ? setIsAgree(true) : setIsAgree(false);
                   }}
-                  type="checkbox"
                   className="register-form_input-checkbox js-checkbox-input"
                 />
-                <span className="register-form_privacy-policy-wrapper_text !text-base">
-                  <span> Men </span>
-                  <Link
-                    to="/public-offer#maxfiylik-siyosati"
-                    className="!text-base"
-                  >
-                    Maxfiylik siyosati
+
+                {/* checkbox wrapper */}
+                <div className="!text-base">
+                  <span>Men </span>
+                  <Link className="!text-base text-primary-black-800 font-medium">
+                    Maxfiylik siyosati{" "}
                   </Link>
-                  <span> va </span>
-                  <Link
-                    to="/public-offer#foydalanish-shartlari"
-                    className="!text-base"
-                  >
-                    Foydalanish shartlari
+                  <span>va </span>
+                  <Link className="!text-base text-primary-black-800 font-medium">
+                    Foydalanish shartlari{" "}
                   </Link>
-                  <span> ga roziman </span>
-                </span>
+                  <span>ga roziman.</span>
+                </div>
               </label>
+
+              {/* submit button */}
               <button
                 disabled={loader || !isAgree}
                 className={`${
                   loader || !isAgree ? "opacity-70" : "opacity-100"
-                } register-form_submit-btn js-submit-btn transition-colors`}
+                } flex-center justify-center py-2.5 text-white text-regular-16 w-full rounded-lg bg-primary-black-800 transition-opacity`}
               >
                 {!loader ? "Ro'yxatdan o'tish" : "Ro'yxatdan o'tilmoqda..."}
               </button>
