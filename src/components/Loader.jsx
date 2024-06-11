@@ -4,13 +4,7 @@ import React from "react";
 import logo from "../assets/images/other/logo.png";
 const Loader = ({ loaderStyles }) => {
   return (
-    <div
-      style={{
-        ...loaderStyles,
-        transition: "opacity 0.4s ease, transform 0.3s ease",
-      }}
-      className="z-50 fixed inset-0 min-w-full min-h-screen items-center justify-center bg-white"
-    >
+    <div className="flex fixed z-50 inset-0 min-w-full min-h-screen items-center justify-center bg-white">
       <img
         width={96}
         height={48}
