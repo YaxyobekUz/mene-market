@@ -1,6 +1,6 @@
 import React from "react";
 const StarRating = ({ value, showText }) => (
-  <div className="flex items-center gap-3">
+  <div className="flex items-center gap-3 flex-wrap">
     {/* stars */}
     <div className="flex items-center gap-1.5">
       {Array.from({ length: 5 }, (_, index) => (
