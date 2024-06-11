@@ -38,6 +38,10 @@ export const checkInputValueByRegex = (input, regex) => {
   }
 };
 
+export const formatNumber = (num) => {
+  return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+};
+
 // notifications
 export const successNotification = (message) => {
   if (message) {
