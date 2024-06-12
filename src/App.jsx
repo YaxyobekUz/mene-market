@@ -2,58 +2,65 @@ import React, { useEffect, useState } from "react";
 import {
   BrowserRouter as Router,
   Route,
-  Routes,
   createBrowserRouter,
   createRoutesFromElements,
   RouterProvider,
+  Navigate,
+  Outlet,
 } from "react-router-dom";
 
 // for auth
-import { loggedIn, notLoggedIn } from "./store/slices/productBasketSlice";
-import { setUserData } from "./store/slices/userDataSlice";
+import { decodeToken } from "react-jwt";
 import { getUserById } from "./api/auth/getUserById";
 import { useDispatch, useSelector } from "react-redux";
-import { decodeToken } from "react-jwt";
+import { setUserData } from "./store/slices/userDataSlice";
+import { loggedIn, notLoggedIn } from "./store/slices/productBasketSlice";
 
 // images
 import Loader from "./components/Loader";
 
 // layouts
 import MainRoot from "./layouts/MainRoot";
-import AdminRoot from "./layouts/AdminRoot";
-import DashboardRoot from "./layouts/DashboardRoot";
-import ProfileRoot from "./layouts/ProfileRoot";
 import AuthRoot from "./layouts/AuthRoot";
+import AdminRoot from "./layouts/AdminRoot";
+import ProfileRoot from "./layouts/ProfileRoot";
+import DashboardRoot from "./layouts/DashboardRoot";
 
 // pages
 import Home from "./pages/Home";
-import Products from "./pages/Products";
-import ProductDetail from "./pages/ProductDetail";
-import Contact from "./pages/Contact";
-import PublicOffer from "./pages/PublicOffer";
-import Login from "./pages/Login";
-import Register from "./pages/Register";
-import Category from "./pages/Category";
-import Dashboard from "./pages/Dashboard";
-import RegularCustomers from "./pages/RegularCustomers";
-import Appeals from "./pages/Appeals";
-import Requests from "./pages/Requests";
-import Competitions from "./pages/Competitions";
-import BalanceHistory from "./pages/BalanceHistoryPage";
-import DonationBox from "./pages/DonationBox";
-import Market from "./pages/Market";
 import Flow from "./pages/Flow";
-import Statistics from "./pages/Statistics";
+import Login from "./pages/Login";
+import Market from "./pages/Market";
 import Payment from "./pages/Payment";
 import Profile from "./pages/Profile";
-import ConnectWithTelegram from "./pages/ConnectWithTelegram";
-import ErrorPage from "./pages/ErrorPage";
 import Account from "./pages/Account";
+import Contact from "./pages/Contact";
+import Appeals from "./pages/Appeals";
+import Requests from "./pages/Requests";
+import Products from "./pages/Products";
+import Register from "./pages/Register";
+import Category from "./pages/Category";
+import ErrorPage from "./pages/ErrorPage";
+import Dashboard from "./pages/Dashboard";
+import Statistics from "./pages/Statistics";
+import PublicOffer from "./pages/PublicOffer";
+import DonationBox from "./pages/DonationBox";
+import Competitions from "./pages/Competitions";
+import ProductDetail from "./pages/ProductDetail";
+import RegularCustomers from "./pages/RegularCustomers";
+import BalanceHistory from "./pages/BalanceHistoryPage";
+import ConnectWithTelegram from "./pages/ConnectWithTelegram";
+import Search from "./pages/Search";
+import axiosConfig from "./api/axios/axios";
+import {
+  setProductsData,
+  setProductsLoader,
+} from "./store/slices/productsDataSlice";
 
 const App = () => {
   const dispatch = useDispatch();
-  const { isLoggedIn } = useSelector((store) => store.isLoggedIn);
   const [loader, setLoader] = useState(true);
+  const { isLoggedIn } = useSelector((store) => store.isLoggedIn);
 
   // auto login
   useEffect(() => {
@@ -94,94 +101,75 @@ const App = () => {
     }
   }, []);
 
-  // loader & loader styles
-  const [loaderStyles, setLoaderStyles] = useState({
-    display: "flex",
-    opacity: 1,
-    transform: "translateY(0px)",
-  });
-
+  // get products data
   useEffect(() => {
-    if (!loader) {
-      setLoaderStyles({
-        display: "flex",
-        opacity: 0,
-        transform: "translateY(100px)",
+    axiosConfig
+      .get("/Product?userRoleString=0", {
+        headers: {
+          timeout: Infinity,
+        },
+      })
+      .then((res) => {
+        dispatch(setProductsData(res.data));
+      })
+      .finally(() => {
+        dispatch(setProductsLoader(false));
       });
-
-      const timeout = setTimeout(() => {
-        setLoaderStyles({
-          display: "none",
-          opacity: 1,
-          transform: "translateY(0px)",
-        });
-      }, 500);
-
-      return () => clearTimeout(timeout);
-    }
-  }, [loader]);
+  }, []);
 
   const router = createBrowserRouter(
     createRoutesFromElements(
-      <>
-        {/* router */}
-        <Route
-          path="/"
-          element={
-            <>
-              <MainRoot />
-              {/* loader */}
-              <Loader loaderStyles={loaderStyles} />
-            </>
-          }
-        >
+      <Route>
+        <Route path="/" element={!loader ? <MainRoot /> : <Loader />}>
           <Route index element={<Home />} />
-          <Route path="/products" element={<Products />} />
-          <Route path="/product/:productName" element={<ProductDetail />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/public-offer" element={<PublicOffer />} />
-          <Route path="/category/:categoryName" element={<Category />} />
+          <Route path="contact" element={<Contact />} />
+          <Route path="public-offer" element={<PublicOffer />} />
+          <Route path="search/:searchQuery" element={<Search />} />
+          <Route path="product/:productName" element={<ProductDetail />} />
+
+          {/* products */}
+          <Route path="products" element={<Outlet />}>
+            <Route index path=":productType?" element={<Products />} />
+          </Route>
 
           {/* auth */}
-          <Route path="/auth" element={<AuthRoot />}>
+          <Route path="auth" element={<AuthRoot />}>
             <Route path="login" element={<Login />} />
             <Route path="signup" element={<Register />} />
           </Route>
 
           {/* admin */}
-          {isLoggedIn && (
-            <Route path="/admin" element={<AdminRoot />}>
-              <Route path="dashboard" element={<DashboardRoot />}>
-                <Route index element={<Dashboard />} />
+          <Route
+            path="admin"
+            element={isLoggedIn ? <AdminRoot /> : <Navigate to="/" />}
+          >
+            <Route path="dashboard" element={<DashboardRoot />}>
+              <Route index element={<Dashboard />} />
+              <Route path="regular-customers" element={<RegularCustomers />} />
+              <Route path="appeals" element={<Appeals />} />
+              <Route path="requests" element={<Requests />} />
+              <Route path="competitions" element={<Competitions />} />
+              <Route path="balance-history" element={<BalanceHistory />} />
+              <Route path="donation-box" element={<DonationBox />} />
+              <Route path="profile" element={<ProfileRoot />}>
+                <Route index element={<Profile />} />
+                <Route path="account" element={<Account />} />
                 <Route
-                  path="regular-customers"
-                  element={<RegularCustomers />}
+                  path="connect-with-telegram"
+                  element={<ConnectWithTelegram />}
                 />
-                <Route path="appeals" element={<Appeals />} />
-                <Route path="requests" element={<Requests />} />
-                <Route path="competitions" element={<Competitions />} />
-                <Route path="balance-history" element={<BalanceHistory />} />
-                <Route path="donation-box" element={<DonationBox />} />
-                <Route path="profile" element={<ProfileRoot />}>
-                  <Route index element={<Profile />} />
-                  <Route path="account" element={<Account />} />
-                  <Route
-                    path="connect-with-telegram"
-                    element={<ConnectWithTelegram />}
-                  />
-                </Route>
               </Route>
-              <Route path="market" element={<Market />} />
-              <Route path="flow" element={<Flow />} />
-              <Route path="statistics" element={<Statistics />} />
-              <Route path="payment" element={<Payment />} />
             </Route>
-          )}
+            <Route path="flow" element={<Flow />} />
+            <Route path="market" element={<Market />} />
+            <Route path="payment" element={<Payment />} />
+            <Route path="statistics" element={<Statistics />} />
+          </Route>
         </Route>
 
         {/* error page */}
         <Route path="*" element={<ErrorPage />} />
-      </>
+      </Route>
     )
   );
 
