@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 
 // redux
 import { useSelector } from "react-redux";
@@ -15,7 +15,10 @@ import supportIcon from "../assets/images/svg/support-icon.svg";
 
 const Header = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const { searchQuery } = useParams();
   const authData = useSelector((store) => store.authData);
+  const pathArr = location.pathname.split("/").filter((item) => item !== "");
 
   const searchProducts = (event) => {
     event.preventDefault();
@@ -51,6 +54,11 @@ const Header = () => {
                 type="search"
                 placeholder="Qidirish"
                 className="js-search-input rounded-3xl py-3 pr-14 border border-primary-black-800 px-6 text-medium-18 bg-transparent"
+                defaultValue={
+                  pathArr.length === 2 && pathArr[0] === "search"
+                    ? searchQuery
+                    : ""
+                }
               />
 
               {/* search form submit button  */}
