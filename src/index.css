@@ -191,11 +191,15 @@ html {
   }
 
   .btn-primary_gold {
-    @apply main-btn text-primary-gold-400 border-primary-goldtext-primary-gold-400;
+    @apply main-btn text-primary-gold-400 border-primary-gold;
   }
 
   .btn-primary_linear-blue {
     @apply main-btn rounded-18 py-2 px-2.5 text-white bg-linear-gradient_blue-500 border-0 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .main-btn.active {
+    @apply bg-linear-gradient_blue-500 border-primary-skyblue-500 text-white;
   }
 
   /* shadow, filter */
@@ -323,29 +327,6 @@ html {
 
   .categories-section_list .item_text {
     @apply text-regular-16;
-  }
-
-  /* faq */
-  .faq_list {
-    @apply grid-4 gap-30;
-  }
-
-  .faq_list_item {
-    @apply flex-start flex-col p-6 rounded-20 space-y-2 text-primary-gray-500 text-regular-13;
-    box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15),
-      0px 1px 2px 0px rgba(0, 0, 0, 0.3);
-  }
-
-  .faq_list_item-img_wrapper {
-    @apply bg-linear-gradient_blue-500 p-3 rounded-2xl;
-  }
-
-  .faq_list_item-img {
-    @apply w-6 h-6;
-  }
-
-  .faq_list_item-title {
-    @apply text-medium-18;
   }
 
   /* tab */
