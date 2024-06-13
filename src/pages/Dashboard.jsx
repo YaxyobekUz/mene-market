@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 
@@ -15,6 +15,29 @@ import crown from "../assets/images/svg/crown.svg";
 
 const Dashboard = () => {
   const { userData } = useSelector((store) => store.userData);
+
+  // calculate clients
+  const [clients, setClients] = useState(0);
+  if (userData) {
+    console.log(userData);
+    if (userData.offerLinks.length > 0) {
+      let allClients = 0;
+      userData.offerLinks.map((offerLink) => {
+        let clients = 0;
+        offerLink.clients.forEach((client) => {
+          if (client.statusType !== 0) {
+            clients += 1;
+          }
+        });
+
+        allClients += clients;
+      });
+      setClients(allClients);
+    }
+  } else {
+    setClients(0);
+  }
+
   return (
     <div className="w-full space-y-6 max-450:space-y-5">
       {/* hero */}
@@ -48,9 +71,7 @@ const Dashboard = () => {
                   Sotib olganlar
                 </h3>
                 <p className="text-white">
-                  {userData && userData.offerLinks.clients
-                    ? userData && userData.offerLinks.clients.length
-                    : 0}{" "}
+                  {clients}
                   kishi
                 </p>
               </li>
@@ -125,7 +146,9 @@ const Dashboard = () => {
               alt="contact icon image"
               className="w-10 h-10 mb-3 max-450:w-8 max-450:h-8"
             />
-            <h3 className="text-white text-medium-18 text-center max-450:text-base">Doimiy mijozlar</h3>
+            <h3 className="text-white text-medium-18 text-center max-450:text-base">
+              Doimiy mijozlar
+            </h3>
           </Link>
         </li>
         <li>
@@ -140,7 +163,9 @@ const Dashboard = () => {
               alt="message icon image"
               className="w-10 h-10 mb-3 max-450:w-8 max-450:h-8"
             />
-            <h3 className="text-white text-medium-18 text-center max-450:text-base">Murojaatlar</h3>
+            <h3 className="text-white text-medium-18 text-center max-450:text-base">
+              Murojaatlar
+            </h3>
           </Link>
         </li>
         <li>
@@ -155,7 +180,9 @@ const Dashboard = () => {
               alt="question icon image"
               className="w-10 h-10 mb-3 max-450:w-8 max-450:h-8"
             />
-            <h3 className="text-white text-medium-18 text-center max-450:text-base">So'rovlar (0)</h3>
+            <h3 className="text-white text-medium-18 text-center max-450:text-base">
+              So'rovlar (0)
+            </h3>
           </Link>
         </li>
         <li>
@@ -170,7 +197,9 @@ const Dashboard = () => {
               alt="star icon image"
               className="w-10 h-10 mb-3 max-450:w-8 max-450:h-8"
             />
-            <h3 className="text-white text-medium-18 text-center max-450:text-base">Konkurslar</h3>
+            <h3 className="text-white text-medium-18 text-center max-450:text-base">
+              Konkurslar
+            </h3>
           </Link>
         </li>
         <li>
@@ -185,7 +214,9 @@ const Dashboard = () => {
               alt="wallet icon image"
               className="w-10 h-10 mb-3 max-450:w-8 max-450:h-8"
             />
-            <h3 className="text-white text-medium-18 text-center max-450:text-base">Balans tarixi</h3>
+            <h3 className="text-white text-medium-18 text-center max-450:text-base">
+              Balans tarixi
+            </h3>
           </Link>
         </li>
         <li>
@@ -200,7 +231,9 @@ const Dashboard = () => {
               alt="donate icon image"
               className="w-10 h-10 mb-3 max-450:w-8 max-450:h-8"
             />
-            <h3 className="text-white text-medium-18 text-center max-450:text-base">Hayriya qutisi</h3>
+            <h3 className="text-white text-medium-18 text-center max-450:text-base">
+              Hayriya qutisi
+            </h3>
           </Link>
         </li>
         <li>
@@ -215,7 +248,9 @@ const Dashboard = () => {
               alt="info icon image"
               className="w-10 h-10 mb-3 max-450:w-8 max-450:h-8"
             />
-            <h3 className="text-white text-medium-18 text-center max-450:text-base">Dastur haqida</h3>
+            <h3 className="text-white text-medium-18 text-center max-450:text-base">
+              Dastur haqida
+            </h3>
           </Link>
         </li>
         <li>
@@ -230,7 +265,9 @@ const Dashboard = () => {
               alt="crown icon image"
               className="w-10 h-10 mb-3 max-450:w-8 max-450:h-8"
             />
-            <h3 className="text-white text-medium-18 text-center max-450:text-base">Reklama postlari</h3>
+            <h3 className="text-white text-medium-18 text-center max-450:text-base">
+              Reklama postlari
+            </h3>
           </Link>
         </li>
       </ul>
