@@ -5,8 +5,8 @@ const initialStateValues = {
     token: null,
     email: null,
     password: null,
-    isLoggedIn: false,
   },
+  loggedIn: false,
 };
 
 export const authDataSlice = createSlice({
@@ -16,9 +16,13 @@ export const authDataSlice = createSlice({
     setAuthData: (state, action) => {
       state.data = action.payload;
     },
+
+    setLoggedIn: (state, action) => {
+      state.loggedIn = action.payload;
+    },
   },
 });
 
-export const { setAuthData } = authDataSlice.actions;
+export const { setAuthData, setLoggedIn } = authDataSlice.actions;
 
 export default authDataSlice.reducer;
