@@ -1,26 +1,27 @@
 import React from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 
-// for auth
+// redux
 import { useDispatch } from "react-redux";
-import { notLoggedIn } from "../store/slices/productBasketSlice";
+import { setLoggedIn } from "../store/slices/authDataSlice";
 
 // imags
-import logo from "../assets/images/other/logo.png";
 import home from "../assets/images/svg/home.svg";
-import market from "../assets/images/svg/market.svg";
 import link from "../assets/images/svg/link.svg";
-import statistics from "../assets/images/svg/statistics.svg";
+import logo from "../assets/images/other/logo.png";
 import wallet from "../assets/images/svg/wallet.svg";
+import market from "../assets/images/svg/market.svg";
 import profile from "../assets/images/svg/profile.svg";
 import logoutImg from "../assets/images/svg/logout.svg";
+import statistics from "../assets/images/svg/statistics.svg";
+
 const Sidebar = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const logout = () => {
-    localStorage.removeItem("user");
-    dispatch(notLoggedIn());
     navigate("/");
+    localStorage.removeItem("auth");
+    dispatch(setLoggedIn(false));
   };
   return (
     <div className="sticky left-0 inset-y-0 px-6 py-8 h-screen w-full max-w-max bg-sidebar backdrop-filter backdrop-blur-[120px] max-1024:static max-1024:max-w-full max-1024:h-auto max-1024:py-0">
@@ -119,7 +120,10 @@ const Sidebar = () => {
                 </NavLink>
               </li>
               <li className="navigation_item">
-                <NavLink className="navigation_item_link" to="/admin/dashboard/profile">
+                <NavLink
+                  className="navigation_item_link"
+                  to="/admin/dashboard/profile"
+                >
                   <span className="navigation_item_link_icon-wrapper">
                     <img
                       src={profile}
@@ -165,7 +169,10 @@ const Sidebar = () => {
         </Link>
 
         {/* profile page link  */}
-        <NavLink className="navigation_item_link  max-640:!p-0 max-640:!bg-transparent" to="/admin/dashboard/profile">
+        <NavLink
+          className="navigation_item_link  max-640:!p-0 max-640:!bg-transparent"
+          to="/admin/dashboard/profile"
+        >
           <span className="navigation_item_link_icon-wrapper  max-640:!p-0 max-640:!bg-transparent">
             <img
               src={profile}
