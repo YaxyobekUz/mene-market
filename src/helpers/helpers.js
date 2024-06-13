@@ -67,3 +67,40 @@ errorNotification.offline = (message) => {
     toast.error("Internet aloqasi mavjud emas!");
   }
 };
+
+// format date
+export const formatDate = (input) => {
+  const date = new Date(input);
+
+  const year = date.getUTCFullYear();
+  const month = String(date.getUTCMonth() + 1).padStart(2, "0");
+  const day = String(date.getUTCDate()).padStart(2, "0");
+
+  const formattedDate = `${day}.${month}.${year}`;
+
+  return formattedDate;
+};
+
+// format time
+export const formatTime = (input) => {
+  const date = new Date(input);
+
+  const hours = String(date.getUTCHours()).padStart(2, "0");
+  const minutes = String(date.getUTCMinutes()).padStart(2, "0");
+
+  const formattedTime = `${hours}:${minutes}`;
+
+  return formattedTime;
+};
+
+export const calculateProductRatingByReviews = (reviews) => {
+  if (reviews && reviews.length > 0) {
+    const rating =
+      reviews.reduce((acc, curr) => acc + Number(curr.status), 0) /
+      reviews.length;
+
+    return rating !== NaN ? rating.toFixed(1) : 5;
+  } else {
+    return 5;
+  }
+};
