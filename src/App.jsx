@@ -1,23 +1,29 @@
 import React, { useEffect, useState } from "react";
 import {
-  BrowserRouter as Router,
   Route,
+  Outlet,
+  Navigate,
+  RouterProvider,
   createBrowserRouter,
   createRoutesFromElements,
-  RouterProvider,
-  Navigate,
-  Outlet,
 } from "react-router-dom";
 
-// for auth
-import { decodeToken } from "react-jwt";
-import { getUserById } from "./api/auth/getUserById";
+// axios
+import axiosConfig from "./api/axios/axios";
+
+// redux
 import { useDispatch, useSelector } from "react-redux";
 import { setUserData } from "./store/slices/userDataSlice";
-import { loggedIn, notLoggedIn } from "./store/slices/productBasketSlice";
+import { setAuthData, setLoggedIn } from "./store/slices/authDataSlice";
 
-// images
+// components
 import Loader from "./components/Loader";
+
+// redux
+import {
+  setProductsData,
+  setProductsLoader,
+} from "./store/slices/productsDataSlice";
 
 // layouts
 import MainRoot from "./layouts/MainRoot";
@@ -30,75 +36,55 @@ import DashboardRoot from "./layouts/DashboardRoot";
 import Home from "./pages/Home";
 import Flow from "./pages/Flow";
 import Login from "./pages/Login";
+import Search from "./pages/Search";
 import Market from "./pages/Market";
 import Payment from "./pages/Payment";
 import Profile from "./pages/Profile";
 import Account from "./pages/Account";
 import Contact from "./pages/Contact";
 import Appeals from "./pages/Appeals";
+import Product from "./pages/Product";
 import Requests from "./pages/Requests";
 import Products from "./pages/Products";
 import Register from "./pages/Register";
-import Category from "./pages/Category";
 import ErrorPage from "./pages/ErrorPage";
 import Dashboard from "./pages/Dashboard";
 import Statistics from "./pages/Statistics";
 import PublicOffer from "./pages/PublicOffer";
 import DonationBox from "./pages/DonationBox";
 import Competitions from "./pages/Competitions";
-import ProductDetail from "./pages/ProductDetail";
 import RegularCustomers from "./pages/RegularCustomers";
 import BalanceHistory from "./pages/BalanceHistoryPage";
 import ConnectWithTelegram from "./pages/ConnectWithTelegram";
-import Search from "./pages/Search";
-import axiosConfig from "./api/axios/axios";
-import {
-  setProductsData,
-  setProductsLoader,
-} from "./store/slices/productsDataSlice";
 
 const App = () => {
   const dispatch = useDispatch();
   const [loader, setLoader] = useState(true);
-  const { isLoggedIn } = useSelector((store) => store.isLoggedIn);
+  const authData = useSelector((store) => store.authData);
 
   // auto login
   useEffect(() => {
-    setLoader(true);
-    const getUserData = localStorage.getItem("user");
-    // check stored user data
-    if (getUserData) {
-      const userData = JSON.parse(getUserData);
-      const decodedToken = decodeToken(userData.token);
+    const authData = JSON.parse(localStorage.getItem("auth"));
 
-      // check decoded token
-      if (decodedToken) {
-        setLoader(true);
-
-        // get user data by id
-        getUserById({ token: userData.token, id: decodedToken.UserId })
-          .then((response) => {
-            const data = response.data;
-
+    // check user login and password
+    if (authData) {
+      axiosConfig
+        .get("/User/Profile")
+        .then((res) => {
+          if (res.status === 200) {
             const confirmLogin =
-              data.email === userData.email &&
-              data.password === userData.password;
+              res.data.email === authData.email &&
+              res.data.password === authData.password;
 
             if (confirmLogin) {
-              dispatch(loggedIn());
+              dispatch(setLoggedIn(true));
               dispatch(setUserData(data));
+              dispatch(setAuthData(authData));
             }
-          })
-          .catch(() => {
-            dispatch(notLoggedIn());
-          })
-          .finally(() => setLoader(false));
-      } else {
-        setTimeout(() => setLoader(false), 1000);
-      }
-    } else {
-      setTimeout(() => setLoader(false), 1000);
-    }
+          }
+        })
+        .finally(() => setLoader(false));
+    } else setLoader(false);
   }, []);
 
   // get products data
@@ -125,11 +111,11 @@ const App = () => {
           <Route path="contact" element={<Contact />} />
           <Route path="public-offer" element={<PublicOffer />} />
           <Route path="search/:searchQuery" element={<Search />} />
-          <Route path="product/:productName" element={<ProductDetail />} />
 
-          {/* products */}
+          {/* product */}
           <Route path="products" element={<Outlet />}>
             <Route index path=":productType?" element={<Products />} />
+            <Route path="product/:productId" element={<Product />} />
           </Route>
 
           {/* auth */}
@@ -141,7 +127,9 @@ const App = () => {
           {/* admin */}
           <Route
             path="admin"
-            element={isLoggedIn ? <AdminRoot /> : <Navigate to="/" />}
+            element={
+              authData.loggedIn ? <AdminRoot /> : <Navigate to="/auth/login" />
+            }
           >
             <Route path="dashboard" element={<DashboardRoot />}>
               <Route index element={<Dashboard />} />
