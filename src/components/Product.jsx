@@ -4,9 +4,14 @@ import { Link } from "react-router-dom";
 // components
 import StarRating from "./StarRating";
 
+// data
+import { imageBaseUrl } from "../data/data";
+
+// helpers
+import { formatNumber } from "../helpers/helpers";
+
 // images
 import shoppingCart from "../assets/images/svg/shopping-cart.svg";
-import { formatNumber } from "../helpers/helpers";
 
 const Product = ({ product }) => {
   return (
@@ -16,8 +21,8 @@ const Product = ({ product }) => {
         width={292}
         height={292}
         alt="product image"
+        src={imageBaseUrl + product.imageMetadatas[0].mediumImageFilePath}
         className="w-full h-auto aspect-square object-cover bg-primary-gray-500 rounded-20 mb-4"
-        src={product.images[0].src}
       />
 
       {/* body */}
@@ -25,17 +30,24 @@ const Product = ({ product }) => {
         {/* main content */}
         <div className="flex flex-col gap-3 grow">
           {/* title */}
-          <h3>{product.name}</h3>
+          <h3 className="text-base font-semibold">{product.name}</h3>
 
           {/* rating */}
-          <StarRating value={3.4} showText />
+          <StarRating value={3.8} showText />
 
           {/* price wrapper */}
-          <div className="flex flex-wrap gap-2">
-            <p>{formatNumber(260000)} so'm</p>
-            <del className="text-primary-gray-500">
-              {formatNumber(300000)} so'm
-            </del>
+          <div className="flex flex-wrap gap-3">
+            <p className="text-base font-semibold">
+              {formatNumber(product.price)} so'm
+            </p>
+
+            {product.scidPrice && product.scidPrice > 0 ? (
+              <del className="text-primary-gray-500 text-base font-semibold">
+                {formatNumber(product.scidPrice)} so'm
+              </del>
+            ) : (
+              ""
+            )}
           </div>
         </div>
 
