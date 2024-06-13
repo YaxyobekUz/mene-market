@@ -11,7 +11,7 @@ import youtubeLogo from "../assets/images/svg/youtube.svg";
 import facebookLogo from "../assets/images/svg/facebook.svg";
 
 const Footer = () => {
-  const { isLoggedIn } = useSelector((store) => store.isLoggedIn);
+  const authData = useSelector((store) => store.authData);
 
   return (
     <footer className="text-regular-16 bg-primary-black-800 py-8 text-white">
@@ -45,7 +45,7 @@ const Footer = () => {
                 <Link to="/">Bosh sahifa</Link>
               </li>
 
-              {isLoggedIn && (
+              {authData.loggedIn && (
                 <li>
                   <Link to="/admin">Admin</Link>
                 </li>

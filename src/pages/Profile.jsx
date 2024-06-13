@@ -6,8 +6,8 @@ import { useDispatch, useSelector } from "react-redux";
 import userDataSlice, { setUserData } from "../store/slices/userDataSlice";
 
 // helpers
-import { getElement, validateInput } from "../js/helpers";
-import { defaultRegex } from "../js/regexes";
+import { getElement } from "../helpers/helpers";
+import { defaultRegex } from "../helpers/regexes";
 
 const Profile = () => {
   const [changeUserData, setChangeUserData] = useState(false);

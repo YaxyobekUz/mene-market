@@ -43,7 +43,7 @@ const Register = () => {
       setLoader(true);
 
       const formData = {
-        role: 0,
+        role: 2,
         balance: 0,
         image: null,
         userChats: [],
