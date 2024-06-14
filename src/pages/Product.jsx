@@ -1,11 +1,30 @@
-import React, { useEffect, useRef, useState } from "react";
-import { useParams } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 
-// redux
-import { useSelector } from "react-redux";
-
-// data
+// helpers
+import {
+  formatDate,
+  getElement,
+  formatNumber,
+  errorNotification,
+  checkInputValueByRegex,
+  checkInputValueByLength,
+  calculateProductRatingByReviews,
+  } from "../helpers/helpers";
+  
+  // antd
+  import "../css/antd.css";
+  import { Select } from "antd";
+  
+  // data
 import { imageBaseUrl } from "../data/data";
+
+// axios
+import axiosConfig from "../api/axios/axios";
+
+// components
+import DotsLoader from "../components/DotsLoader";
+import StarRating from "../components/StarRating";
 
 // swiper
 import "swiper/css";
@@ -15,21 +34,26 @@ import "swiper/css/navigation";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode, Navigation, Thumbs } from "swiper/modules";
 
+// react input mask
+import InputMask from "react-input-mask";
+
+// redux
+import { useDispatch, useSelector } from "react-redux";
+import { addNewRequestData } from "../store/slices/productRequestsDataSlice";
+
 // images
 import cartIcon from "../assets/images/svg/cart-icon.svg";
 import plusIcon from "../assets/images/svg/plus-square-icon.svg";
 import minusIcon from "../assets/images/svg/minus-square-icon.svg";
-import StarRating from "../components/StarRating";
-import {
-  calculateProductRatingByReviews,
-  formatDate,
-  formatNumber,
-} from "../helpers/helpers";
 
 const Product = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { productId } = useParams();
   const [loader, setLoader] = useState(false);
+  const [address, setAddress] = useState(null);
   const [product, setProduct] = useState(null);
+  const [loader2, setLoader2] = useState(false);
   const [productCount, setProductCount] = useState(1);
   const [showReviews, setShowReviews] = useState(false);
   const [productRating, setProductRating] = useState(5);
@@ -37,17 +61,31 @@ const Product = () => {
   const productsData = useSelector((store) => store.productsData);
   const [selectedProductTypeIndex, setSelectedProductTypeIndex] = useState(0);
 
-  // get product data
+  const getProductData = () => {
+    axiosConfig
+      .get("/Product/ById?id=" + productId)
+      .then((res) => {
+        if (res.status === 200) {
+          setProduct(res.data);
+        }
+      })
+      .finally(() => setLoader(false));
+  };
+
+  // set product data
   useEffect(() => {
+    setLoader(true);
     if (
       productsData.data.allProducts &&
       productsData.data.allProducts.length > 0
     ) {
-      setProduct(
-        productsData.data.allProducts.find(
-          (product) => product.productId === productId
-        )
+      const findProduct = productsData.data.allProducts.find(
+        (product) => product.productId === productId
       );
+      setProduct(findProduct);
+      setTimeout(() => setLoader(true), 200);
+    } else {
+      getProductData();
     }
   }, [productsData]);
 
@@ -58,6 +96,52 @@ const Product = () => {
       setProductRating(rating);
     }
   }, [product]);
+
+  // send product request
+  const sendRequest = (e) => {
+    e.preventDefault();
+
+    const elNameInput = getElement(e, ".js-name-input");
+    const elAddressSelect = getElement(e, ".js-address-select");
+    const elPhoneNumberInput = getElement(e, ".js-telephone-number-input");
+
+    // check form elements value
+    if (address) elAddressSelect.classList.remove("is-invalid");
+    else elAddressSelect.classList.add("is-invalid");
+    const formattedNumbers = elPhoneNumberInput.value.replace(/[^\d]/g, "");
+    const phoneNumber = checkInputValueByLength(
+      elPhoneNumberInput,
+      formattedNumbers,
+      12
+    );
+    const name = checkInputValueByRegex(elNameInput);
+
+    // send a request
+    if (!loader2 && phoneNumber && name && address) {
+      setLoader2(true);
+
+      const formData = {
+        status: 0,
+        userRegion: address,
+        productId: product.productId,
+        userName: elNameInput.value.trim(),
+        userPhoneNumber: elPhoneNumberInput.value,
+        productTypeId:
+          product.productTypes[selectedProductTypeIndex].productTypeId,
+      };
+
+      axiosConfig
+        .post("/ProductRequest", formData)
+        .then((res) => {
+          if (res.status === 200) {
+            navigate("/success");
+            dispatch(addNewRequestData(res.data));
+          } else errorNotification();
+        })
+        .catch(() => errorNotification.offline())
+        .finally(() => setLoader2(false));
+    }
+  };
 
   return (
     <div className="pb-32">
@@ -76,16 +160,18 @@ const Product = () => {
                       direction={"vertical"}
                       watchSlidesProgress={true}
                       onSwiper={setThumbsSwiper}
-                      className="vertical-product-swiper"
+                      className="vertical-product-swiper max-450:!hidden"
                       modules={[FreeMode, Navigation, Thumbs]}
                     >
                       {product.imageMetadatas.map((img) => {
                         return (
                           <SwiperSlide key={img.id}>
                             <img
+                              width={115}
+                              height={153}
                               alt="product image"
-                              src={imageBaseUrl + img.hightImageFilePath}
                               className="vertical-product-swiper_img"
+                              src={imageBaseUrl + img.hightImageFilePath}
                             />
                           </SwiperSlide>
                         );
@@ -104,9 +190,11 @@ const Product = () => {
                         return (
                           <SwiperSlide key={img.id}>
                             <img
-                              alt=""
-                              src={imageBaseUrl + img.lowImageFilePath}
+                              width={483}
+                              height={644}
+                              alt="product image"
                               className="product-swiper_img"
+                              src={imageBaseUrl + img.lowImageFilePath}
                             />
                           </SwiperSlide>
                         );
@@ -168,7 +256,7 @@ const Product = () => {
                     <div className="space-y-2">
                       <p className="text-regular-16">Miqdori:</p>
 
-                      <div className="flex-center gap-2.5">
+                      <div className="flex-center gap-2.5 flex-wrap">
                         <div className="flex items-center gap-2 relative p-2 rounded-full border border-primary-black-800">
                           {/* decrement */}
                           <button
@@ -294,7 +382,7 @@ const Product = () => {
                     </div>
 
                     {/* form */}
-                    <form>
+                    <form onSubmit={sendRequest}>
                       <h3 className="mb-6">Buyurtmani rasmiylashtirish</h3>
 
                       {/* form main content */}
@@ -306,21 +394,25 @@ const Product = () => {
                             placeholder=""
                             name="user name"
                             title="your name"
-                            className="input"
+                            className="js-name-input input"
                           />
                           <span className="placeholder">Ismingiz</span>
                         </label>
 
                         {/* telephone number */}
                         <label className="input-wrapper">
-                          <input
-                            type="tel"
-                            placeholder=""
-                            className="input"
-                            name="user telephone number"
-                            title="your telephone number"
-                            required
-                          />
+                          <InputMask mask="+\9\9\8 (99) 999-99-99">
+                            {(inputProps) => (
+                              <input
+                                type="tel"
+                                placeholder=""
+                                {...inputProps}
+                                className="js-telephone-number-input input"
+                                name="user telephone number"
+                                title="your telephone number"
+                              />
+                            )}
+                          </InputMask>
 
                           <span className="placeholder">
                             Telefon raqamingiz
@@ -329,29 +421,113 @@ const Product = () => {
 
                         {/* address */}
                         <label className="input-wrapper">
-                          <input
-                            type="text"
+                          <Select
+                            showSearch
                             placeholder=""
-                            className="input"
-                            name="user address"
-                            title="your address"
+                            optionFilterProp="children"
+                            onChange={(e) => setAddress(e)}
+                            className="js-address-select product-page-select"
+                            filterOption={(input, option) =>
+                              option.label
+                                .toLowerCase()
+                                .includes(input.toLowerCase())
+                            }
+                            filterSort={(optionA, optionB) =>
+                              optionA.label
+                                .toLowerCase()
+                                .localeCompare(optionB.label.toLowerCase())
+                            }
+                            options={[
+                              {
+                                value: "Toshkent shahri",
+                                label: "Toshkent shahri",
+                              },
+                              {
+                                value: "Andijon",
+                                label: "Andijon",
+                              },
+                              {
+                                value: "Buxoro",
+                                label: "Buxoro",
+                              },
+                              {
+                                value: "Farg'ona",
+                                label: "Farg'ona",
+                              },
+                              {
+                                value: "Jizzax",
+                                label: "Jizzax",
+                              },
+                              {
+                                value: "Namangan",
+                                label: "Namangan",
+                              },
+                              {
+                                value: "Navoiy",
+                                label: "Navoiy",
+                              },
+                              {
+                                value: "Qashqadaryo",
+                                label: "Qashqadaryo",
+                              },
+                              {
+                                value: "Qoraqalpog'iston",
+                                label: "Qoraqalpog'iston",
+                              },
+                              {
+                                value: "Samarqand",
+                                label: "Samarqand",
+                              },
+                              {
+                                value: "Sirdaryo",
+                                label: "Sirdaryo",
+                              },
+                              {
+                                value: "Surxondaryo",
+                                label: "Surxondaryo",
+                              },
+                              {
+                                value: "Toshkent viloyati",
+                                label: "Toshkent viloyati",
+                              },
+                              {
+                                value: "Xorazm",
+                                label: "Xorazm",
+                              },
+                            ]}
                           />
 
-                          <span className="placeholder">Manzilingiz</span>
+                          {/* placeholder */}
+                          <span
+                            className={`${address ? "active" : ""} placeholder`}
+                          >
+                            Manzilingiz
+                          </span>
                         </label>
 
                         {/* submit btn */}
-                        <button className="btn-primary_linear-blue rounded-full px-4 disabled:opacity-50 disabled:cursor-not-allowed">
-                          <span className="text-regular-16">Xarid qilish</span>
+                        <button
+                          disabled={loader2}
+                          className="btn-primary_linear-blue rounded-full px-4 disabled:opacity-50 disabled:cursor-not-allowed"
+                        >
+                          {!loader2 ? (
+                            <>
+                              <span className="text-regular-16">
+                                Xarid qilish
+                              </span>
 
-                          {/* icon */}
-                          <img
-                            width={16}
-                            height={16}
-                            src={cartIcon}
-                            alt="cart icon"
-                            className="w-4 h-4"
-                          />
+                              {/* icon */}
+                              <img
+                                width={16}
+                                height={16}
+                                src={cartIcon}
+                                alt="cart icon"
+                                className="w-4 h-4"
+                              />
+                            </>
+                          ) : (
+                            <DotsLoader className="px-[35px]" />
+                          )}
                         </button>
                       </div>
                     </form>

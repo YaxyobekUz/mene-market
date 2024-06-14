@@ -414,7 +414,7 @@ html {
 
   .input-wrapper .placeholder {
     @apply absolute cursor-text bg-white text-primary-gray-500 px-0.5;
-    --placeholder-half-height: 13px;
+    --placeholder-half-height: 12px;
     left: var(--padding-x);
     transition: transform 0.2s linear, font-size 0.2s linear, top 0.2s linear;
     top: calc(50% - var(--placeholder-half-height));
@@ -450,7 +450,7 @@ html {
 
   /* invalid */
   .is-invalid {
-    @apply !border-b-primary-red-500;
+    @apply !border-primary-red-500;
   }
 
   /* admin */
