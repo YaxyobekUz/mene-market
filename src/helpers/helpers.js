@@ -38,6 +38,28 @@ export const checkInputValueByRegex = (input, regex) => {
   }
 };
 
+export const checkInputValueByLength = (input, value, length) => {
+  if (length) {
+    if (value.trim() > length) {
+      input.classList.remove("is-invalid");
+      return true;
+    } else {
+      input.focus();
+      input.classList.add("is-invalid");
+      return false;
+    }
+  } else {
+    if (value.trim() > 0) {
+      input.classList.remove("is-invalid");
+      return true;
+    } else {
+      input.focus();
+      input.classList.add("is-invalid");
+      return false;
+    }
+  }
+};
+
 export const formatNumber = (num) => {
   return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 };
