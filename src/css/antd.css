@@ -48,3 +48,10 @@
 .ant-skeleton .ant-skeleton-input {
   width: 100% !important;
 }
+
+/* tooltip */
+.ant-tooltip-inner {
+  font-family: "inter", sans-serif !important;
+  font-size: 12px !important;
+  text-align: center !important;
+}
