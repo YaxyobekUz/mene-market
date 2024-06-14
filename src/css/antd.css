@@ -44,3 +44,7 @@
 .product-page-select.is-invalid .ant-select-selector {
   border-color: red !important;
 }
+
+.ant-skeleton .ant-skeleton-input {
+  width: 100% !important;
+}
