@@ -56,6 +56,7 @@ import Competitions from "./pages/Competitions";
 import RegularCustomers from "./pages/RegularCustomers";
 import BalanceHistory from "./pages/BalanceHistoryPage";
 import ConnectWithTelegram from "./pages/ConnectWithTelegram";
+import Success from "./pages/Success";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -109,6 +110,7 @@ const App = () => {
         <Route path="/" element={!loader ? <MainRoot /> : <Loader />}>
           <Route index element={<Home />} />
           <Route path="contact" element={<Contact />} />
+          <Route path="success" element={<Success />} />
           <Route path="public-offer" element={<PublicOffer />} />
           <Route path="search/:searchQuery" element={<Search />} />
 
