@@ -9,7 +9,7 @@ import DotsLoader from "../components/DotsLoader";
 
 // redux
 import { useDispatch } from "react-redux";
-import { setAuthData } from "../store/slices/authDataSlice";
+import { setAuthData, setLoggedIn } from "../store/slices/authDataSlice";
 
 // helpers
 import {
@@ -58,9 +58,10 @@ const Login = () => {
           if (res.status === 200) {
             navigate("/");
             const authData = { ...res.data, ...formData };
+            dispatch(setLoggedIn(true));
+            dispatch(setAuthData(authData));
             successNotification("Akkauntga kirildi");
             localStorage.setItem("auth", JSON.stringify(authData));
-            dispatch(setAuthData({ ...authData, isLoggedIn: true }));
           } else {
             errorNotification();
           }
