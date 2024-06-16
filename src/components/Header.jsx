@@ -104,7 +104,7 @@ const Header = () => {
             </button>
 
             {/* login link */}
-            {authData.data.isLoggedIn ? (
+            {authData.loggedIn ? (
               <Link to="/admin/dashboard" className="flex-center space-x-1">
                 <img
                   width={24}

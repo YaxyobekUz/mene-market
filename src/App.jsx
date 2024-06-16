@@ -30,7 +30,6 @@ import MainRoot from "./layouts/MainRoot";
 import AuthRoot from "./layouts/AuthRoot";
 import AdminRoot from "./layouts/AdminRoot";
 import ProfileRoot from "./layouts/ProfileRoot";
-import DashboardRoot from "./layouts/DashboardRoot";
 
 // pages
 import Home from "./pages/Home";
@@ -79,7 +78,7 @@ const App = () => {
 
             if (confirmLogin) {
               dispatch(setLoggedIn(true));
-              dispatch(setUserData(data));
+              dispatch(setUserData(res.data));
               dispatch(setAuthData(authData));
             }
           }
@@ -121,7 +120,10 @@ const App = () => {
           </Route>
 
           {/* auth */}
-          <Route path="auth" element={<AuthRoot />}>
+          <Route
+            path="auth"
+            element={!authData.loggedIn ? <AuthRoot /> : <Navigate to="/" />}
+          >
             <Route path="login" element={<Login />} />
             <Route path="signup" element={<Register />} />
           </Route>
@@ -133,7 +135,13 @@ const App = () => {
               authData.loggedIn ? <AdminRoot /> : <Navigate to="/auth/login" />
             }
           >
-            <Route path="dashboard" element={<DashboardRoot />}>
+            <Route path="flow" element={<Flow />} />
+            <Route path="market" element={<Market />} />
+            <Route path="payment" element={<Payment />} />
+            <Route path="statistics" element={<Statistics />} />
+
+            {/* dashboard */}
+            <Route path="dashboard" element={<Outlet />}>
               <Route index element={<Dashboard />} />
               <Route path="regular-customers" element={<RegularCustomers />} />
               <Route path="appeals" element={<Appeals />} />
@@ -150,10 +158,6 @@ const App = () => {
                 />
               </Route>
             </Route>
-            <Route path="flow" element={<Flow />} />
-            <Route path="market" element={<Market />} />
-            <Route path="payment" element={<Payment />} />
-            <Route path="statistics" element={<Statistics />} />
           </Route>
         </Route>
 
