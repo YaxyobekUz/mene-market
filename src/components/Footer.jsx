@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 // redux
 import { useSelector } from "react-redux";
@@ -11,10 +11,16 @@ import youtubeLogo from "../assets/images/svg/youtube.svg";
 import facebookLogo from "../assets/images/svg/facebook.svg";
 
 const Footer = () => {
+  const location = useLocation();
   const authData = useSelector((store) => store.authData);
+  const pathArr = location.pathname.split("/").filter((item) => item !== "");
 
   return (
-    <footer className="text-regular-16 bg-primary-black-800 pt-8 pb-14 text-white">
+    <footer
+      className={`${
+        pathArr[0] === "admin" ? "pb-32" : "pb-12"
+      } text-regular-16 bg-primary-black-800 pt-8 text-white`}
+    >
       <div className="container">
         <div className="flex-start-between max-540:flex-col max-540:gap-7">
           {/* logo wrapper */}

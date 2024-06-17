@@ -25,7 +25,6 @@ const AdminLayout = () => {
   const dispatch = useDispatch();
   const [loader, setLoader] = useState(false);
   const { userData } = useSelector((store) => store.userData);
-  const [openMobileNavbar, setOpenMobileNavbar] = useState(true);
 
   // get user data
   const getUserData = () => {
@@ -45,25 +44,6 @@ const AdminLayout = () => {
       getUserData();
     }
   }, []);
-
-  // set open mobile navbar
-  useEffect(() => {
-    const scrollDirection = (e) => {
-      const direction = e.deltaY > 0 ? "down" : "up";
-
-      if (direction === "up") {
-        setOpenMobileNavbar(true);
-      } else {
-        setOpenMobileNavbar(false);
-      }
-    };
-
-    document.addEventListener("wheel", scrollDirection);
-
-    return () => {
-      document.removeEventListener("wheel", scrollDirection);
-    };
-  }, [openMobileNavbar]);
 
   return (
     <div className="admin flex items-start grow bg-radial-gradient_blue-500 max-1024:flex-col">
@@ -220,12 +200,7 @@ const AdminLayout = () => {
       </div>
 
       {/* responsive header */}
-      <div
-        style={{
-          transform: `translateY(${openMobileNavbar ? "0%" : "-100%"})`,
-        }}
-        className="hidden sticky top-0 inset-x-0 z-10 w-full bg-linear-gradient_black-800 backdrop-blur-120 py-4 transition-transform duration-300 max-1024:block max-450:py-3"
-      >
+      <div className="hidden sticky top-0 inset-x-0 z-10 w-full bg-linear-gradient_black-800 backdrop-blur-120 py-4 transition-transform duration-300 max-1024:block max-450:py-3">
         <div className="container">
           <div className="flex-center-between">
             {/* logo */}
@@ -271,12 +246,7 @@ const AdminLayout = () => {
       )}
 
       {/* responsive mobile navbar */}
-      <div
-        style={{
-          transform: `translateY(${openMobileNavbar ? "0%" : "100%"})`,
-        }}
-        className="hidden fixed inset-x-0 bottom-0 z-10 w-full bg-linear-gradient_black-800 backdrop-blur-120 py-4 transition-transform duration-300 max-1024:block max-450:py-3"
-      >
+      <div className="hidden fixed inset-x-0 bottom-0 z-10 w-full bg-linear-gradient_black-800 backdrop-blur-120 py-4 transition-transform duration-300 max-1024:block max-450:py-3">
         <div className="container">
           <nav className="w-full">
             <ul className="flex-center-between gap-1">
