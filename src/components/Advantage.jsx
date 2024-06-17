@@ -8,7 +8,8 @@ import messageQuestionIcon from "../assets/images/svg/message-question-icon.svg"
 const Advantage = () => {
   return (
     <ul className="grid-4 gap-6">
-      <li className="flex-start flex-col gap-3 relative overflow-hidden bg-primary-blue-50/30 p-6 rounded-20 text-regular-13 group">
+      {/* 0 */}
+      <li className="flex-start flex-col gap-3 relative overflow-hidden min-h-[252px] bg-primary-blue-50/30 p-6 rounded-20 text-regular-13 group">
         {/* image, image wrapper  */}
         <div className="bg-linear-gradient_blue-500 p-3 rounded-2xl">
           <img
@@ -33,7 +34,8 @@ const Advantage = () => {
         <div className="absolute -z-10 top-7 left-7 w-10 h-10 bg-primary-blue-50 rounded-full transition-transform ease-linear duration-300 group-hover:scale-[20]"></div>
       </li>
 
-      <li className="flex-start flex-col gap-3 relative overflow-hidden bg-primary-blue-50/30 p-6 rounded-20 text-regular-13 group">
+      {/* 1 */}
+      <li className="flex-start flex-col gap-3 relative overflow-hidden min-h-[252px] bg-primary-blue-50/30 p-6 rounded-20 text-regular-13 group">
         {/* image, image wrapper  */}
         <div className="bg-linear-gradient_blue-500 p-3 rounded-2xl">
           <img
@@ -60,7 +62,8 @@ const Advantage = () => {
         <div className="absolute -z-10 top-7 left-7 w-10 h-10 bg-primary-blue-50 rounded-full transition-transform ease-linear duration-300 group-hover:scale-[20]"></div>
       </li>
 
-      <li className="flex-start flex-col gap-3 relative overflow-hidden bg-primary-blue-50/30 p-6 rounded-20 text-regular-13 group">
+      {/* 2 */}
+      <li className="flex-start flex-col gap-3 relative overflow-hidden min-h-[252px] bg-primary-blue-50/30 p-6 rounded-20 text-regular-13 group">
         {/* image, image wrapper  */}
         <div className="bg-linear-gradient_blue-500 p-3 rounded-2xl">
           <img
@@ -89,7 +92,8 @@ const Advantage = () => {
         <div className="absolute -z-10 top-7 left-7 w-10 h-10 bg-primary-blue-50 rounded-full transition-transform ease-linear duration-300 group-hover:scale-[20]"></div>
       </li>
 
-      <li className="flex-start flex-col gap-3 relative overflow-hidden bg-primary-blue-50/30 p-6 rounded-20 text-regular-13 group">
+      {/* 3 */}
+      <li className="flex-start flex-col gap-3 relative overflow-hidden min-h-[252px] bg-primary-blue-50/30 p-6 rounded-20 text-regular-13 group">
         {/* image, image wrapper  */}
         <div className="bg-linear-gradient_blue-500 p-3 rounded-2xl">
           <img
