@@ -1,0 +1,75 @@
+/* image viewer modal swiper */
+.image-viewer-modal-swiper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.image-viewer-modal-swiper .swiper-slide {
+  width: 100%;
+  height: 100%;
+}
+
+:is(
+    .image-viewer-modal-swiper-btn-prev,
+    .image-viewer-modal-swiper-btn-next
+  )::after {
+  display: none;
+  content: "";
+}
+
+/* swiper btns */
+.image-viewer-modal-swiper-btns-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: absolute;
+  z-index: 10;
+  top: calc(50% - 0px);
+  left: 0;
+  right: 0;
+  width: 100%;
+  padding: 0px 40px;
+}
+
+:is(.image-viewer-modal-swiper-btn-prev, .image-viewer-modal-swiper-btn-next) {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 16px;
+  border-radius: 100px;
+}
+
+:is(
+    .image-viewer-modal-swiper-btn-prev,
+    .image-viewer-modal-swiper-btn-next
+  ):disabled {
+  opacity: 0.5;
+}
+
+:is(
+    .image-viewer-modal-swiper-btn-prev,
+    .image-viewer-modal-swiper-btn-next
+  ):hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.image-viewer-modal-swiper-btn-prev {
+}
+
+.image-viewer-modal-swiper-btn-next {
+  rotate: 180deg;
+}
+
+@media only screen and (max-width: 768px) {
+  .image-viewer-modal-swiper-btn-prev,
+  .image-viewer-modal-swiper-btn-next {
+    padding: 10px;
+  }
+}
+
+@media only screen and (max-width: 640px) {
+  .image-viewer-modal-swiper-btn-prev,
+  .image-viewer-modal-swiper-btn-next {
+    display: none;
+  }
+}
