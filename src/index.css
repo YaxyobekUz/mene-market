@@ -517,48 +517,26 @@ html {
     @apply text-regular-16;
   }
 
+  /* sidebar */
   .sidebar-hr {
     background: linear-gradient(90deg, #ffffff00, #ffffff, #ffffff00);
     border: none !important;
   }
 
-  .navigation {
-    @apply justify-between max-1024:flex max-768:gap-2;
-  }
-
-  .navigation_item {
-    @apply w-full max-1024:w-36 max-768:w-1/5;
-  }
-
-  .navigation_item_link {
-    @apply flex-center py-3 px-4 rounded-xl gap-3 transition-colors max-1024:p-3 max-768:flex-col;
-  }
-
-  .navigation_item_link.active {
+  .admin-sidebar-link.active {
     background: #1a1f37;
   }
 
-  .navigation_item_link:hover {
+  .admin-sidebar-link:hover {
     @apply bg-primary-blue-700;
   }
 
-  .navigation_item_link_icon-wrapper {
-    @apply inline-block p-1.5 rounded-xl;
-    background: #1a1f37;
-  }
-
-  .active .navigation_item_link_icon-wrapper {
+  :is(.admin-sidebar-link.active, .admin-sidebar-link:hover)
+    .admin-sidebar-link-icon-wrapper {
     @apply bg-white;
   }
 
-  .navigation_item_link_icon {
-    @apply w-5 h-5;
-  }
-
-  .navigation_item_link_body {
-    @apply text-white text-medium-14 max-640:hidden;
-  }
-
+  /* animation */
   @keyframes infinite-rotate-animation {
     0% {
       transform: rotate(0deg);
