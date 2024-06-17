@@ -19,7 +19,7 @@ import arowLeft from "../assets/images/svg/arrow-left.svg";
 import roundLine from "../assets/images/svg/line-round.svg";
 
 const ImageViewerModal = ({ alt, images, initialSlide, closeModal }) => {
-  const [imageLarge, setImageLarge] = useState(false);
+  const [imageLarge, setImageLarge] = useState(true);
   const [VW, setVW] = useState(document.documentElement.clientWidth);
   const [VH, setVH] = useState(document.documentElement.clientHeight);
 
