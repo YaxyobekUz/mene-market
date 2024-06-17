@@ -28,7 +28,7 @@ import {
 // layouts
 import MainRoot from "./layouts/MainRoot";
 import AuthRoot from "./layouts/AuthRoot";
-import AdminRoot from "./layouts/AdminRoot";
+import AdminLayout from "./layouts/AdminLayout";
 import ProfileRoot from "./layouts/ProfileRoot";
 
 // pages
@@ -43,6 +43,7 @@ import Account from "./pages/Account";
 import Contact from "./pages/Contact";
 import Appeals from "./pages/Appeals";
 import Product from "./pages/Product";
+import Success from "./pages/Success";
 import Requests from "./pages/Requests";
 import Products from "./pages/Products";
 import Register from "./pages/Register";
@@ -55,7 +56,6 @@ import Competitions from "./pages/Competitions";
 import RegularCustomers from "./pages/RegularCustomers";
 import BalanceHistory from "./pages/BalanceHistoryPage";
 import ConnectWithTelegram from "./pages/ConnectWithTelegram";
-import Success from "./pages/Success";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -132,7 +132,11 @@ const App = () => {
           <Route
             path="admin"
             element={
-              authData.loggedIn ? <AdminRoot /> : <Navigate to="/auth/login" />
+              authData.loggedIn ? (
+                <AdminLayout />
+              ) : (
+                <Navigate to="/auth/login" />
+              )
             }
           >
             <Route path="flow" element={<Flow />} />
