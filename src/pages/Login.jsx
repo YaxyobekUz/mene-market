@@ -13,10 +13,10 @@ import { setAuthData, setLoggedIn } from "../store/slices/authDataSlice";
 
 // helpers
 import {
-  checkInputValueByRegex,
-  errorNotification,
   getElement,
+  errorNotification,
   successNotification,
+  checkInputValueByRegex,
 } from "../helpers/helpers";
 import { emailRegex, passwordRegex } from "../helpers/regexes";
 
@@ -29,6 +29,7 @@ const Login = () => {
   const navigate = useNavigate();
   const [loader, setLoader] = useState(false);
   const [passwordInput, setPasswordInput] = useState(true);
+  const authData = JSON.parse(localStorage.getItem("auth"));
 
   const login = (event) => {
     event.preventDefault();
@@ -95,6 +96,7 @@ const Login = () => {
             disabled={loader}
             placeholder="E-pochta"
             className="auth-form-input js-email-input"
+            defaultValue={authData ? authData.email : ""}
           />
 
           {/* password */}
@@ -104,8 +106,9 @@ const Login = () => {
               disabled={loader}
               autoComplete="off"
               placeholder="Parol"
-              className="auth-form-input js-password-input pr-10"
               type={`${passwordInput ? "password" : "text"}`}
+              defaultValue={authData ? authData.password : ""}
+              className="auth-form-input js-password-input pr-10"
             />
 
             {/* set toggle password input */}
