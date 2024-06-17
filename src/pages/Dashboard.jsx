@@ -59,7 +59,7 @@ const Dashboard = () => {
       <div className="w-full space-y-6 max-450:space-y-5">
         {/* content top */}
         <div className="grid grid-cols-2 gap-6 max-768:grid-cols-1 max-768:gap-5">
-          {/* child 1 */}
+          {/* child 1 (user data) */}
           <div className="flex flex-col justify-between gap-6 bg-jellyfish bg-primary-black-800 bg-cover bg-center p-5 rounded-20 max-768:h-96 max-450:h-[392px]">
             <div className="space-y-3">
               {/* user profile image */}

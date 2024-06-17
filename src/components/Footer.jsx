@@ -14,7 +14,7 @@ const Footer = () => {
   const authData = useSelector((store) => store.authData);
 
   return (
-    <footer className="text-regular-16 bg-primary-black-800 py-8 text-white">
+    <footer className="text-regular-16 bg-primary-black-800 pt-8 pb-14 text-white">
       <div className="container">
         <div className="flex-start-between max-540:flex-col max-540:gap-7">
           {/* logo wrapper */}
