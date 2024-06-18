@@ -1,129 +1,135 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import { productsData, tabButtons } from "../assets/data";
+import { NavLink, useParams } from "react-router-dom";
+
+// redux
+import { useSelector } from "react-redux";
+
+// components
+import ProductLoader from "../components/ProductLoader";
+
+// data
+import { imageBaseUrl, productTypesData } from "../data/data";
 
 // images
-import link from "../assets/images/svg/link-solid-icon.svg";
-const Market = () => {
+import packageBox from "../assets/images/svg/package-box.svg";
+import MarketPageProduct from "../components/MarketPageProduct";
+import ImageViewerModal from "../components/ImageViewerModal";
 
+const Market = () => {
+  const { productType } = useParams();
   const [products, setProducts] = useState([]);
-  const [activeBtnValue, setActiveBtnValue] = useState("all");
+  const [imageIndex, setImageIndex] = useState(0);
+  const [productsImage, setProductsImage] = useState([]);
+  const productsData = useSelector((store) => store.productsData);
+  const closeImageViewerModal = () => setOpenImageViewerModal(false);
+  const [openImageViewerModal, setOpenImageViewerModal] = useState(false);
+  const pathArr = location.pathname.split("/").filter((item) => item !== "");
+
+  // set products by type
   useEffect(() => {
-    if (activeBtnValue === "all") {
-      setProducts(productsData);
-    } else {
-      const filteredProducts = productsData.filter((product) => {
-        return product.type.toLowerCase() === activeBtnValue.toLowerCase();
-      });
-      setProducts(filteredProducts);
+    if (
+      productsData.data.allProducts &&
+      productsData.data.allProducts.length > 0
+    ) {
+      if (!productType || productType === "all") {
+        setProducts(productsData.data.allProducts);
+      } else {
+        setProducts(
+          productsData.data.allProducts.filter(
+            (product) => product.productType === productType
+          )
+        );
+      }
     }
-  }, [activeBtnValue]);
+  }, [productTypesData, productType]);
+
+  // set products image
+  useEffect(() => {
+    if (products && products.length > 0) {
+      setProductsImage(
+        products.map(
+          (product) =>
+            imageBaseUrl + product.imageMetadatas[0].hightImageFilePath
+        )
+      );
+    }
+  }, [products]);
+
   return (
-    <div className="  ">
-      {/* tab */}
-      <div className="tab-menu scroll_gray max-w-min">
-        {tabButtons.map((button) => {
+    <div>
+      {/* tab buttons */}
+      <div className="flex gap-2.5 overflow-x-auto scroll_gray pb-4 p-0.5 mb-6">
+        <NavLink
+          to="/admin/market/all"
+          className={`${
+            pathArr.length === 2 ? "active" : ""
+          } main-btn min-w-max bg-transparent`}
+        >
+          Barchasi
+        </NavLink>
+
+        {productTypesData.map((item, index) => {
           return (
-            <button
-              key={button.id}
-              className={`${
-                activeBtnValue.toLowerCase() === button.type.toLowerCase()
-                  ? "tab-menu_btn-active"
-                  : ""
-              } tab-menu_btn`}
-              onClick={() => {
-                setActiveBtnValue(button.type.toLowerCase());
-              }}
+            <NavLink
+              key={index}
+              to={"/admin/market/" + item.value}
+              className="main-btn min-w-max bg-transparent"
             >
-              {button.name}
-            </button>
+              {item.label}
+            </NavLink>
           );
         })}
       </div>
 
       {/* products */}
-      <ul className="grid grid-cols-3 gap-6 max-1124:grid-cols-2 max-1024:grid-cols-3 max-860:grid-cols-2 max-640:gap-3 max-490:grid-cols-1">
-        {products.map((product) => {
-          return (
-            <li key={product.id} className="product">
-              <img
-                width={296}
-                height={296}
-                src={product.images[0].src}
-                alt=""
-                className="product_img"
-              />
-              {/* content */}
-              <div className="product_content">
-                <h3 className="product_title">{product.name}</h3>
-                {/* price */}
-                <div className="product_price-wrapper">
-                  <p className="product_current-price">$240</p>
-                  <p className="product_old-price">$240</p>
-                  <div className="product_discount">-20%</div>
-                </div>
-                <ul className="product_list">
-                  <li className="product_list_item">To’lov: 40 000 so’m</li>
-                  <li className="product_list_item">Sotuvchi: Dubay shop</li>
-                  <li className="product_list_item">Zahirada: 20 ta bor</li>
-                  <li className="product_list_item">Operator: Bor</li>
-                  <li className="product_list_item">
-                    <a
-                      href="https://t.me"
-                      target="_blank"
-                      className="product_list_item_link"
-                    >
-                      Reklama posti
-                    </a>
-                  </li>
-                </ul>
-                {/* buttons wrapper */}
-                <div className="product_btns-wrapper">
-                  <button className="product_buy-btn">
-                    <img
-                      width={20}
-                      height={20}
-                      src={link}
-                      alt="shopping cart"
-                      className="product_buy-btn_icon"
-                    />
-                    <span className="product_buy-btn_text">
-                      Oqimni yaratish
-                    </span>
-                  </button>
+      {!productsData.loader ? (
+        <ul className="grid  grid-cols-4 gap-5 mb-9 max-1320:grid-cols-3 max-860:grid-cols-2 max-540:grid-cols-1">
+          {products.map((product, index) => (
+            <MarketPageProduct
+              product={product}
+              key={product.productId}
+              imageOnClick={() => {
+                setImageIndex(index);
+                setOpenImageViewerModal(true);
+              }}
+            />
+          ))}
+        </ul>
+      ) : (
+        <ul className="grid-4 products mb-9">
+          {Array.from({ length: 12 }).map((_, index) => (
+            <ProductLoader key={index} />
+          ))}
+        </ul>
+      )}
 
-                  <button className="product_toggle-like-btn">
-                    <svg
-                      className="product_toggle-like-btn_icon"
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="24"
-                      height="25"
-                      viewBox="0 0 24 25"
-                      fill="none"
-                    >
-                      <path
-                        className="active:fill-red-500"
-                        fill="transparent"
-                        d="M12.62 21.2998C12.28 21.4198 11.72 21.4198 11.38 21.2998C8.48 20.3098 2 16.1798 2 9.17984C2 6.08984 4.49 3.58984 7.56 3.58984C9.38 3.58984 10.99 4.46984 12 5.82984C13.01 4.46984 14.63 3.58984 16.44 3.58984C19.51 3.58984 22 6.08984 22 9.17984C22 16.1798 15.52 20.3098 12.62 21.2998Z"
-                        stroke="#FE3A30"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
-                  </button>
-                </div>
-              </div>
-            </li>
-          );
-        })}
-      </ul>
+      {/* no data */}
+      {products.length === 0 && !productsData.loader && (
+        <div className="flex-center gap-4">
+          <img
+            width={72}
+            height={72}
+            src={packageBox}
+            alt="package box"
+            className="w-[72px] h-[72px]"
+          />
+          <div className="space-y-1">
+            <h1 className="text-2xl">Mahsulotlar mavjud emas!</h1>
+            <p className="opacity-80">
+              Ushbu sahifada hech qanday mahsulot mavjud emas.
+            </p>
+          </div>
+        </div>
+      )}
 
-      {/* product not found message */}
-      {products.length === 0 && (
-        <p className="text-semibold-20">
-          Afsus ushbu turdagi mahsulotlar hozircha bizda yo'q :(
-        </p>
+      {/* open image viewer modal */}
+      {openImageViewerModal && (
+        <ImageViewerModal
+          alt="product image"
+          images={productsImage}
+          initialSlide={imageIndex}
+          closeModal={closeImageViewerModal}
+        />
       )}
     </div>
   );

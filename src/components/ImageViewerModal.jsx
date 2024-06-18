@@ -117,7 +117,7 @@ const ImageViewerModal = ({ alt, images, initialSlide, closeModal }) => {
           <Swiper
             spaceBetween={24}
             modules={[Navigation, Pagination]}
-            initialSlide={initialSlide ? initialSlide : 2}
+            initialSlide={initialSlide ? initialSlide : 0}
             navigation={{
               prevEl: ".image-viewer-modal-swiper-btn-prev",
               nextEl: ".image-viewer-modal-swiper-btn-next",

@@ -140,9 +140,9 @@ const App = () => {
             }
           >
             <Route path="flow" element={<Flow />} />
-            <Route path="market" element={<Market />} />
             <Route path="payment" element={<Payment />} />
             <Route path="statistics" element={<Statistics />} />
+            <Route path="market/:productType?" element={<Market />} />
 
             {/* dashboard */}
             <Route path="dashboard" element={<Outlet />}>
