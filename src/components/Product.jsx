@@ -30,7 +30,9 @@ const Product = ({ product }) => {
         {/* main content */}
         <div className="flex flex-col gap-3 grow">
           {/* title */}
-          <h3 className="text-base font-semibold">{product.name}</h3>
+          <h3 className="text-base font-semibold line-clamp-3">
+            {product.name}
+          </h3>
 
           {/* rating */}
           <StarRating value={3.8} showText />

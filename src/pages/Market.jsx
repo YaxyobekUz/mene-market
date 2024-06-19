@@ -4,16 +4,16 @@ import { NavLink, useParams } from "react-router-dom";
 // redux
 import { useSelector } from "react-redux";
 
-// components
-import ProductLoader from "../components/ProductLoader";
-
 // data
 import { imageBaseUrl, productTypesData } from "../data/data";
 
+// components
+import ProductLoader from "../components/ProductLoader";
+import ImageViewerModal from "../components/ImageViewerModal";
+import MarketPageProduct from "../components/MarketPageProduct";
+
 // images
 import packageBox from "../assets/images/svg/package-box.svg";
-import MarketPageProduct from "../components/MarketPageProduct";
-import ImageViewerModal from "../components/ImageViewerModal";
 
 const Market = () => {
   const { productType } = useParams();
@@ -41,7 +41,7 @@ const Market = () => {
         );
       }
     }
-  }, [productTypesData, productType]);
+  }, [productTypesData, productType, productsData]);
 
   // set products image
   useEffect(() => {
@@ -103,7 +103,7 @@ const Market = () => {
         </ul>
       )}
 
-      {/* no data */}
+      {/* empty data */}
       {products.length === 0 && !productsData.loader && (
         <div className="flex-center gap-4">
           <img

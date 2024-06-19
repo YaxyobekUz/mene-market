@@ -362,6 +362,9 @@ html {
   .product-swiper {
     @apply rounded-lg;
   }
+  .product-swiper .swiper-wrapper {
+    @apply z-10;
+  }
 
   .product-swiper .swiper-slide {
     @apply grow rounded-lg;
@@ -378,6 +381,9 @@ html {
   .product-swiper :is(.swiper-button-prev, .swiper-button-next) {
     @apply w-8 h-8 bg-cover bg-center;
     background: url(../src/assets/images/svg/arrow-circle-right.svg);
+  }
+  .swiper-button-disabled {
+    @apply !z-20;
   }
 
   /* product page */
@@ -641,6 +647,23 @@ html {
 
   .admin_page_profile-list .active {
     @apply text-white border-b border-white;
+  }
+
+  /* confirmation modal */
+  .confirmation-modal-form {
+    @apply flex flex-col gap-5;
+  }
+
+  .confirmation-modal-form label {
+    @apply space-y-3;
+  }
+
+  .confirmation-modal-form :is(input, textarea) {
+    @apply !w-full px-3 py-2 border border-primary-gray-500 rounded-lg text-regular-16;
+  }
+
+  .confirmation-modal-form label {
+    @apply space-y-3;
   }
 }
 
