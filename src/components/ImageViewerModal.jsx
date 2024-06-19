@@ -53,10 +53,10 @@ const ImageViewerModal = ({ alt, images, initialSlide, closeModal }) => {
   return (
     <div className="flex items-center justify-center fixed inset-0 z-50 w-full h-full">
       {/* modal header */}
-      <div className="flex justify-end absolute top-0 inset-x-0 z-10 w-full">
+      <div className="flex absolute top-0 right-0 z-10">
         <button
           onClick={() => setImageLarge(!imageLarge)}
-          className="bg-primary-blue-50/10 px-5 py-1 transition-colors hover:bg-primary-blue-50/20 max-640:py-0.5 max-640:px-4"
+          className="bg-primary-blue-50/20 px-5 py-1 transition-colors hover:bg-primary-blue-50/30 max-640:py-0.5 max-640:px-4"
         >
           {imageLarge ? (
             <img
@@ -80,7 +80,7 @@ const ImageViewerModal = ({ alt, images, initialSlide, closeModal }) => {
         {/* close modal btn */}
         <button
           onClick={closeModal}
-          className="bg-primary-blue-50/10 px-5 py-1 transition-colors hover:bg-primary-red-500/50 max-640:py-0.5 max-640:px-4"
+          className="bg-primary-blue-50/20 px-5 py-1 transition-colors hover:bg-primary-red-500/50 max-640:py-0.5 max-640:px-4"
         >
           <img
             width={32}
