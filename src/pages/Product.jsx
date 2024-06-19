@@ -16,7 +16,6 @@ import {
 // antd
 import "../css/antd.css";
 import { Select } from "antd";
-import { Tooltip } from "antd";
 
 // data
 import { imageBaseUrl } from "../data/data";
@@ -27,9 +26,11 @@ import axiosConfig from "../api/axios/axios";
 // components
 import DotsLoader from "../components/DotsLoader";
 import StarRating from "../components/StarRating";
+import ConfirmationModal from "../components/ConfirmationModal";
 
 // swiper
 import "swiper/css";
+import "../css/swiper.css";
 import "swiper/css/thumbs";
 import "swiper/css/free-mode";
 import "swiper/css/navigation";
@@ -39,12 +40,16 @@ import { FreeMode, Navigation, Thumbs } from "swiper/modules";
 // react input mask
 import InputMask from "react-input-mask";
 
+// components
+import ImageViewerModal from "../components/ImageViewerModal";
+
 // redux
 import { useDispatch, useSelector } from "react-redux";
 import { addNewRequestData } from "../store/slices/productRequestsDataSlice";
 
 // images
 import cartIcon from "../assets/images/svg/cart-icon.svg";
+import arrowLeftIcon from "../assets/images/svg/arrow-left.svg";
 import plusIcon from "../assets/images/svg/plus-square-icon.svg";
 import minusIcon from "../assets/images/svg/minus-square-icon.svg";
 
@@ -57,14 +62,20 @@ const Product = () => {
   const [product, setProduct] = useState(null);
   const [loader2, setLoader2] = useState(false);
   const [loader3, setLoader3] = useState(false);
+  const [imageIndex, setImageIndex] = useState(0);
   const [ratingNumber, setRatingNumber] = useState(5);
   const [productCount, setProductCount] = useState(1);
   const [showReviews, setShowReviews] = useState(false);
   const [productRating, setProductRating] = useState(5);
+  const [productImages, setProductImages] = useState([]);
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   const productsData = useSelector((store) => store.productsData);
+  const [openImageViewerModal, setOpenImageViewerModal] = useState(false);
   const [openLeaveACommentModal, setOpenLeaveACommentModal] = useState(false);
   const [selectedProductTypeIndex, setSelectedProductTypeIndex] = useState(0);
+  const closeLeaveACommentModal = () => {
+    if (!loader3) setOpenLeaveACommentModal(false);
+  };
 
   const getProductData = () => {
     axiosConfig
@@ -94,11 +105,18 @@ const Product = () => {
     }
   }, [productsData]);
 
-  // set product rating
+  // set product rating and set product images
   useEffect(() => {
     if (product) {
       const rating = calculateProductRatingByReviews(product.comments);
       setProductRating(rating);
+
+      // set products image
+      setProductImages(
+        product.imageMetadatas.map(
+          (img) => imageBaseUrl + img.hightImageFilePath
+        )
+      );
     }
   }, [product]);
 
@@ -150,8 +168,6 @@ const Product = () => {
 
   // leave a comment
   const leaveComment = (e) => {
-    e.preventDefault();
-
     // form inputs
     const elNameInput = getElement(e, ".js-add-comment-form-name-input");
     const elCommentInput = getElement(e, ".js-add-comment-form-comment-input");
@@ -175,9 +191,10 @@ const Product = () => {
         .post("/Comment", formData)
         .then((res) => {
           if (res.status === 200) {
-            successNotification("Izohingiz muvaffaqiyatli qo'shildi");
+            successNotification("Izoh muvaffaqiyatli qo'shildi");
           } else errorNotification();
-          setOpenLeaveACommentModal(false);
+          closeLeaveACommentModal();
+          setRatingNumber(5);
         })
         .catch(() => errorNotification.offline())
         .finally(() => setLoader3(false));
@@ -194,6 +211,7 @@ const Product = () => {
                 <div className="grid grid-cols-2 gap-6 max-768:grid-cols-1">
                   {/* swiper wrapper */}
                   <div className="flex sticky gap-2.5 w-full h-644 top-28 max-1024:h-520 max-860:h-440 max-768:static max-768:h-644 max-640:h-520 max-490:h-440 max-375:h-[380px]">
+                    {/* main swiper thumbs */}
                     <Swiper
                       freeMode={true}
                       spaceBetween={10}
@@ -212,7 +230,7 @@ const Product = () => {
                               height={153}
                               alt="product image"
                               className="vertical-product-swiper_img"
-                              src={imageBaseUrl + img.hightImageFilePath}
+                              src={imageBaseUrl + img.lowImageFilePath}
                             />
                           </SwiperSlide>
                         );
@@ -222,12 +240,15 @@ const Product = () => {
                     {/* img large */}
                     <Swiper
                       spaceBetween={10}
-                      navigation={true}
+                      className="product-page-swiper"
+                      navigation={{
+                        prevEl: ".product-page-swiper-btn-prev",
+                        nextEl: ".product-page-swiper-btn-next",
+                      }}
                       thumbs={{ swiper: thumbsSwiper }}
                       modules={[FreeMode, Navigation, Thumbs]}
-                      className="product-swiper"
                     >
-                      {product.imageMetadatas.map((img) => {
+                      {product.imageMetadatas.map((img, index) => {
                         return (
                           <SwiperSlide key={img.id}>
                             <img
@@ -235,11 +256,46 @@ const Product = () => {
                               height={644}
                               alt="product image"
                               className="product-swiper_img"
-                              src={imageBaseUrl + img.lowImageFilePath}
+                              src={imageBaseUrl + img.hightImageFilePath}
+                              onClick={() => {
+                                setImageIndex(index);
+                                setOpenImageViewerModal(true);
+                              }}
                             />
                           </SwiperSlide>
                         );
                       })}
+
+                      {/* swiper buttons */}
+                      {/* btn prev */}
+                      <button
+                        title="prev"
+                        aria-label="prev"
+                        className="product-page-swiper-btn-prev"
+                      >
+                        <img
+                          width={20}
+                          height={20}
+                          src={arrowLeftIcon}
+                          className="w-5 h-5"
+                          alt="arrow left icon"
+                        />
+                      </button>
+
+                      {/* btn next */}
+                      <button
+                        title="next"
+                        aria-label="next"
+                        className="product-page-swiper-btn-next"
+                      >
+                        <img
+                          width={20}
+                          height={20}
+                          src={arrowLeftIcon}
+                          className="w-5 h-5"
+                          alt="arrow left icon"
+                        />
+                      </button>
                     </Swiper>
                   </div>
 
@@ -665,129 +721,73 @@ const Product = () => {
 
         {/* leave a comment modal */}
         {openLeaveACommentModal && (
-          <div className="flex-center justify-center fixed inset-0 z-50 w-full h-full">
-            {/* modal content */}
-            <div className="z-10 max-w-sm w-full bg-white py-7 px-5 mx-3 rounded-xl max-375:px-4 max-375:py-6">
-              {/* modal header (title wrapper) */}
-              <div className="flex-center-between gap-3 mb-5">
-                <h2 className="text-2xl">Izoh qoldirish</h2>
+          <ConfirmationModal
+            loader={loader3}
+            title="Izoh qoldirish"
+            onSubmit={leaveComment}
+            submitBtnText="Izoh qoldirish"
+            closeModal={closeLeaveACommentModal}
+            info="Kommentariya operator tomonidan tasdiqlanganidan so'ng ko'rsatiladi!"
+          >
+            <label>
+              <span>Ismingiz</span>
+              <input
+                type="text"
+                name="user full name"
+                placeholder="Ismingiz"
+                className="js-add-comment-form-name-input"
+              />
+            </label>
 
-                {/* info icon */}
-                <Tooltip title="Kommentariya operator tomonidan tasdiqlanganidan so'ng ko'rsatiladi!">
-                  <svg
-                    width="20"
-                    height="20"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <circle
-                      r="10"
-                      cx="12"
-                      cy="12"
-                      stroke="#1C274C"
-                      strokeWidth="1.5"
-                    />
-                    <path
-                      d="M12 17V11"
-                      stroke="#1C274C"
-                      strokeWidth="1.5"
-                      strokeLinecap="round"
-                    />
-                    <circle
-                      r="1"
-                      cx="1"
-                      cy="1"
-                      fill="#1C274C"
-                      transform="matrix(1 0 0 -1 11 9)"
-                    />
-                  </svg>
-                </Tooltip>
-              </div>
+            {/* description */}
+            <label>
+              <span>Izohingiz</span>
+              <textarea
+                type="text"
+                name="user comment"
+                placeholder="Izohingiz"
+                className="js-add-comment-form-comment-input min-h-[128px] max-h-44 scroll_hidden"
+              ></textarea>
+            </label>
 
-              {/* modal body */}
-              <form onSubmit={leaveComment} className="flex flex-col gap-5">
-                <label className="space-y-3">
-                  <span>Ismingiz</span>
-                  <input
-                    type="text"
-                    name="user full name"
-                    placeholder="Ismingiz"
-                    className="js-add-comment-form-name-input !w-full px-3 border border-primary-gray-500 rounded-lg"
-                  />
-                </label>
-
-                {/* description */}
-                <label className="space-y-3">
-                  <span>Izohingiz</span>
-                  <textarea
-                    type="text"
-                    name="user comment"
-                    placeholder="Izohingiz"
-                    className="js-add-comment-form-comment-input !w-full min-h-[128px] max-h-44 scroll_hidden p-3 border border-primary-gray-500 rounded-lg text-regular-16"
-                  ></textarea>
-                </label>
-
-                {/* rating */}
-                <div className="space-y-3">
-                  <p>Mahsulotni baholang</p>
-                  <div className="flex items-center">
-                    {Array.from({ length: 5 }, (_, index) => (
-                      <button
-                        key={index}
-                        type="button"
-                        className="p-1"
-                        onClick={() => setRatingNumber(index + 1)}
-                      >
-                        <svg
-                          width="18"
-                          height="18"
-                          fill="none"
-                          viewBox="0 0 34 33"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            d="M16.0489 0.927051C16.3483 0.00574017 17.6517 0.00574017 17.9511 0.927051L21.2658 11.1287C21.3996 11.5407 21.7836 11.8197 22.2168 11.8197H32.9434C33.9122 11.8197 34.3149 13.0593 33.5312 13.6287L24.8532 19.9336C24.5027 20.1883 24.3561 20.6396 24.4899 21.0517L27.8046 31.2533C28.104 32.1746 27.0495 32.9407 26.2658 32.3713L17.5878 26.0664C17.2373 25.8117 16.7627 25.8117 16.4122 26.0664L7.73419 32.3713C6.95048 32.9407 5.896 32.1746 6.19535 31.2533L9.51006 21.0517C9.64393 20.6396 9.49728 20.1883 9.14679 19.9336L0.468768 13.6287C-0.314945 13.0593 0.0878303 11.8197 1.05655 11.8197H11.7832C12.2164 11.8197 12.6004 11.5407 12.7342 11.1287L16.0489 0.927051Z"
-                            fill={index < ratingNumber ? "#F4BE37" : "#949494"}
-                          />
-                        </svg>
-                      </button>
-                    ))}
-                  </div>
-                </div>
-
-                {/* buttons */}
-                <div className="flex justify-end gap-3 w-full max-375:flex-col max-375:justify-normal">
+            {/* rating */}
+            <div>
+              <p>Mahsulotni baholang</p>
+              <div className="flex items-center">
+                {Array.from({ length: 5 }, (_, index) => (
                   <button
+                    key={index}
                     type="button"
-                    disabled={loader3}
-                    className="main-btn py-2.5 px-4 !text-base justify-center max-375:!min-w-full"
-                    onClick={() => setOpenLeaveACommentModal(false)}
+                    className="p-1"
+                    onClick={() => setRatingNumber(index + 1)}
                   >
-                    Bekor qilish
+                    <svg
+                      width="18"
+                      height="18"
+                      fill="none"
+                      viewBox="0 0 34 33"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M16.0489 0.927051C16.3483 0.00574017 17.6517 0.00574017 17.9511 0.927051L21.2658 11.1287C21.3996 11.5407 21.7836 11.8197 22.2168 11.8197H32.9434C33.9122 11.8197 34.3149 13.0593 33.5312 13.6287L24.8532 19.9336C24.5027 20.1883 24.3561 20.6396 24.4899 21.0517L27.8046 31.2533C28.104 32.1746 27.0495 32.9407 26.2658 32.3713L17.5878 26.0664C17.2373 25.8117 16.7627 25.8117 16.4122 26.0664L7.73419 32.3713C6.95048 32.9407 5.896 32.1746 6.19535 31.2533L9.51006 21.0517C9.64393 20.6396 9.49728 20.1883 9.14679 19.9336L0.468768 13.6287C-0.314945 13.0593 0.0878303 11.8197 1.05655 11.8197H11.7832C12.2164 11.8197 12.6004 11.5407 12.7342 11.1287L16.0489 0.927051Z"
+                        fill={index < ratingNumber ? "#F4BE37" : "#949494"}
+                      />
+                    </svg>
                   </button>
-
-                  {/* submit btn */}
-                  <button
-                    disabled={loader3}
-                    className="main-btn bg-linear-gradient_blue-500 py-2.5 px-4 border-primary-skyblue-500 text-white !text-base  justify-center max-375:!min-w-full"
-                  >
-                    {!loader3 ? (
-                      "Izoh qoldirish"
-                    ) : (
-                      <DotsLoader className="px-[33px] !h-6" />
-                    )}
-                  </button>
-                </div>
-              </form>
+                ))}
+              </div>
             </div>
+          </ConfirmationModal>
+        )}
 
-            {/* overlay */}
-            <div
-              onClick={() => setOpenLeaveACommentModal(false)}
-              className="absolute inset-0 z-0 w-full h-full bg-primary-black-800/30 backdrop-filter backdrop-blur"
-            ></div>
-          </div>
+        {/* image viewer modal */}
+        {openImageViewerModal && (
+          <ImageViewerModal
+            alt="product image"
+            images={productImages}
+            initialSlide={imageIndex}
+            closeModal={() => setOpenImageViewerModal(false)}
+          />
         )}
       </div>
     </div>
