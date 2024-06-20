@@ -40,7 +40,7 @@ const Market = () => {
   const [productId, setProductId] = useState("");
   const [imageIndex, setImageIndex] = useState(0);
   const [productsImage, setProductsImage] = useState([]);
-  const { userData } = useSelector((store) => store.userData);
+  const userData = useSelector((store) => store.userData);
   const productsData = useSelector((store) => store.productsData);
   const closeImageViewerModal = () => setOpenImageViewerModal(false);
   const [openImageViewerModal, setOpenImageViewerModal] = useState(false);
@@ -85,66 +85,70 @@ const Market = () => {
 
   // create stream
   const createStream = (e) => {
-    const elStreamNameInput = getElement(e, ".js-stream-name-input");
-    const elDonatePriceInput = getElement(e, ".js-donate-price-input");
+    if (userData.offerLinksData.length < 50) {
+      const elStreamNameInput = getElement(e, ".js-stream-name-input");
+      const elDonatePriceInput = getElement(e, ".js-donate-price-input");
 
-    // check input values
-    const checkDonatePriceInputValue = () => {
-      if (virtualCheckboxIsChecked) {
-        const price = Number(elDonatePriceInput.value.replace(/[^\d]/g, ""));
-        const checkValue = price >= 100 && price <= 5000;
-
-        if (checkValue) {
-          elDonatePriceInput.classList.remove("is-invalid");
-        } else {
-          elDonatePriceInput.focus();
-          elDonatePriceInput.classList.add("is-invalid");
-        }
-        return checkValue;
-      } else {
-        return true;
-      }
-    };
-    const price = checkDonatePriceInputValue();
-    const name = checkInputValueByLength(
-      elStreamNameInput,
-      elStreamNameInput.value
-    );
-
-    // send a request
-    if (name && price && !loader) {
-      setLoader(true);
-
-      const price = () => {
+      // check input values
+      const checkDonatePriceInputValue = () => {
         if (virtualCheckboxIsChecked) {
-          return Number(elDonatePriceInput.value.replace(/[^\d]/g, ""));
+          const price = Number(elDonatePriceInput.value.replace(/[^\d]/g, ""));
+          const checkValue = price >= 100 && price <= 5000;
+
+          if (checkValue) {
+            elDonatePriceInput.classList.remove("is-invalid");
+          } else {
+            elDonatePriceInput.focus();
+            elDonatePriceInput.classList.add("is-invalid");
+          }
+          return checkValue;
         } else {
-          return 0;
+          return true;
         }
       };
+      const price = checkDonatePriceInputValue();
+      const name = checkInputValueByLength(
+        elStreamNameInput,
+        elStreamNameInput.value
+      );
 
-      // form data
-      const formData = {
-        link: "",
-        clients: [],
-        productId: productId,
-        donationPrice: price(),
-        userId: userData.userId,
-        name: elStreamNameInput.value.trim(),
-        allowDonation: virtualCheckboxIsChecked,
-      };
+      // send a request
+      if (name && price && !loader) {
+        setLoader(true);
 
-      axiosConfig
-        .post("/OfferLink", formData)
-        .then((res) => {
-          if (res.status === 200) {
-            setOpenCreateStreamModal(false);
-            dispatch(addUserOfferLinkData(res.data));
-            successNotification("Oqim muvaffaqiyatli yaratildi");
-          } else errorNotification();
-        })
-        .catch(() => errorNotification.offline())
-        .finally(() => setLoader(false));
+        const price = () => {
+          if (virtualCheckboxIsChecked) {
+            return Number(elDonatePriceInput.value.replace(/[^\d]/g, ""));
+          } else {
+            return 0;
+          }
+        };
+
+        // form data
+        const formData = {
+          link: "",
+          clients: [],
+          productId: productId,
+          donationPrice: price(),
+          userId: userData.userData.userId,
+          name: elStreamNameInput.value.trim(),
+          allowDonation: virtualCheckboxIsChecked,
+        };
+
+        axiosConfig
+          .post("/OfferLink", formData)
+          .then((res) => {
+            if (res.status === 200) {
+              setOpenCreateStreamModal(false);
+              dispatch(addUserOfferLinkData(res.data));
+              successNotification("Oqim muvaffaqiyatli yaratildi");
+            } else errorNotification();
+          })
+          .catch(() => errorNotification.offline())
+          .finally(() => setLoader(false));
+      }
+    } else {
+      errorNotification("Oqimlar soni maksimal miqdoriga yetib bo'ldi");
     }
   };
 
@@ -232,8 +236,10 @@ const Market = () => {
           <label>
             <span>Oqim nomi</span>
             <input
+              autoFocus
               name="name"
               type="text"
+              autoComplete="off"
               placeholder="Oqim nomi"
               className="js-stream-name-input"
             />
@@ -250,6 +256,7 @@ const Market = () => {
                   <input
                     type="text"
                     {...inputProps}
+                    autoComplete="off"
                     name="donate price"
                     className="js-donate-price-input"
                     placeholder="Hayriya uchun ajratilinadigan narx"
