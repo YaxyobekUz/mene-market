@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialStateValues = {
   userData: null,
-  userOfferLinksData: [],
+  offerLinksData: [],
 };
 
 export const userDataSlice = createSlice({
@@ -14,11 +14,11 @@ export const userDataSlice = createSlice({
     },
 
     setUserOfferLinksData: (state, actions) => {
-      state.userOfferLinksData = actions.payload;
+      state.offerLinksData = actions.payload;
     },
 
     addUserOfferLinkData: (state, actions) => {
-      state.userOfferLinksData.push(actions.payload);
+      state.offerLinksData.push(actions.payload);
     },
   },
 });
