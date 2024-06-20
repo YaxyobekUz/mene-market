@@ -8,8 +8,11 @@ import axiosConfig from "../api/axios/axios";
 import DotsLoader from "../components/DotsLoader";
 
 // redux
+import {
+  setUserData,
+  setUserOfferLinksData,
+} from "../store/slices/userDataSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { setUserData } from "../store/slices/userDataSlice";
 
 // imags
 import home from "../assets/images/svg/home.svg";
@@ -33,6 +36,7 @@ const AdminLayout = () => {
       .then((res) => {
         if (res.status === 200) {
           dispatch(setUserData(res.data));
+          dispatch(setUserOfferLinksData(res.data.offerLinks));
         }
       })
       .finally(() => setLoader(false));

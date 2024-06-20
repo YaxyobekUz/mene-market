@@ -8,22 +8,23 @@ import {
   createRoutesFromElements,
 } from "react-router-dom";
 
+// components
+import Loader from "./components/Loader";
+
 // axios
 import axiosConfig from "./api/axios/axios";
 
 // redux
-import { useDispatch, useSelector } from "react-redux";
-import { setUserData } from "./store/slices/userDataSlice";
-import { setAuthData, setLoggedIn } from "./store/slices/authDataSlice";
-
-// components
-import Loader from "./components/Loader";
-
-// redux
+import {
+  setUserData,
+  setUserOfferLinksData,
+} from "./store/slices/userDataSlice";
 import {
   setProductsData,
   setProductsLoader,
 } from "./store/slices/productsDataSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { setAuthData, setLoggedIn } from "./store/slices/authDataSlice";
 
 // layouts
 import MainRoot from "./layouts/MainRoot";
@@ -80,6 +81,7 @@ const App = () => {
               dispatch(setLoggedIn(true));
               dispatch(setUserData(res.data));
               dispatch(setAuthData(authData));
+              dispatch(setUserOfferLinksData(res.data.offerLinks));
             }
           }
         })
