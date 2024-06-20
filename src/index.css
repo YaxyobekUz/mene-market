@@ -603,44 +603,6 @@ html {
     @apply bg-[#222F68];
   }
 
-  /* admin product styles */
-  .admin .product {
-    background: linear-gradient(
-      126.97deg,
-      rgba(6, 11, 40, 0.74) 28.26%,
-      rgba(10, 14, 35, 0.71) 91.2%
-    );
-  }
-
-  .admin .product_content {
-    @apply space-y-2;
-  }
-
-  .product_price-wrapper {
-    @apply flex-center gap-2.5;
-  }
-
-  .product_current-price {
-    @apply text-semibold-20;
-  }
-
-  .product_old-price {
-    @apply text-semibold-20 text-primary-gray-500;
-  }
-
-  .product_discount {
-    @apply text-regular-13 bg-[#FCECEF] text-primary-red-500 rounded-full py-1.5 px-3;
-  }
-
-  .product_list {
-    @apply grow space-y-2;
-  }
-
-  .product_list_item,
-  .product_list_item_link {
-    @apply text-regular-16;
-  }
-
   .admin_page_profile-list a {
     @apply transition-colors duration-300 border-b border-transparent hover:border-white;
   }
@@ -650,6 +612,10 @@ html {
   }
 
   /* confirmation modal */
+  .confirmation-modal-form * {
+    @apply text-primary-black-800;
+  }
+
   .confirmation-modal-form {
     @apply flex flex-col gap-5;
   }
@@ -659,7 +625,7 @@ html {
   }
 
   .confirmation-modal-form :is(input, textarea) {
-    @apply !w-full px-3 py-2 border border-primary-gray-500 rounded-lg text-regular-16;
+    @apply !w-full px-3 py-2 border border-primary-gray-500 rounded-lg text-regular-16 text-primary-black-800;
   }
 
   .confirmation-modal-form label {
