@@ -31,17 +31,19 @@ const ConfirmationModal = ({
   }, [closeModal]);
 
   return (
-    <div
-      className={`flex justify-center fixed inset-0 z-50 w-full h-full ${
-        className ? className : ""
-      }`}
-    >
+    <div className="flex justify-center fixed inset-0 z-50 w-full h-full">
       {/* modal content */}
       <div className="flex flex-col h-full z-10 overflow-y-auto max-w-md w-full mx-3 scroll_hidden">
-        <div className="z-10 w-full bg-white p-5 my-auto rounded-xl max-375:p-4">
+        <div
+          className={`z-10 w-full bg-white p-5 my-auto rounded-xl max-375:p-4 ${
+            className ? className : ""
+          }`}
+        >
           {/* modal header */}
           <div className="flex-center-between gap-3 mb-5">
-            <h2 className="text-2xl">{title ? title : "Tasdiqlash"}</h2>
+            <h2 className="text-2xl text-primary-black-800">
+              {title ? title : "Tasdiqlash"}
+            </h2>
 
             {/* info icon */}
             {info && (
@@ -90,12 +92,12 @@ const ConfirmationModal = ({
             {children}
 
             {/* buttons */}
-            <div className="flex justify-end gap-3 w-full !py-2 max-375:flex-col max-375:justify-normal">
+            <div className="flex justify-end gap-3 w-full max-375:flex-col max-375:justify-normal">
               <button
                 type="button"
                 disabled={loader}
                 onClick={closeModal}
-                className="main-btn py-2.5 px-4 !text-base justify-center rounded-lg max-375:!min-w-full"
+                className="main-btn justify-center py-2.5 px-4 !text-primary-black-800 !text-base rounded-lg max-375:!min-w-full"
               >
                 Bekor qilish
               </button>
