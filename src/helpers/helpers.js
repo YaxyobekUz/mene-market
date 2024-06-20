@@ -1,11 +1,7 @@
 import { toast } from "react-toastify";
 
 export const getElement = (e, name) => {
-  if (e.target.querySelector(name)) {
-    return e.target.querySelector(name);
-  } else {
-    return e.querySelector(name);
-  }
+  return e.target.querySelector(name);
 };
 
 export const getElements = (e, name) => {
@@ -40,7 +36,7 @@ export const checkInputValueByRegex = (input, regex) => {
 
 export const checkInputValueByLength = (input, value, length) => {
   if (length) {
-    if (value.trim() > length) {
+    if (value.trim().length > length) {
       input.classList.remove("is-invalid");
       return true;
     } else {
@@ -49,7 +45,7 @@ export const checkInputValueByLength = (input, value, length) => {
       return false;
     }
   } else {
-    if (value.trim() > 0) {
+    if (value.trim().length > 0) {
       input.classList.remove("is-invalid");
       return true;
     } else {
@@ -62,6 +58,11 @@ export const checkInputValueByLength = (input, value, length) => {
 
 export const formatNumber = (num) => {
   return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+};
+
+export const formatInputValueToNumber = (e) => {
+  const numbers = e.target.value.replace(/[^\d]/g, "");
+  e.target.value = formatNumber(numbers);
 };
 
 // notifications
