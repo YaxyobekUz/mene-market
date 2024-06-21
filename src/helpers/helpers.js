@@ -34,6 +34,16 @@ export const checkInputValueByRegex = (input, regex) => {
   }
 };
 
+export const search = (data, key, query) => {
+  const formattedQuery = query.trim().toLowerCase();
+
+  const filteredData = data.filter((item) => {
+    return item[key].toLowerCase().includes(formattedQuery);
+  });
+
+  return filteredData;
+};
+
 export const checkInputValueByLength = (input, value, length) => {
   if (length) {
     if (value.trim().length > length) {
