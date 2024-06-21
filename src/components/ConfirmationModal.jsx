@@ -42,7 +42,7 @@ const ConfirmationModal = ({
           {/* modal header */}
           <div className="flex-center-between gap-3 mb-5">
             <h2 className="text-2xl text-primary-black-800">
-              {title ? title : "Tasdiqlash"}
+              {title ? title : "Amalni tasdiqlash"}
             </h2>
 
             {/* info icon */}
@@ -111,7 +111,7 @@ const ConfirmationModal = ({
                   submitBtnText ? (
                     submitBtnText
                   ) : (
-                    "Yuborish"
+                    "Tasdiqlash"
                   )
                 ) : (
                   <DotsLoader className="px-[33px] !h-6" />
