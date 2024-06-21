@@ -5,8 +5,8 @@ import { NavLink, useParams } from "react-router-dom";
 import {
   getElement,
   errorNotification,
-  checkInputValueByLength,
   successNotification,
+  checkInputValueByLength,
 } from "../helpers/helpers";
 
 // react input mask
@@ -49,8 +49,10 @@ const Market = () => {
   const [virtualCheckboxIsChecked, setVirtualCheckboxIsChecked] =
     useState(false);
   const closeCreateStreamModal = () => {
-    setVirtualCheckboxIsChecked(false);
-    setOpenCreateStreamModal(false);
+    if (!loader) {
+      setVirtualCheckboxIsChecked(false);
+      setOpenCreateStreamModal(false);
+    }
   };
 
   // set products by type
