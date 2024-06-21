@@ -56,6 +56,65 @@ html {
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  body {
+    @apply text-medium-18 text-primary-black-800;
+    background: #fff;
+    font-family: "inter", sans-serif;
+  }
+
+  *:focus {
+    @apply outline-none outline-transparent;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply text-primary-black-800;
+  }
+
+  h1 {
+    @apply text-semibold-36 max-768:text-bold-32;
+  }
+
+  h2 {
+    @apply text-bold-32 max-768:text-bold-28;
+  }
+
+  h3 {
+    @apply text-semibold-20 first-letter:h-1;
+  }
+
+  input {
+    @apply w-full rounded-full py-2 text-regular-16 border-primary-gray-500;
+  }
+
+  :is(input, textarea)::placeholder {
+    @apply text-primary-gray-500 text-regular-16;
+  }
+
+  address {
+    @apply not-italic;
+  }
+
+  /* clears the ‘X’ from Chrome */
+  :is(input[type="search"])::-webkit-search-decoration,
+  ::-webkit-search-cancel-button,
+  ::-webkit-search-results-button,
+  ::-webkit-search-results-decoration {
+    display: none;
+  }
+}
+
+@layer utilities {
+  .container {
+    @apply max-w-7xl w-full mx-auto px-5 max-450:px-4;
+  }
+}
+
 /* components  */
 @layer components {
   /* scrolls */
@@ -415,16 +474,6 @@ html {
     background: #000;
   }
 
-  /* public offer */
-  .public-offer-page :is(.title, strong) {
-    @apply inline font-semibold text-primary-black-800 uppercase;
-  }
-
-  .public-offer-page strong {
-    @apply mr-1;
-    text-transform: initial !important;
-  }
-
   /* auth */
   .auth-form {
     @apply space-y-8 max-640:space-y-6 max-450:space-y-5;
@@ -449,7 +498,7 @@ html {
   }
 
   .admin input {
-    @apply text-regular-16 text-white bg-transparent border border-primary-gray-50 pl-4 pr-12 py-2 rounded-lg placeholder:text-primary-gray-500 focus:outline-1 focus:outline-white focus:outline-offset-0;
+    @apply text-regular-16 text-white bg-transparent;
   }
 
   .admin table * {
@@ -539,16 +588,29 @@ html {
     @apply bg-linear-gradient_black-800 backdrop-blur-120 rounded-20 p-6 max-1240:p-5 max-450:p-4 max-450:rounded-lg;
   }
 
-  .admin-page-search-input-wrapper {
-    @apply flex-center justify-center relative max-w-md w-full;
+  /* search form */
+  .admin-page-search-form {
+    @apply flex-center w-full pr-2.5 rounded-lg border border-white;
   }
 
-  .admin-page-search-input-wrapper input {
-    @apply w-full pl-3.5 pr-12 rounded-lg border border-white text-regular-16 focus:outline-none;
+  .admin-page-search-form-label {
+    @apply flex-center  relative w-full;
   }
 
-  .admin-page-search-input-wrapper button {
-    @apply absolute right-3;
+  .admin-page-search-form-input {
+    @apply grow py-2 pl-3.5 pr-0 rounded-none focus:outline-none;
+  }
+
+  .admin-page-search-form-virtual-placeholder {
+    @apply absolute right-2 bg-white/10 py-0.5 px-1.5 rounded-md text-xs text-primary-gray-50/60 cursor-text max-640:hidden;
+  }
+
+  .admin-page-search-form-btn {
+    @apply flex-center justify-center w-7 h-7 shrink-0;
+  }
+
+  .admin-page-search-form-btn-icon {
+    @apply w-6 h-6 shrink-0;
   }
 
   /* admin tab butons */
@@ -600,64 +662,5 @@ html {
 
   .confirmation-modal-form label {
     @apply space-y-3;
-  }
-}
-
-@layer base {
-  body {
-    @apply text-medium-18 text-primary-black-800;
-    background: #fff;
-    font-family: "inter", sans-serif;
-  }
-
-  *:focus {
-    @apply outline-none outline-transparent;
-  }
-
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    @apply text-primary-black-800;
-  }
-
-  h1 {
-    @apply text-semibold-36 max-768:text-bold-32;
-  }
-
-  h2 {
-    @apply text-bold-32 max-768:text-bold-28;
-  }
-
-  h3 {
-    @apply text-semibold-20 first-letter:h-1;
-  }
-
-  input {
-    @apply w-full rounded-full py-2 text-regular-16 border-primary-gray-500;
-  }
-
-  :is(input, textarea)::placeholder {
-    @apply text-primary-gray-500 text-regular-16;
-  }
-
-  address {
-    @apply not-italic;
-  }
-
-  /* clears the ‘X’ from Chrome */
-  :is(input[type="search"])::-webkit-search-decoration,
-  ::-webkit-search-cancel-button,
-  ::-webkit-search-results-button,
-  ::-webkit-search-results-decoration {
-    display: none;
-  }
-}
-
-@layer utilities {
-  .container {
-    @apply max-w-7xl w-full mx-auto px-5 max-450:px-4;
   }
 }
