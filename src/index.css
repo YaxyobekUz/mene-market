@@ -261,6 +261,18 @@ html {
     @apply bg-linear-gradient_blue-500 border-primary-skyblue-500 text-white;
   }
 
+  .btn-skyblue {
+    @apply p-2 rounded-lg border border-primary-skyblue-500 text-regular-16 text-primary-skyblue-500;
+  }
+
+  .btn-success {
+    @apply p-2 rounded-lg border border-secondary-green-500 text-regular-16 text-secondary-green-500;
+  }
+
+  .btn-danger {
+    @apply p-2 rounded-lg border border-primary-red-500 text-regular-16 text-primary-red-500;
+  }
+
   /* shadow, filter */
   .header-shadow {
     box-shadow: 0px 2px 16px 0px rgba(0, 0, 0, 0.15);
@@ -289,6 +301,11 @@ html {
   .divider {
     @apply w-full bg-primary-gray-500;
     height: 1px;
+  }
+
+  /* invalid input border style  */
+  .is-invalid {
+    @apply !border-primary-red-500;
   }
 
   /* home page */
@@ -337,35 +354,6 @@ html {
   /* categories section */
   .categories-section {
     @apply py-11;
-  }
-
-  .categories-section_list {
-    @apply flex-start w-full overflow-auto snap-mandatory snap-x;
-    gap: 30px;
-  }
-
-  .categories-section_list-item {
-    @apply snap-start;
-  }
-
-  .categories-section_list .item_content {
-    @apply flex-center flex-col gap-2;
-  }
-
-  .categories-section_list .item_circle {
-    @apply w-32 h-32 rounded-full p-4;
-  }
-
-  .categories-section_list .item_circle-child {
-    @apply flex-center justify-center relative w-24 h-24 rounded-full text-center;
-  }
-
-  .categories-section_list .item_img {
-    @apply absolute;
-  }
-
-  .categories-section_list .item_text {
-    @apply text-regular-16;
   }
 
   /* tab */
@@ -483,12 +471,8 @@ html {
     @apply p-0 pb-3.5 rounded-none border-b-2 border-primary-gray-500;
   }
 
-  /* invalid */
-  .is-invalid {
-    @apply !border-primary-red-500;
-  }
-
-  /* admin */
+  /* admin page */
+  /* page initial styles */
   .admin * {
     @apply text-white;
   }
@@ -501,77 +485,7 @@ html {
     @apply text-regular-16 text-white bg-transparent;
   }
 
-  .admin table * {
-    @apply text-start p-0;
-  }
-
-  /* btns */
-  .btn-skyblue {
-    @apply inline-block min-w-max min-h-max text-regular-16 text-primary-skyblue-500 rounded-lg border border-primary-skyblue-500 !py-2 !px-4 focus:outline-1 focus:outline-primary-skyblue-500 focus:outline-offset-0;
-  }
-
-  .btn-success {
-    @apply inline-block min-w-max min-h-max text-regular-16 text-secondary-green-500 rounded-lg border border-secondary-green-500 !py-2 !px-4 focus:outline-1 focus:outline-secondary-green-500 focus:outline-offset-0;
-  }
-
-  .btn-danger {
-    @apply inline-block min-w-max min-h-max text-regular-16 text-primary-red-500 rounded-lg border border-primary-red-500 py-2 px-4;
-  }
-
-  /* thead, tbody */
-  .admin table {
-    width: 1192px;
-  }
-
-  .table-wrapper {
-    @apply overflow-x-auto scroll_hidden;
-  }
-
-  .admin table :is(thead, tbody) {
-    @apply block w-full;
-  }
-
-  /* tr, th, td */
-  .admin table thead tr {
-    @apply flex w-full py-4 border-b border-[#56577A];
-  }
-
-  .admin table tbody tr {
-    @apply flex w-full py-2;
-  }
-
-  .admin table :is(th, td) {
-    @apply flex-center grow;
-  }
-
-  .admin table th {
-    @apply text-regular-14 text-primary-gray-500;
-  }
-
-  .admin table td {
-    @apply text-regular-16;
-  }
-
-  /* sidebar */
-  .sidebar-hr {
-    background: linear-gradient(90deg, #ffffff00, #ffffff, #ffffff00);
-    border: none !important;
-  }
-
-  .admin-sidebar-link.active {
-    background: #1a1f37;
-  }
-
-  .admin-sidebar-link:hover {
-    @apply bg-primary-blue-700;
-  }
-
-  :is(.admin-sidebar-link.active, .admin-sidebar-link:hover)
-    .admin-sidebar-link-icon-wrapper {
-    @apply bg-white;
-  }
-
-  /* admin pages initial styles */
+  /* admin page main styles */
   .admin-page-header {
     @apply flex-center justify-center relative text-center bg-linear-gradient_black-800 backdrop-filter backdrop-blur-120 rounded-20 py-8 mb-6 max-490:py-5 max-490:mb-5;
   }
@@ -588,7 +502,21 @@ html {
     @apply bg-linear-gradient_black-800 backdrop-blur-120 rounded-20 p-6 max-1240:p-5 max-450:p-4 max-450:rounded-lg;
   }
 
-  /* search form */
+  /* admin page sidebar */
+  .admin-sidebar-link.active {
+    background: #1a1f37;
+  }
+
+  .admin-sidebar-link:hover {
+    @apply bg-primary-blue-700;
+  }
+
+  :is(.admin-sidebar-link.active, .admin-sidebar-link:hover)
+    .admin-sidebar-link-icon-wrapper {
+    @apply bg-white;
+  }
+
+  /* admin page search form */
   .admin-page-search-form {
     @apply flex-center w-full pr-2.5 rounded-lg border border-white;
   }
@@ -613,16 +541,40 @@ html {
     @apply w-6 h-6 shrink-0;
   }
 
-  /* admin tab butons */
-  .admin .tab-menu_btn {
-    @apply main-btn min-w-max snap-start border-white bg-transparent focus:outline-none focus:border-primary-skyblue-500;
+  /* admin page table styles */
+  .admin table * {
+    @apply text-regular-16;
   }
 
-  .admin .tab-menu_btn-active {
-    @apply !border-white bg-linear-gradient_blue-500 text-white;
+  .admin table {
+    @apply block w-[1240px];
   }
 
-  /* admin scroll styles */
+  .admin table :is(thead, tbody, th) {
+    @apply block;
+  }
+
+  .admin table tbody * {
+    @apply text-primary-gray-500;
+  }
+
+  .admin table thead {
+    @apply border-b border-primary-gray-500;
+  }
+
+  .admin table tr {
+    @apply flex py-[5px] transition-colors px-5 max-450:px-4 even:bg-white/5 hover:bg-white/10;
+  }
+
+  .admin table thead tr {
+    @apply py-5 hover:bg-transparent;
+  }
+
+  .admin table td {
+    @apply flex-center justify-center h-14;
+  } 
+
+  /* admin page scroll styles */
   .admin .scroll_gray::-webkit-scrollbar {
     @apply bg-transparent w-3;
   }
@@ -633,14 +585,6 @@ html {
 
   .admin .scroll_gray::-webkit-scrollbar-track {
     @apply bg-[#222F68];
-  }
-
-  .admin_page_profile-list a {
-    @apply transition-colors duration-300 border-b border-transparent hover:border-white;
-  }
-
-  .admin_page_profile-list .active {
-    @apply text-white border-b border-white;
   }
 
   /* confirmation modal */
