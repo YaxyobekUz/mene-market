@@ -20,10 +20,20 @@ export const userDataSlice = createSlice({
     addUserOfferLinkData: (state, actions) => {
       state.offerLinksData.push(actions.payload);
     },
+
+    deleteUserOfferLinkData: (state, actions) => {
+      state.offerLinksData = state.offerLinksData.filter(
+        (offerLink) => offerLink.offerLinkId !== actions.payload
+      );
+    },
   },
 });
 
-export const { setUserData, setUserOfferLinksData, addUserOfferLinkData } =
-  userDataSlice.actions;
+export const {
+  setUserData,
+  addUserOfferLinkData,
+  setUserOfferLinksData,
+  deleteUserOfferLinkData,
+} = userDataSlice.actions;
 
 export default userDataSlice.reducer;
