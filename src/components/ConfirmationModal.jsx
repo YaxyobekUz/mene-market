@@ -33,7 +33,7 @@ const ConfirmationModal = ({
   return (
     <div className="flex justify-center fixed inset-0 z-50 w-full h-full">
       {/* modal content */}
-      <div className="flex flex-col h-full z-10 overflow-y-auto max-w-md w-full mx-3 scroll_hidden">
+      <div className="flex flex-col z-10 overflow-y-auto max-w-md w-full max-h-max h-full mx-3">
         <div
           className={`z-10 w-full bg-white p-5 my-auto rounded-xl max-375:p-4 ${
             className ? className : ""
@@ -92,12 +92,12 @@ const ConfirmationModal = ({
             {children}
 
             {/* buttons */}
-            <div className="flex justify-end gap-3 w-full max-375:flex-col max-375:justify-normal">
+            <div className="flex-center justify-end gap-3 w-full max-375:flex-col-reverse">
               <button
                 type="button"
                 disabled={loader}
                 onClick={closeModal}
-                className="main-btn justify-center py-2.5 px-4 !text-primary-black-800 !text-base rounded-lg max-375:!min-w-full"
+                className="flex-center justify-center  w-36 h-11 border border-primary-gray-500 text-primary-black-800 text-base rounded-lg max-375:w-full"
               >
                 Bekor qilish
               </button>
@@ -105,7 +105,7 @@ const ConfirmationModal = ({
               {/* submit btn */}
               <button
                 disabled={loader}
-                className="main-btn bg-linear-gradient_blue-500 !py-2 px-4 rounded-lg border-primary-skyblue-500 text-white !text-base  justify-center max-375:!min-w-full"
+                className="flex-center justify-center w-36 h-11  bg-linear-gradient_blue-500 rounded-lg border-primary-skyblue-500 text-white text-base max-375:w-full"
               >
                 {!loader ? (
                   submitBtnText ? (
@@ -114,7 +114,7 @@ const ConfirmationModal = ({
                     "Tasdiqlash"
                   )
                 ) : (
-                  <DotsLoader className="px-[33px] !h-6" />
+                  <DotsLoader />
                 )}
               </button>
             </div>
