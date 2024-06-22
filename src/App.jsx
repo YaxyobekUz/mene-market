@@ -54,6 +54,7 @@ import Statistics from "./pages/Statistics";
 import PublicOffer from "./pages/PublicOffer";
 import DonationBox from "./pages/DonationBox";
 import Competitions from "./pages/Competitions";
+import FlowStatistics from "./pages/FlowStatistics";
 import RegularCustomers from "./pages/RegularCustomers";
 import BalanceHistory from "./pages/BalanceHistoryPage";
 import ConnectWithTelegram from "./pages/ConnectWithTelegram";
@@ -143,8 +144,12 @@ const App = () => {
           >
             <Route path="flow" element={<Flow />} />
             <Route path="payment" element={<Payment />} />
-            <Route path="statistics" element={<Statistics />} />
             <Route path="market/:productType?" element={<Market />} />
+
+            <Route path="statistics" element={<Outlet />}>
+              <Route index element={<Statistics />} />
+              <Route path="flow/:flowId" element={<FlowStatistics />} />
+            </Route>
 
             {/* dashboard */}
             <Route path="dashboard" element={<Outlet />}>
