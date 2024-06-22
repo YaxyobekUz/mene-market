@@ -9,9 +9,11 @@ const BalanceHistory = () => {
   const { userData } = useSelector((store) => store.userData);
 
   return (
-    <div className="admin_page-body">
+    <div className="admin-page-body">
       <div className="flex-center-between mb-6">
-        <h2 className="text-medium-18 max-640:text-base max-375:text-regular-14">Tranzaktsiyalaringiz</h2>
+        <h2 className="text-medium-18 max-640:text-base max-375:text-regular-14">
+          Tranzaktsiyalaringiz
+        </h2>
         <div className="flex-center gap-2">
           <img
             width={24}
