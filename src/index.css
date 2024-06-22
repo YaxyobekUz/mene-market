@@ -487,7 +487,7 @@ html {
 
   /* admin page main styles */
   .admin-page-header {
-    @apply flex-center justify-center relative text-center bg-linear-gradient_black-800 backdrop-filter backdrop-blur-120 rounded-20 py-8 mb-6 max-490:py-5 max-490:mb-5;
+    @apply flex-center justify-center relative bg-linear-gradient_black-800 backdrop-blur-120 rounded-20 py-8 mb-6 max-490:py-5 max-490:mb-5;
   }
 
   .admin-page-header h1 {
@@ -496,6 +496,10 @@ html {
 
   .admin-page-header a {
     @apply absolute p-2 left-6 rounded-lg max-490:left-3;
+  }
+
+  .admin-page-header a img {
+    @apply w-6 h-6;
   }
 
   .admin-page-body {
@@ -514,6 +518,11 @@ html {
   :is(.admin-sidebar-link.active, .admin-sidebar-link:hover)
     .admin-sidebar-link-icon-wrapper {
     @apply bg-white;
+  }
+
+  .sidebar-divider {
+    @apply w-full h-0.5;
+    background: linear-gradient(90deg, transparent, #fff, transparent);
   }
 
   /* admin page search form */
@@ -572,7 +581,7 @@ html {
 
   .admin table td {
     @apply flex-center justify-center h-14;
-  } 
+  }
 
   /* admin page scroll styles */
   .admin .scroll_gray::-webkit-scrollbar {
@@ -606,5 +615,10 @@ html {
 
   .confirmation-modal-form label {
     @apply space-y-3;
+  }
+
+  /* charts */
+  .pie-chart * {
+    @apply !text-primary-black-800;
   }
 }

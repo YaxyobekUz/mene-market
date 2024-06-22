@@ -52,7 +52,7 @@ const AdminLayout = () => {
   return (
     <div className="admin flex items-start grow bg-radial-gradient_blue-500 max-1024:flex-col">
       {/* sidebar  */}
-      <div className="sticky left-0 inset-y-0 px-6 py-8 h-screen bg-sidebar backdrop-filter backdrop-blur-[120px] max-1024:hidden">
+      <div className="sticky left-0 inset-y-0 px-6 py-8 h-screen bg-sidebar backdrop-blur-120 max-1024:hidden">
         <div className="flex flex-col gap-4 w-52 h-full">
           {/* logo wrapper */}
           <div className="space-y-4">
@@ -67,7 +67,7 @@ const AdminLayout = () => {
             </Link>
 
             {/* divider */}
-            <div className="sidebar-hr w-full h-0.5"></div>
+            <div className="sidebar-divider"></div>
           </div>
 
           {/* navigation */}
