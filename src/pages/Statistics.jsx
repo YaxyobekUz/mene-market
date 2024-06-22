@@ -4,12 +4,12 @@ import { Link } from "react-router-dom";
 // redux
 import { useSelector } from "react-redux";
 
-// helpers
-import { search } from "../helpers/helpers.js";
-
 // components
 import SearchForm from "../components/SearchForm";
 import EmptyData from "../components/EmptyData.jsx";
+
+// helpers
+import { offerLinkClientsStatistics, search } from "../helpers/helpers.js";
 
 // images
 import flowIcon from "../assets/images/svg/flow.svg";
@@ -18,21 +18,6 @@ const Statistics = () => {
   const userData = useSelector((store) => store.userData);
   const offerLinksData = userData.offerLinksData;
   const [offerLinks, setOfferLinks] = useState(offerLinksData);
-
-  // calculate offer link clients statistics by status type
-  const offerLinkClientsStatistics = (clients) => {
-    if (clients.length > 0) {
-      const statusCount = {};
-      clients.forEach((client) => {
-        const status = client.statusType;
-        statusCount[`status ${status}`] =
-          (statusCount[`status ${status}`] || 0) + 1;
-      });
-      return statusCount;
-    } else {
-      return 0;
-    }
-  };
 
   // search offer links
   const searchOfferLinks = (value) => {

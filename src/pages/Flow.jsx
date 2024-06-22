@@ -222,14 +222,14 @@ const Flow = () => {
                                   timeout={0}
                                   darkTheme={true}
                                   className="flex-center gap-2 p-2"
-                                  notification="Havola buferga nusxa olindi!"
+                                  notification="Havoladan buferga nusxa olindi"
                                   text={
                                     "https://mene-market.netlify.app/flow/" +
                                     offerLink.offerLinkId
                                   }
                                 >
                                   <span className="text-regular-16">
-                                    Havoldan buferga nusxa olish
+                                    Havoladan buferga nusxa olish
                                   </span>
                                 </CopyBtn>
                               ),
