@@ -137,3 +137,18 @@ export const calculateProductRatingByReviews = (reviews) => {
     return 5;
   }
 };
+
+// flow page
+export const offerLinkClientsStatistics = (clients) => {
+  if (clients.length > 0) {
+    const statusCount = {};
+    clients.forEach((client) => {
+      const status = client.statusType;
+      statusCount[`status ${status}`] =
+        (statusCount[`status ${status}`] || 0) + 1;
+    });
+    return statusCount;
+  } else {
+    return 0;
+  }
+};
