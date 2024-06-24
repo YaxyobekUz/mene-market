@@ -2,26 +2,26 @@ import React from "react";
 
 const ConnectWithTelegram = () => {
   return (
-    <form>
-      <div className="space-y-6">
-        <h2 className="text-semibold-20">Telegram bilan bog'lash</h2>
-        <div className="space-y-6">
-          <label className="block space-y-3">
-            <span className="text-regular-13 text-[#C4C5C4]">Telegram id raqamingiz</span>
-            <input type="text" placeholder="Id raqam" required />
-          </label>
+    <div className="space-y-6 max-450:space-y-5">
+      <h1 className="text-semibold-20">Telegram bilan bog'lash</h1>
 
-          <label className="block space-y-3">
-            <span className="text-regular-13 text-[#C4C5C4]">Telegram foydalanuvchi nomi (Ixtiyoriy)</span>
-            <input type="text" placeholder="Foydalanuvchi nomi" />
-          </label>
+      <form className="profile-page-from">
+        {/* telegram id number */}
+        <label>
+          <span>Telegram id raqamingiz</span>
+          <input
+            type="text"
+            maxLength={32}
+            autoComplete="off"
+            placeholder="Id raqam"
+            name="telegram id number"
+          />
+        </label>
 
-          <button className="btn-primary_linear-blue px-10 py-3 rounded-lg max-640:px-6 max-640:py-2">
-            <span className="text-regular-16">Biriktirish</span>
-          </button>
-        </div>
-      </div>
-    </form>
+        {/* submit btn */}
+        <button>Biriktirish</button>
+      </form>
+    </div>
   );
 };
 
