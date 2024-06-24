@@ -31,11 +31,20 @@ const ConfirmationModal = ({
   }, [closeModal]);
 
   return (
-    <div className="flex justify-center fixed inset-0 z-50 w-full h-full">
+    <div
+      onClick={(e) => {
+        const elModalContent =
+          e.currentTarget.querySelector(".js-modal-content");
+        if (!elModalContent.contains(e.target)) {
+          closeModal();
+        }
+      }}
+      className="flex justify-center fixed inset-0 z-50 w-full h-full"
+    >
       {/* modal content */}
-      <div className="flex flex-col z-10 overflow-y-auto max-w-md w-full max-h-max h-full mx-3">
+      <div className="flex flex-col z-10 overflow-y-auto max-w-md w-full h-full mx-3">
         <div
-          className={`z-10 w-full bg-white p-5 my-auto rounded-xl max-375:p-4 ${
+          className={`js-modal-content z-10 w-full bg-white p-5 m-auto rounded-xl max-375:p-4 ${
             className ? className : ""
           }`}
         >
@@ -104,6 +113,7 @@ const ConfirmationModal = ({
 
               {/* submit btn */}
               <button
+                type="submit"
                 disabled={loader}
                 className="flex-center justify-center w-36 h-11  bg-linear-gradient_blue-500 rounded-lg border-primary-skyblue-500 text-white text-base max-375:w-full"
               >
@@ -123,7 +133,7 @@ const ConfirmationModal = ({
       </div>
 
       {/* overlay */}
-      <Overlay onClick={closeModal} />
+      <Overlay />
     </div>
   );
 };

@@ -41,6 +41,7 @@ const CopyBtn = ({
       title={tooltip ? (!isCopied ? tooltip : "Buferga nusxa olindi!") : false}
     >
       <button
+        type="button"
         onClick={copy}
         disabled={isCopied}
         className={`${className} transition-opacity disabled:opacity-70`}
