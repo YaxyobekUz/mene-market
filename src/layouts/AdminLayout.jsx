@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Link, NavLink, Outlet } from "react-router-dom";
 
+// data
+import { imageBaseUrl } from "../data/data";
+
 // axios
 import axiosConfig from "../api/axios/axios";
 
@@ -14,13 +17,14 @@ import {
 } from "../store/slices/userDataSlice";
 import { useDispatch, useSelector } from "react-redux";
 
-// imags
+// images
 import home from "../assets/images/svg/home.svg";
 import link from "../assets/images/svg/link.svg";
 import logo from "../assets/images/other/logo.png";
 import user from "../assets/images/other/user.jpg";
 import market from "../assets/images/svg/market.svg";
 import wallet from "../assets/images/svg/wallet.svg";
+import reload from "../assets/images/svg/reload.svg";
 import profile from "../assets/images/svg/profile.svg";
 import statistics from "../assets/images/svg/statistics.svg";
 
@@ -31,6 +35,8 @@ const AdminLayout = () => {
 
   // get user data
   const getUserData = () => {
+    setLoader(true);
+
     axiosConfig
       .get("/User/Profile")
       .then((res) => {
@@ -43,14 +49,11 @@ const AdminLayout = () => {
   };
 
   useEffect(() => {
-    if (!userData) {
-      setLoader(true);
-      getUserData();
-    }
+    if (!userData) getUserData();
   }, []);
 
   return (
-    <div className="admin flex items-start grow bg-radial-gradient_blue-500 max-1024:flex-col">
+    <div className="admin flex items- min-h-screen bg-radial-gradient_blue-500 max-1024:flex-col">
       {/* sidebar  */}
       <div className="sticky left-0 inset-y-0 px-6 py-8 h-screen bg-sidebar backdrop-blur-120 max-1024:hidden">
         <div className="flex flex-col gap-4 w-52 h-full">
@@ -224,7 +227,13 @@ const AdminLayout = () => {
                 width={48}
                 height={48}
                 alt="user profile icon"
-                src={userData && userData.image ? userData.image : user}
+                src={
+                  userData
+                    ? userData.image
+                      ? imageBaseUrl + userData.image
+                      : user
+                    : user
+                }
                 className="w-12 h-12 bg-primary-gray-500 rounded-full max-640:w-10 max-640:h-10 max-375:w-9 max-375:h-9"
               />
             </Link>
@@ -241,10 +250,26 @@ const AdminLayout = () => {
             </div>
           </div>
         ) : (
-          <>Ma'lumotlar mavjud emas!</>
+          // reload btn
+          <div className="flex-center justify-center w-full h-screen">
+            <button
+              title="reload"
+              className="p-3"
+              aria-label="reload"
+              onClick={getUserData}
+            >
+              <img
+                width={28}
+                height={28}
+                src={reload}
+                alt="reload icon"
+                className="w-7 h-7 max-375:w-6 max-375:h-6"
+              />
+            </button>
+          </div>
         )
       ) : (
-        <div className="flex-center justify-center w-full h-screen">
+        <div className="flex-center justify-center w-full  h-screen">
           <DotsLoader />
         </div>
       )}
