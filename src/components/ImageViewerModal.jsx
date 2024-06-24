@@ -3,6 +3,10 @@ import React, { useEffect, useState } from "react";
 // components
 import Overlay from "./Overlay";
 
+// redux
+import { useDispatch, useSelector } from "react-redux";
+import { setOpenImageViewerModal } from "../store/slices/imageViewerModalSlice";
+
 // swiper
 import "swiper/css";
 import "../css/swiper.css";
@@ -15,18 +19,21 @@ import { Navigation, Pagination } from "swiper/modules";
 import expand from "../assets/images/svg/expand.svg";
 import shrink from "../assets/images/svg/shrink.svg";
 import cross from "../assets/images/svg/cross-icon.svg";
-import arowLeft from "../assets/images/svg/arrow-left.svg";
+import arrowLeft from "../assets/images/svg/arrow-left.svg";
 import roundLine from "../assets/images/svg/line-round.svg";
 
-const ImageViewerModal = ({ alt, images, initialSlide, closeModal }) => {
+const ImageViewerModal = () => {
+  const dispatch = useDispatch();
   const [imageLarge, setImageLarge] = useState(true);
+  const closeModal = () => dispatch(setOpenImageViewerModal(false));
   const [VW, setVW] = useState(document.documentElement.clientWidth);
   const [VH, setVH] = useState(document.documentElement.clientHeight);
+  const imageViewerModal = useSelector((store) => store.imageViewerModal);
 
   // close modal with escape keys
   useEffect(() => {
     const handleKeyDown = (e) => {
-      e.key === "Escape" && closeModal();
+      if (e.key === "Escape") closeModal();
     };
 
     document.addEventListener("keydown", handleKeyDown);
@@ -34,7 +41,7 @@ const ImageViewerModal = ({ alt, images, initialSlide, closeModal }) => {
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
     };
-  }, [closeModal]);
+  }, []);
 
   // set VW & VH
   useEffect(() => {
@@ -51,7 +58,7 @@ const ImageViewerModal = ({ alt, images, initialSlide, closeModal }) => {
   }, []);
 
   return (
-    <div className="flex items-center justify-center fixed inset-0 z-50 w-full h-full">
+    <div className="flex items-center justify-center fixed top-0 bottom-0 left-0 z-50 w-full h-full">
       {/* modal header */}
       <div className="flex absolute top-0 right-0 z-10">
         <button
@@ -117,14 +124,18 @@ const ImageViewerModal = ({ alt, images, initialSlide, closeModal }) => {
           <Swiper
             spaceBetween={24}
             modules={[Navigation, Pagination]}
-            initialSlide={initialSlide ? initialSlide : 0}
+            initialSlide={
+              imageViewerModal.data.initialSlide
+                ? imageViewerModal.data.initialSlide
+                : 0
+            }
             navigation={{
               prevEl: ".image-viewer-modal-swiper-btn-prev",
               nextEl: ".image-viewer-modal-swiper-btn-next",
             }}
             className="image-viewer-modal-swiper"
           >
-            {images.map((image, index) => {
+            {imageViewerModal.data.images.map((image, index) => {
               const [loader, setLoader] = useState(true);
 
               return (
@@ -146,15 +157,15 @@ const ImageViewerModal = ({ alt, images, initialSlide, closeModal }) => {
 
                   {/* swiper image */}
                   <img
-                    alt={alt}
                     src={image}
                     width={791}
                     height={791}
-                    onLoad={() => {
-                      setTimeout(() => {
-                        setLoader(false);
-                      }, 300);
-                    }}
+                    alt={
+                      imageViewerModal.data.alt
+                        ? imageViewerModal.data.alt
+                        : "image"
+                    }
+                    onLoad={() => setLoader(false)}
                     style={{ display: loader ? "none" : "block" }}
                     className="w-full h-full object-contain"
                   />
@@ -174,7 +185,7 @@ const ImageViewerModal = ({ alt, images, initialSlide, closeModal }) => {
               <img
                 width={24}
                 height={24}
-                src={arowLeft}
+                src={arrowLeft}
                 alt="arrow left icon"
                 className="w-6 h-6"
               />
@@ -189,7 +200,7 @@ const ImageViewerModal = ({ alt, images, initialSlide, closeModal }) => {
               <img
                 width={24}
                 height={24}
-                src={arowLeft}
+                src={arrowLeft}
                 alt="arrow left icon"
                 className="w-6 h-6"
               />
