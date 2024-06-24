@@ -617,6 +617,60 @@ html {
     @apply space-y-3;
   }
 
+  /* profile page */
+  .profile-page-nav-link {
+    @apply flex-center gap-3.5 relative min-w-max w-full pl-4 pr-14  py-5 bg-white/5 rounded-lg text-regular-16 transition-colors max-860:pr-4 max-450:p-2.5 max-450:gap-2.5;
+  }
+
+  .profile-page-nav-link .arrow-right-icon {
+    @apply absolute right-5 -translate-x-2 opacity-0 transition-all;
+  }
+
+  .profile-page-nav-link.active {
+    @apply bg-white/10;
+  }
+
+  .profile-page-nav-link img {
+    @apply w-6 h-6;
+  }
+
+  /* hover & active */
+  .profile-page-nav-link:hover {
+    @apply bg-white/10;
+  }
+
+  .profile-page-nav-link:hover .arrow-right-icon {
+    @apply translate-x-0 opacity-100;
+  }
+
+  .profile-page-nav-link.active {
+    @apply bg-white/10;
+  }
+
+  .profile-page-nav-link.active .arrow-right-icon {
+    @apply translate-x-0 opacity-100;
+  }
+
+  .profile-page-from {
+    @apply space-y-5;
+  }
+
+  .profile-page-from label {
+    @apply block space-y-3;
+  }
+
+  .profile-page-from label span {
+    @apply text-regular-16;
+  }
+
+  .profile-page-from label input {
+    @apply px-3.5 border border-white rounded-lg;
+  }
+
+  .profile-page-from button {
+    @apply flex-center justify-center min-w-[200px] h-11 bg-linear-gradient_blue-500 px-5 rounded-lg text-regular-16 max-450:min-w-0 max-450:w-full;
+  }
+
   /* charts */
   .pie-chart * {
     @apply !text-primary-black-800;
