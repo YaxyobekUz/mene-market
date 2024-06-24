@@ -1,14 +1,9 @@
 import React from "react";
+
+// components
 import BalanceHistory from "../components/BalanceHistory";
-import { useSelector } from "react-redux";
 
-// images
-import mastercardLogo1 from "../assets/images/svg/mastercard-logo.svg";
-import creditCard from "../assets/images/svg/credit-card.svg";
-import edit from "../assets/images/svg/edit.svg";
 const Payment = () => {
-  const { userData } = useSelector((store) => store.userData);
-
   return (
     <div className="space-y-5">
       {/* user cards and user balance */}
@@ -32,17 +27,21 @@ const Payment = () => {
 
         {/* user balance */}
         <div className="flex flex-col justify-end grow h-60 bg-linear-gradient_black-800 backdrop-blur-120 rounded-20 p-6 max-540:p-5 max-450:h-52">
-          <div class="w-full bg-linear-gradient_black-800 p-5 rounded-xl">
-            <ul class="space-y-3">
-              <li class="space-y-1 max-450:space-y-0">
-                <h3 class="text-medium-18 max-450:text-base">Balans</h3>
-                <p class="text-primary-gray-500 max-450:text-base">0 so'm</p>
+          <div className="w-full bg-linear-gradient_black-800 p-5 rounded-xl">
+            <ul className="space-y-3">
+              <li className="space-y-1 max-450:space-y-0">
+                <h3 className="text-medium-18 max-450:text-base">Balans</h3>
+                <p className="text-primary-gray-500 max-450:text-base">
+                  0 so'm
+                </p>
               </li>
-              <li class="space-y-1 max-450:space-y-0">
-                <h3 class="text-medium-18 max-450:text-base">
+              <li className="space-y-1 max-450:space-y-0">
+                <h3 className="text-medium-18 max-450:text-base">
                   Taxminiy balans
                 </h3>
-                <p class="text-primary-gray-500 max-450:text-base">0 so'm</p>
+                <p className="text-primary-gray-500 max-450:text-base">
+                  0 so'm
+                </p>
               </li>
             </ul>
           </div>
