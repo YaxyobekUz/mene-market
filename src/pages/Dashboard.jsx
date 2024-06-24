@@ -4,9 +4,6 @@ import { Link } from "react-router-dom";
 // antd
 import { Tooltip } from "antd";
 
-// redux
-import { useSelector } from "react-redux";
-
 // data
 import { imageBaseUrl } from "../data/data";
 
@@ -16,6 +13,13 @@ import axiosConfig from "../api/axios/axios";
 // components
 import NewsModal from "../components/NewsModal";
 import DotsLoader from "../components/DotsLoader";
+
+// redux
+import {
+  setImageViewerModalData,
+  setOpenImageViewerModal,
+} from "../store/slices/imageViewerModalSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 // images
 import info from "../assets/images/svg/info.svg";
@@ -29,6 +33,7 @@ import question from "../assets/images/svg/question.svg";
 import walletFill from "../assets/images/svg/wallet-fill.svg";
 
 const Dashboard = () => {
+  const dispatch = useDispatch();
   const [news, setNews] = useState([]);
   const [loader, setLoader] = useState(true);
   const [newness, setNewness] = useState({});
@@ -54,6 +59,18 @@ const Dashboard = () => {
     }
   }, []);
 
+  // open user profile image modal
+  const openImageViewerModal = () => {
+    dispatch(
+      setImageViewerModalData({
+        images: [userData.image ? imageBaseUrl + userData.image : userIcon],
+        alt: "user profile image",
+      })
+    );
+
+    dispatch(setOpenImageViewerModal(true));
+  };
+
   return (
     <div>
       <div className="w-full space-y-6 max-450:space-y-5">
@@ -64,9 +81,10 @@ const Dashboard = () => {
             <div className="space-y-3">
               {/* user profile image */}
               <img
-                alt={userData.firstName + " profile image"}
-                src={userData.image ? userData.image : profile}
-                title={userData.firstName + " " + userData.lastName}
+                alt="user profile image"
+                title="user profile image"
+                onClick={openImageViewerModal}
+                src={userData.image ? imageBaseUrl + userData.image : profile}
                 className="w-16 h-16 rounded-full bg-primary-gray-500 max-450:w-14 max-450:h-14"
               />
 
