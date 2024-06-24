@@ -13,6 +13,7 @@ import DotsLoader from "../components/DotsLoader";
 // redux
 import {
   setUserData,
+  setUserAppealsData,
   setUserOfferLinksData,
 } from "../store/slices/userDataSlice";
 import { useDispatch, useSelector } from "react-redux";
@@ -42,6 +43,7 @@ const AdminLayout = () => {
       .then((res) => {
         if (res.status === 200) {
           dispatch(setUserData(res.data));
+          dispatch(setUserAppealsData(res.data.userChats));
           dispatch(setUserOfferLinksData(res.data.offerLinks));
         }
       })

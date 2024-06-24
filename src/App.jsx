@@ -17,6 +17,7 @@ import axiosConfig from "./api/axios/axios";
 // redux
 import {
   setUserData,
+  setUserAppealsData,
   setUserOfferLinksData,
 } from "./store/slices/userDataSlice";
 import {
@@ -82,6 +83,7 @@ const App = () => {
               dispatch(setLoggedIn(true));
               dispatch(setUserData(res.data));
               dispatch(setAuthData(authData));
+              dispatch(setUserAppealsData(res.data.userChats));
               dispatch(setUserOfferLinksData(res.data.offerLinks));
             }
           }
@@ -152,7 +154,7 @@ const App = () => {
               <Route path="regular-customers" element={<RegularCustomers />} />
               <Route path="appeals" element={<Appeals />} />
               <Route path="requests" element={<Requests />} />
-              <Route path="competitions" element={<Competitions />}/>
+              <Route path="competitions" element={<Competitions />} />
               <Route path="balance-history" element={<BalanceHistory />} />
               <Route path="donation-box" element={<DonationBox />} />
               <Route path="profile" element={<ProfileLayout />}>
