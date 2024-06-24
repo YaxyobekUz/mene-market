@@ -44,25 +44,18 @@ export const search = (data, key, query) => {
   return filteredData;
 };
 
-export const checkInputValueByLength = (input, value, length) => {
-  if (length) {
-    if (value.trim().length > length) {
-      input.classList.remove("is-invalid");
-      return true;
-    } else {
-      input.focus();
-      input.classList.add("is-invalid");
-      return false;
-    }
+export const checkInputValueByLength = (input, value, minLength, maxLength) => {
+  const min = minLength ? minLength : 0;
+  const max = maxLength ? maxLength : 240;
+  const valueLength = value.trim().length;
+
+  if (valueLength > min && valueLength <= max) {
+    input.classList.remove("is-invalid");
+    return true;
   } else {
-    if (value.trim().length > 0) {
-      input.classList.remove("is-invalid");
-      return true;
-    } else {
-      input.focus();
-      input.classList.add("is-invalid");
-      return false;
-    }
+    input.focus();
+    input.classList.add("is-invalid");
+    return false;
   }
 };
 
