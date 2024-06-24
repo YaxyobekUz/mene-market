@@ -30,7 +30,7 @@ import { setAuthData, setLoggedIn } from "./store/slices/authDataSlice";
 import MainRoot from "./layouts/MainRoot";
 import AuthRoot from "./layouts/AuthRoot";
 import AdminLayout from "./layouts/AdminLayout";
-import ProfileRoot from "./layouts/ProfileRoot";
+import ProfileLayout from "./layouts/ProfileLayout";
 
 // pages
 import Home from "./pages/Home";
@@ -146,21 +146,16 @@ const App = () => {
             <Route path="payment" element={<Payment />} />
             <Route path="market/:productType?" element={<Market />} />
 
-            <Route path="statistics" element={<Outlet />}>
-              <Route index element={<Statistics />} />
-              <Route path="flow/:flowId" element={<FlowStatistics />} />
-            </Route>
-
             {/* dashboard */}
             <Route path="dashboard" element={<Outlet />}>
               <Route index element={<Dashboard />} />
               <Route path="regular-customers" element={<RegularCustomers />} />
               <Route path="appeals" element={<Appeals />} />
               <Route path="requests" element={<Requests />} />
-              <Route path="competitions" element={<Competitions />} />
+              <Route path="competitions" element={<Competitions />}/>
               <Route path="balance-history" element={<BalanceHistory />} />
               <Route path="donation-box" element={<DonationBox />} />
-              <Route path="profile" element={<ProfileRoot />}>
+              <Route path="profile" element={<ProfileLayout />}>
                 <Route index element={<Profile />} />
                 <Route path="account" element={<Account />} />
                 <Route
@@ -168,6 +163,12 @@ const App = () => {
                   element={<ConnectWithTelegram />}
                 />
               </Route>
+            </Route>
+
+            {/* statistcs */}
+            <Route path="statistics" element={<Outlet />}>
+              <Route index element={<Statistics />} />
+              <Route path="flow/:flowId" element={<FlowStatistics />} />
             </Route>
           </Route>
         </Route>
