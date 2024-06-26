@@ -39,6 +39,7 @@ import Flow from "./pages/Flow";
 import Login from "./pages/Login";
 import Search from "./pages/Search";
 import Market from "./pages/Market";
+import Appeal from "./pages/Appeal";
 import Payment from "./pages/Payment";
 import Profile from "./pages/Profile";
 import Account from "./pages/Account";
@@ -152,11 +153,18 @@ const App = () => {
             <Route path="dashboard" element={<Outlet />}>
               <Route index element={<Dashboard />} />
               <Route path="regular-customers" element={<RegularCustomers />} />
-              <Route path="appeals" element={<Appeals />} />
               <Route path="requests" element={<Requests />} />
               <Route path="competitions" element={<Competitions />} />
               <Route path="balance-history" element={<BalanceHistory />} />
               <Route path="donation-box" element={<DonationBox />} />
+
+              {/* appeal */}
+              <Route path="appeals" element={<Outlet />}>
+                <Route index element={<Appeals />} />
+                <Route path="appeal/:appealId" element={<Appeal />} />
+              </Route>
+
+              {/* profile */}
               <Route path="profile" element={<ProfileLayout />}>
                 <Route index element={<Profile />} />
                 <Route path="account" element={<Account />} />
