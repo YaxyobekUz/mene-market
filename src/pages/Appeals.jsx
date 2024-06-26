@@ -32,7 +32,7 @@ const Appeals = () => {
   const dispatch = useDispatch();
   const [loader, setLoader] = useState(false);
   const userData = useSelector((store) => store.userData);
-  const [appealNameValue, setAppealNameValue] = useState(null);
+  const [appealNameValue, setAppealNameValue] = useState("");
   const [openCreateNewAppealModal, setOpenCreateNewAppealModal] =
     useState(false);
 
@@ -84,6 +84,9 @@ const Appeals = () => {
 
               // notification
               successNotification("Murojaat muvaffaqiyatli yaratildi");
+
+              // reset values
+              setAppealNameValue("");
             } else errorNotification();
           })
           .catch(() => errorNotification.offline())
