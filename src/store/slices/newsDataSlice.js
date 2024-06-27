@@ -2,7 +2,6 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialStateValues = {
   data: [],
-  loader: true,
 };
 
 export const newsDataSlice = createSlice({
