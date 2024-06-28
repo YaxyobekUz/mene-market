@@ -17,16 +17,14 @@ import {
 import "../css/antd.css";
 import { Select } from "antd";
 
+// react input mask
+import InputMask from "react-input-mask";
+
 // data
 import { imageBaseUrl } from "../data/data";
 
 // axios
 import axiosConfig from "../api/axios/axios";
-
-// components
-import DotsLoader from "../components/DotsLoader";
-import StarRating from "../components/StarRating";
-import ConfirmationModal from "../components/ConfirmationModal";
 
 // swiper
 import "swiper/css";
@@ -37,13 +35,16 @@ import "swiper/css/navigation";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode, Navigation, Thumbs } from "swiper/modules";
 
-// react input mask
-import InputMask from "react-input-mask";
-
 // components
-import ImageViewerModal from "../components/ImageViewerModal";
+import DotsLoader from "../components/DotsLoader";
+import StarRating from "../components/StarRating";
+import ConfirmationModal from "../components/ConfirmationModal";
 
 // redux
+import {
+  setImageViewerModalData,
+  setOpenImageViewerModal,
+} from "../store/slices/imageViewerModalSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { addNewRequestData } from "../store/slices/productRequestsDataSlice";
 
@@ -62,7 +63,6 @@ const Product = () => {
   const [product, setProduct] = useState(null);
   const [loader2, setLoader2] = useState(false);
   const [loader3, setLoader3] = useState(false);
-  const [imageIndex, setImageIndex] = useState(0);
   const [ratingNumber, setRatingNumber] = useState(5);
   const [productCount, setProductCount] = useState(1);
   const [showReviews, setShowReviews] = useState(false);
@@ -70,7 +70,6 @@ const Product = () => {
   const [productImages, setProductImages] = useState([]);
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   const productsData = useSelector((store) => store.productsData);
-  const [openImageViewerModal, setOpenImageViewerModal] = useState(false);
   const [openLeaveACommentModal, setOpenLeaveACommentModal] = useState(false);
   const [selectedProductTypeIndex, setSelectedProductTypeIndex] = useState(0);
   const closeLeaveACommentModal = () => {
@@ -201,6 +200,19 @@ const Product = () => {
     }
   };
 
+  // open image viewer modal
+  const openImageViewerModal = (index) => {
+    dispatch(
+      setImageViewerModalData({
+        initialSlide: index,
+        alt: "product image",
+        images: productImages,
+      })
+    );
+
+    dispatch(setOpenImageViewerModal(true));
+  };
+
   return (
     <div className="pb-32">
       <div className="container">
@@ -237,7 +249,7 @@ const Product = () => {
                       })}
                     </Swiper>
 
-                    {/* img large */}
+                    {/* main swiper */}
                     <Swiper
                       spaceBetween={10}
                       className="product-page-swiper"
@@ -248,6 +260,7 @@ const Product = () => {
                       thumbs={{ swiper: thumbsSwiper }}
                       modules={[FreeMode, Navigation, Thumbs]}
                     >
+                      {/* slides */}
                       {product.imageMetadatas.map((img, index) => {
                         return (
                           <SwiperSlide key={img.id}>
@@ -257,10 +270,7 @@ const Product = () => {
                               alt="product image"
                               className="product-swiper_img"
                               src={imageBaseUrl + img.hightImageFilePath}
-                              onClick={() => {
-                                setImageIndex(index);
-                                setOpenImageViewerModal(true);
-                              }}
+                              onClick={() => openImageViewerModal(index)}
                             />
                           </SwiperSlide>
                         );
@@ -778,16 +788,6 @@ const Product = () => {
               </div>
             </div>
           </ConfirmationModal>
-        )}
-
-        {/* image viewer modal */}
-        {openImageViewerModal && (
-          <ImageViewerModal
-            alt="product image"
-            images={productImages}
-            initialSlide={imageIndex}
-            closeModal={() => setOpenImageViewerModal(false)}
-          />
         )}
       </div>
     </div>

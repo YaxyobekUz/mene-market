@@ -21,11 +21,14 @@ import { imageBaseUrl, productTypesData } from "../data/data";
 // components
 import EmptyData from "../components/EmptyData";
 import ProductLoader from "../components/ProductLoader";
-import ImageViewerModal from "../components/ImageViewerModal";
 import MarketPageProduct from "../components/MarketPageProduct";
 import ConfirmationModal from "../components/ConfirmationModal";
 
 // redux
+import {
+  setImageViewerModalData,
+  setOpenImageViewerModal,
+} from "../store/slices/imageViewerModalSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { addUserOfferLinkData } from "../store/slices/userDataSlice";
 
@@ -38,12 +41,9 @@ const Market = () => {
   const [loader, setLoader] = useState(false);
   const [products, setProducts] = useState([]);
   const [productId, setProductId] = useState("");
-  const [imageIndex, setImageIndex] = useState(0);
   const [productsImage, setProductsImage] = useState([]);
   const userData = useSelector((store) => store.userData);
   const productsData = useSelector((store) => store.productsData);
-  const closeImageViewerModal = () => setOpenImageViewerModal(false);
-  const [openImageViewerModal, setOpenImageViewerModal] = useState(false);
   const [openCreateStreamModal, setOpenCreateStreamModal] = useState(false);
   const pathArr = location.pathname.split("/").filter((item) => item !== "");
   const [virtualCheckboxIsChecked, setVirtualCheckboxIsChecked] =
@@ -154,8 +154,21 @@ const Market = () => {
     }
   };
 
+  // open image viewer modal
+  const openImageViewerModal = (index) => {
+    dispatch(
+      setImageViewerModalData({
+        initialSlide: index,
+        alt: "product image",
+        images: productsImage,
+      })
+    );
+
+    dispatch(setOpenImageViewerModal(true));
+  };
+
   return (
-    <div>
+    <>
       {/* tab buttons */}
       <div className="flex gap-2.5 overflow-x-auto scroll_gray pb-4 p-0.5 mb-6">
         <NavLink
@@ -187,10 +200,7 @@ const Market = () => {
             <MarketPageProduct
               product={product}
               key={product.productId}
-              imageOnClick={() => {
-                setImageIndex(index);
-                setOpenImageViewerModal(true);
-              }}
+              imageOnClick={() => openImageViewerModal(index)}
               buttonOnClick={() => {
                 setOpenCreateStreamModal(true);
                 setProductId(product.productId);
@@ -211,16 +221,6 @@ const Market = () => {
         <EmptyData
           title="Mahsulotlar mavjud emas!"
           description="Ushbu sahifada hech qanday mahsulot mavjud emas."
-        />
-      )}
-
-      {/* open image viewer modal */}
-      {openImageViewerModal && (
-        <ImageViewerModal
-          alt="product image"
-          images={productsImage}
-          initialSlide={imageIndex}
-          closeModal={closeImageViewerModal}
         />
       )}
 
@@ -335,7 +335,7 @@ const Market = () => {
           </label>
         </ConfirmationModal>
       )}
-    </div>
+    </>
   );
 };
 
