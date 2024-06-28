@@ -1,0 +1,23 @@
+.Toastify__toast-container {
+  padding: 4px;
+}
+
+.Toastify__toast {
+  height: auto;
+  min-height: 0px;
+  margin: 0px 0px 4px;
+  border-radius: 100px;
+  box-shadow: none;
+}
+
+.Toastify__close-button {
+  display: none;
+}
+
+.Toastify__toast-body {
+  margin: 0;
+  padding: 0;
+  font-size: 14px;
+  font-family: "inter", sans-serif;
+  font-weight: normal;
+}

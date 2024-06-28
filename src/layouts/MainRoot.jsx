@@ -10,8 +10,9 @@ import Footer from "../components/Footer";
 import ImageViewerModal from "../components/ImageViewerModal";
 
 // toast
+import "../css/toast.css";
 import "react-toastify/dist/ReactToastify.css";
-import { ToastContainer, Zoom } from "react-toastify";
+import { Bounce, ToastContainer } from "react-toastify";
 
 const MainRoot = () => {
   const location = useLocation();
@@ -40,14 +41,14 @@ const MainRoot = () => {
 
       {/* toast notification container */}
       <ToastContainer
-        position="bottom-right"
+        theme={"dark"}
         autoClose={3500}
-        hideProgressBar={true}
+        draggable={false}
+        transition={Bounce}
         closeOnClick={true}
         pauseOnHover={true}
-        draggable={false}
-        theme={"light "}
-        transition={Zoom}
+        hideProgressBar={true}
+        position="top-center"
       />
 
       {/* image viewer modal */}

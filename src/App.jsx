@@ -133,7 +133,7 @@ const App = () => {
             <Route path="login" element={<Login />} />
             <Route path="signup" element={<Register />} />
           </Route>
-
+      
           {/* admin */}
           <Route
             path="admin"
