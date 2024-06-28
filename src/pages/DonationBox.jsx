@@ -1,12 +1,17 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+// helpers
+import { formatNumber } from "../helpers/helpers";
+
 // images
 import arrowLeft from "../assets/images/svg/arrow-left.svg";
+
 const DonationBox = () => {
   return (
-    <div>
-      <div className="admin_page-header">
+    <>
+      {/* page header */}
+      <div className="admin-page-header">
         <Link to="/admin/dashboard">
           <img
             width={24}
@@ -18,33 +23,51 @@ const DonationBox = () => {
         </Link>
         <h1>Hayriya Qutisi</h1>
       </div>
-      <div className="admin_page-body">
-        <div className="flex-center-between mb-6">
+
+      {/* main */}
+      <div className="admin-page-body">
+        {/* content header */}
+        <div className="flex-center-between mb-6 max-1024:mb-6 max-450:mb-4">
           <h2 className="text-medium-18 max-450:text-base">O'tkazmalar</h2>
-          <p className="max-450:text-base">126 320 000 so’m</p>
+
+          {/* donation box value */}
+          <p className="max-450:text-base">{formatNumber(0)} so'm</p>
         </div>
 
+        {/* donation box users list  */}
         <ul className="space-y-6 mb-6">
           <li className="flex-center-between gap-5">
-            <div>
+            <div className="space-y-3">
               <h3 className="text-regular-16 line-clamp-1">
-                Maxfiy foydalanuvchi
+                <span>Foydalanuvchi </span>
+                {/* user id */}
+                <span className="text-primary-gray-500 font-normal">
+                  #80b41b91-d67c-49cb-9119-16b647dea128
+                </span>
               </h3>
-              <p className="text-regular-14 text-[#A0AEC0]">#17365</p>
+
+              {/* item id */}
+              <p className="text-regular-14 text-[#A0AEC0]">
+                #832b41b91-d67c-49cb-9119-16b647dea128
+              </p>
             </div>
+
+            {/* donation price */}
             <p className="text-regular-14 text-[#C4C5C4] whitespace-nowrap">
-              15 000 so’m
+              {formatNumber(125000)} so'm
             </p>
           </li>
         </ul>
 
+        {/* information */}
         <div className="flex-start gap-2 border border-white rounded-lg p-4">
+          {/* info icon */}
           <svg
-            className="w-4 h-4 shrink-0"
             width="16"
             height="16"
-            viewBox="0 0 16 16"
             fill="none"
+            viewBox="0 0 16 16"
+            className="w-4 h-4 shrink-0"
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
@@ -53,38 +76,43 @@ const DonationBox = () => {
             />
           </svg>
 
-          <p className="text-regular-14">
-            Assalomu alaykum, hurmatli jamoamiz adminlari.
-            <br />
-            <br />
-            Ushbu sahifada siz yani 100k.uz saytiadminlari yordamida hayriya
-            ishlariuchun toplangan mablaglarni kuzatishingiz mumkin. Sahifada
-            hozircha umumiy toplangan mablagniva hayriya funksiyasi yoqilgan
-            oqimlarroyhatini korishingiz mumkin. <br />
-            <br />
-            Yig’ilgan mablag’ bolalar yoki qariyalar uylarihisob raqamiga yoki
-            ogir kasalga uchraganlekin davolanishga sharoiti yoq
-            vatandoshlarimizkarta raqamlariga yonaltiriladi.Mablagni topshirish
-            vaqtida 100k.uz saytidaishlovchi istalgan admin ishtirok etishi
-            mumkin.
-            <br />
-            <br />
-            Ushbu sahifa keyinchalik yangiliklar ko'rinishidabarcha hayriyalar
-            haqida malumotlar chop etiladi.Eslatma: Hayriya qutisiga mablag
-            ajratishuchun Market bolimiga tashrif buyuring va oqim
-            yaratishoynasida hayriya summasini kiriting va tizim aynan oshaoqim
-            har bir sotilgan buyurtmasidan kiritilganhayriya summasi ushlab
-            qoladi.
-            <br />
-            <br />
-            Hayriya dasturida ishtirok etmagan bo'lsangizalbatta siz ham
-            ishtirok etib hissangizni qoshing,hattoki 500 so'm ham kopchilik
-            yordami kimnidirhayotini saqlab qolishi yoki yahshilikka
-            ozgartirishi mumkin.Birgalikda biz katta kuchmiz!
-          </p>
+          {/* description */}
+          <div className="text-regular-14 space-y-3.5">
+            <p>Assalomu alaykum, hurmatli jamoamiz administratorlari.</p>
+            <p>
+              Ushbu sahifada hayriya ishlari uchun to'plangan mablag'larni
+              kuzatishingiz mumkin. Sahifada hozircha umumiy to'plangan
+              mablag'ni va hayriya funksiyasi yoqilgan oqimlar ro'yxatini
+              ko'rishingiz mumkin.
+            </p>
+            <p>
+              Yig'ilgan mablag' bolalar yoki qariyalar uylari hisob raqamiga
+              yoki og'ir kasallikka uchragan lekin davolanishga sharoiti yo'q
+              bo'lgan vatandoshlarimiz karta raqamlariga yo'naltiriladi.
+              Mablag'ni topshirish vaqtida mene-market.uz saytida ish olib
+              boruvchi istalgan administrator ishtirok etishi mumkin.
+            </p>
+            <p>
+              Ushbu sahifa keyinchalik yangiliklar ko'rinishidabarcha hayriyalar
+              haqida malumotlar chop etiladi.
+            </p>
+            <p>
+              Eslatma: Hayriya qutisiga mablag' ajratish uchun Market sahifasiga
+              tashrif buyuring va oqim yaratish oynasida hayriya summasini
+              kiriting va tizim aynan shu oqim sotilgan har bir buyurtmasidan
+              kiritilgan hayriya summasini ushlab qoladi.
+            </p>
+            <p>
+              Hayriya dasturida ishtirok etmagan bo'lsangiz albatta siz ham
+              ishtirok etib hissangizni qoshing, hattoki 500 so'm ham ko'pchilik
+              yordami kimningdir hayotini saqlab qolishi yoki yaxshilikka
+              o'zgartirishi mumkin.
+              <strong className="inline font-semibold"> Biz birgalikda katta kuchmiz!</strong>
+            </p>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
