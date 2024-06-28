@@ -8,9 +8,6 @@ import {
   createRoutesFromElements,
 } from "react-router-dom";
 
-// components
-import Loader from "./components/Loader";
-
 // axios
 import axiosConfig from "./api/axios/axios";
 
@@ -105,14 +102,16 @@ const App = () => {
         dispatch(setProductsData(res.data));
       })
       .finally(() => {
-        dispatch(setProductsLoader(false));
+        setTimeout(() => {
+          dispatch(setProductsLoader(false));
+        }, 200);
       });
   }, []);
 
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route>
-        <Route path="/" element={!loader ? <MainRoot /> : <Loader />}>
+        <Route path="/" element={<MainRoot loader={loader} />}>
           <Route index element={<Home />} />
           <Route path="contact" element={<Contact />} />
           <Route path="success" element={<Success />} />
@@ -128,17 +127,19 @@ const App = () => {
           {/* auth */}
           <Route
             path="auth"
-            element={!authData.loggedIn ? <AuthRoot /> : <Navigate to="/" />}
+            element={
+              !loader && !authData.loggedIn ? <AuthRoot /> : <Navigate to="/" />
+            }
           >
             <Route path="login" element={<Login />} />
             <Route path="signup" element={<Register />} />
           </Route>
-      
+
           {/* admin */}
           <Route
             path="admin"
             element={
-              authData.loggedIn ? (
+              loader || authData.loggedIn ? (
                 <AdminLayout />
               ) : (
                 <Navigate to="/auth/login" />

@@ -4,17 +4,18 @@ import { Outlet, useLocation } from "react-router-dom";
 // redux
 import { useSelector } from "react-redux";
 
-// components
-import Header from "../components/Header";
-import Footer from "../components/Footer";
-import ImageViewerModal from "../components/ImageViewerModal";
-
 // toast
 import "../css/toast.css";
 import "react-toastify/dist/ReactToastify.css";
 import { Bounce, ToastContainer } from "react-toastify";
 
-const MainRoot = () => {
+// components
+import Header from "../components/Header";
+import Footer from "../components/Footer";
+import MainLoader from "../components/MainLoader";
+import ImageViewerModal from "../components/ImageViewerModal";
+
+const MainRoot = ({ loader }) => {
   const location = useLocation();
   const imageViewerModal = useSelector((store) => store.imageViewerModal);
   const pathArr = location.pathname.split("/").filter((item) => item !== "");
@@ -28,6 +29,8 @@ const MainRoot = () => {
 
   return (
     <div className="flex flex-col min-h-screen">
+      {loader && <MainLoader />}
+
       {/* header */}
       {!authPage && !adminPage && <Header />}
 
