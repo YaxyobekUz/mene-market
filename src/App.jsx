@@ -32,6 +32,7 @@ import ProfileLayout from "./layouts/ProfileLayout";
 
 // pages
 import Home from "./pages/Home";
+import News from "./pages/News";
 import Flow from "./pages/Flow";
 import Login from "./pages/Login";
 import Search from "./pages/Search";
@@ -44,7 +45,6 @@ import Contact from "./pages/Contact";
 import Appeals from "./pages/Appeals";
 import Product from "./pages/Product";
 import Success from "./pages/Success";
-import Requests from "./pages/Requests";
 import Products from "./pages/Products";
 import Register from "./pages/Register";
 import ErrorPage from "./pages/ErrorPage";
@@ -153,11 +153,11 @@ const App = () => {
             {/* dashboard */}
             <Route path="dashboard" element={<Outlet />}>
               <Route index element={<Dashboard />} />
-              <Route path="regular-customers" element={<RegularCustomers />} />
-              <Route path="requests" element={<Requests />} />
+              <Route path="news" element={<News />} />
+              <Route path="donation-box" element={<DonationBox />} />
               <Route path="competitions" element={<Competitions />} />
               <Route path="balance-history" element={<BalanceHistory />} />
-              <Route path="donation-box" element={<DonationBox />} />
+              <Route path="regular-customers" element={<RegularCustomers />} />
 
               {/* appeal */}
               <Route path="appeals" element={<Outlet />}>
