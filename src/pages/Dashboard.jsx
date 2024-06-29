@@ -104,7 +104,10 @@ const Dashboard = () => {
 
               {/* user name */}
               <h1 className="text-white text-bold-28 font-semibold capitalize line-clamp-1">
-                {userData.firstName + " " + userData.lastName}
+                {userData.firstName}{" "}
+                {userData.lastName &&
+                  userData.lastName !== "" &&
+                  userData.lastName}
               </h1>
 
               {/* description */}
