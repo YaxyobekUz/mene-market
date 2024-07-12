@@ -1,6 +1,7 @@
 import axios from "axios";
 const authData = JSON.parse(localStorage.getItem("auth"));
-export const apiBaseUrl = "https://menemarket-8699a792d090.herokuapp.com/api";
+export const apiBaseUrl =
+  "https://mene-market-app-ee791d02bc51.herokuapp.com/api";
 
 // create Axios instance
 const axiosConfig = axios.create({
